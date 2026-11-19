@@ -11,7 +11,7 @@ export default function Hero({ onReportClick, onSimulateClick }) {
       title: "Readiness reframed",
       subtitle: "Explore how AI is delivering greater returns and raising the bar for readiness",
       cta: "Read the 2026 Readiness Report",
-      video: "/videos/qubit_core.mp4",
+      video: "/videos/qubit_interface.mp4",
       action: onReportClick
     },
     {
@@ -19,7 +19,7 @@ export default function Hero({ onReportClick, onSimulateClick }) {
       title: "Scale without compromise",
       subtitle: "Deploying fault-tolerant heavy-hex lattices engineered for sovereign enterprise compute",
       cta: "Explore Quantum Systems",
-      video: "/videos/qubit_matrix.mp4",
+      video: "/videos/qubit_core.mp4",
       action: onSimulateClick
     },
     {
@@ -27,7 +27,7 @@ export default function Hero({ onReportClick, onSimulateClick }) {
       title: "Quantum-safe resilience",
       subtitle: "Protecting mission-critical data with NIST post-quantum cryptographic standards",
       cta: "Discover QKD Solutions",
-      video: "/videos/qubit_quantum.mp4",
+      video: "/videos/qubit_matrix.mp4",
       action: onReportClick
     },
     {
@@ -35,7 +35,7 @@ export default function Hero({ onReportClick, onSimulateClick }) {
       title: "Precision orchestration",
       subtitle: "Unifying classical developer toolchains with sub-millisecond cryostat execution",
       cta: "Launch Interactive Simulator",
-      video: "/videos/qubit_interface.mp4",
+      video: "/videos/qubit_quantum.mp4",
       action: onSimulateClick
     }
   ];
