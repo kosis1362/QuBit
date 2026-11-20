@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import {
   ArrowRight,
   Plus,
@@ -29,112 +29,98 @@ export default function ServiceDetailPage({ onConsultClick }) {
 
       {/* 
         ========================================================================
-        1. HERO BANNER:
-        Starts from the very starting, 2-line headline, refined small sub-heading,
-        action buttons, and full-stage image backdrop.
+        1. HERO BANNER: 1:1 Match to Reference Example (media_1795199984293_beec6a2f.jpg)
+        - Full-bleed photographic background with dark cinematic overlays
+        - Breadcrumb: Home / Services / [Service Title]
+        - Eyebrow: 'SERVICES' with red accent bar
+        - Headline: Concise, large grotesque font
+        - Sub-heading: Short, punchy single sentence value proposition ('keep content small')
+        - Action CTAs: 'Get In Touch' and 'Explore Features'
+        - Bottom Strip: 3-column highlights separated by vertical borders
         ========================================================================
       */}
-      {service.heroImage ? (
-        <section className="relative w-full min-h-[480px] sm:min-h-[520px] lg:min-h-[560px] overflow-hidden bg-[#101314] text-white flex flex-col justify-center border-b border-black/[0.08] pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 lg:pb-20">
+      <section className="relative w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] overflow-hidden bg-[#101314] text-white flex flex-col justify-between border-b border-black/[0.08] pt-28 sm:pt-32 lg:pt-36">
+        
+        {/* Full-Bleed Background Image */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src={service.heroImage || '/images/services/corporate_web_design_hero.jpg'}
+            alt={service.title}
+            className="w-full h-full object-cover object-center transform scale-102"
+          />
+          {/* Layered Cinematic Overlays matching the Kyndryl reference image */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/75 to-black/35 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/45 z-10" />
+          <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-[#FF462D]/15 rounded-full blur-[140px] pointer-events-none z-10" />
+        </div>
 
-          {/* Background Image Stage on the right half matching the first page (Hero.jsx) */}
-          <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[52%] xl:w-[48%] h-full overflow-hidden z-0">
-            <img
-              src={service.heroImage}
-              alt={service.title}
-              className="w-full h-full object-cover object-center transform scale-105"
-            />
-          </div>
+        {/* Hero Content (Breadcrumb, Category, Title, Subtitle, CTA) */}
+        <div className="relative z-20 w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 flex-1 flex flex-col justify-center py-6 sm:py-8">
+          <div className="max-w-2xl lg:max-w-3xl">
+            {/* Breadcrumb matching reference image */}
+            <nav aria-label="Breadcrumb" className="text-xs sm:text-[13px] text-white/70 mb-6 sm:mb-8 font-normal flex items-center gap-2">
+              <Link to="/" className="hover:text-white transition-colors">Home</Link>
+              <span className="text-white/40">/</span>
+              <span className="text-white/70">Services</span>
+              <span className="text-white/40">/</span>
+              <span className="text-white font-medium">{service.title}</span>
+            </nav>
 
-          {/* Layered cinematic gradient overlays matching Hero.jsx */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#101314] via-[#101314]/95 lg:via-[#101314]/85 to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#101314] via-transparent to-[#101314]/50 z-10 pointer-events-none" />
-          <div className="absolute top-1/3 left-1/4 w-[450px] h-[450px] bg-[#FF462D]/15 rounded-full blur-[140px] pointer-events-none z-10" />
+            {/* Category Tag with Red Accent Line matching reference image */}
+            <div className="mb-4 sm:mb-5">
+              <span className="text-xs font-mono uppercase tracking-[0.22em] text-white/90 font-medium block">
+                SERVICES
+              </span>
+              <div className="w-6 h-[2px] bg-[#FF462D] mt-1.5" />
+            </div>
 
-          {/* Hero Content overlaid on left starting from the very start */}
-          <div className="relative z-20 w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-            <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl">
-              {/* Bold Action Headline: formatted in exactly 2 lines */}
-              <h1 className="text-2xl sm:text-3xl lg:text-[32px] xl:text-[36px] font-bold text-white leading-[1.24] tracking-tight mb-3.5 max-w-full">
-                {service.heroHeadlineL1 && service.heroHeadlineL2 ? (
-                  <>
-                    <span className="block">{service.heroHeadlineL1}</span>
-                    <span className="block text-white/95">{service.heroHeadlineL2}</span>
-                  </>
-                ) : (
-                  service.heroHeadline || service.heroTitle
-                )}
-              </h1>
+            {/* Clean Grotesque Headline matching reference image */}
+            <h1 className="text-4xl sm:text-5xl lg:text-[58px] xl:text-[66px] font-medium tracking-tight text-white mb-4 sm:mb-5 leading-[1.08]">
+              {service.heroTitle || service.title}
+            </h1>
 
-              {/* Refined Small Sub-Heading */}
-              <p className="text-xs sm:text-sm lg:text-[14px] text-white/70 leading-relaxed max-w-xl mb-6 font-normal">
-                {service.heroSubtitle}
-              </p>
+            {/* Short, Punchy Subtitle ('keep the content small') */}
+            <p className="text-base sm:text-lg lg:text-[18px] text-white/90 font-normal leading-relaxed max-w-xl mb-8">
+              {service.heroSubtitle}
+            </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3.5">
-                <button
-                  type="button"
-                  onClick={onConsultClick}
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-[#FF462D] text-white text-sm font-semibold tracking-wide hover:bg-[#E0351E] transition-all duration-200 cursor-pointer shadow-md hover:shadow-lg active:scale-[0.98]"
-                >
-                  <span>Get In Touch</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+            {/* Action CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-3.5 mb-8 sm:mb-10">
+              <button
+                type="button"
+                onClick={onConsultClick}
+                className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-[#FF462D] text-white text-sm font-semibold tracking-wide hover:bg-[#E0351E] transition-all duration-200 cursor-pointer shadow-md hover:shadow-lg active:scale-[0.98]"
+              >
+                <span>Get In Touch</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
 
-                <a
-                  href="#key-features"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/25 text-sm font-semibold transition-all backdrop-blur-sm cursor-pointer"
-                >
-                  Explore Features
-                </a>
-              </div>
+              <a
+                href="#key-features"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/25 text-sm font-semibold transition-all backdrop-blur-sm cursor-pointer"
+              >
+                Explore Features
+              </a>
             </div>
           </div>
-        </section>
-      ) : (
-        <section className="relative w-full overflow-hidden bg-gradient-to-r from-[#DFF7F4] via-[#E6FAF7] to-[#ECFBF8] border-b border-black/[0.06] pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 lg:pb-20">
+        </div>
+
+        {/* Bottom 3-Column Highlight Strip matching reference image */}
+        <div className="relative z-20 w-full border-t border-white/20 bg-black/50 backdrop-blur-md">
           <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-            <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl">
-              {/* Bold Action Headline: formatted in exactly 2 lines */}
-              <h1 className="text-2xl sm:text-3xl lg:text-[32px] xl:text-[36px] font-bold text-[#142624] leading-[1.24] tracking-tight mb-3.5 max-w-full">
-                {service.heroHeadlineL1 && service.heroHeadlineL2 ? (
-                  <>
-                    <span className="block">{service.heroHeadlineL1}</span>
-                    <span className="block">{service.heroHeadlineL2}</span>
-                  </>
-                ) : (
-                  service.heroHeadline || service.heroTitle
-                )}
-              </h1>
-
-              {/* Refined Small Sub-Heading */}
-              <p className="text-xs sm:text-sm lg:text-[14px] text-[#3D5B56] leading-relaxed max-w-xl mb-6 font-normal">
-                {service.heroSubtitle}
-              </p>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3.5">
-                <button
-                  type="button"
-                  onClick={onConsultClick}
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-[#00897B] text-white text-sm font-semibold tracking-wide hover:bg-[#00796B] transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md active:scale-[0.98]"
+            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20">
+              {service.heroHighlights?.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="py-4 sm:py-5 md:px-6 first:pl-0 last:pr-0 flex items-center text-sm sm:text-[15px] font-normal text-white/90 leading-snug"
                 >
-                  <span>Get In Touch</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <a
-                  href="#key-features"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white/80 border border-black/10 text-sm font-semibold text-[#142624] hover:bg-white transition cursor-pointer"
-                >
-                  Explore Features
-                </a>
-              </div>
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* 
         ========================================================================

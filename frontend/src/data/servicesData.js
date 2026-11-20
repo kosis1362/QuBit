@@ -45,8 +45,13 @@ export const WHAT_WE_DO_SERVICES = [
     heroHeadline: "Craft an exceptional corporate website design and elevate your brand authority with QuBit.",
     heroHeadlineL1: "Craft an exceptional corporate website design",
     heroHeadlineL2: "and elevate your brand authority with QuBit.",
-    heroTitle: "Bespoke Corporate Website Design Engineered for Brand Authority & Growth",
-    heroSubtitle: "We craft custom, responsive, and high-performance corporate websites that express your distinct brand narrative, engage executive decision-makers, and convert organic visitors into long-term enterprise clients.",
+    heroTitle: "Corporate website design",
+    heroSubtitle: "Craft bespoke, high-performance web experiences that elevate brand authority at scale.",
+    heroHighlights: [
+      "100% Mobile-first responsive UX/UI architecture",
+      "Sub-second Core Web Vitals speed optimization",
+      "Custom CMS integration & seamless team handover"
+    ],
     illustration: null,
         heroImage: "/images/services/corporate_web_design_hero.jpg",
     features: [
@@ -115,8 +120,13 @@ export const WHAT_WE_DO_SERVICES = [
     heroHeadline: "Set up an online store and take your business to the next level by selling products online.",
     heroHeadlineL1: "Set up an online store and take your business",
     heroHeadlineL2: "to the next level by selling products online.",
-    heroTitle: "High-Conversion E-Commerce Stores Engineered for Frictionless Global Transactions",
-    heroSubtitle: "Scale your digital revenue with custom storefronts equipped with sub-second checkout flows, multi-currency payment gateways, dynamic product search, and automated inventory sync across global channels.",
+    heroTitle: "E-commerce solution",
+    heroSubtitle: "Set up scalable online storefronts engineered for frictionless global transactions.",
+    heroHighlights: [
+      "Multi-currency payment gateways & 1-click checkout",
+      "Automated inventory sync & ERP integration",
+      "99.99% transactional reliability under heavy load"
+    ],
     illustration: "/images/services/ecommerce_illustration_transparent.png",
     bannerImage: "/images/services/ecommerce_hero_banner.png",
     featuresImage: "/images/services/ecommerce_key_features.jpg",
@@ -187,8 +197,13 @@ export const WHAT_WE_DO_SERVICES = [
     heroHeadline: "Build scalable cloud-native web applications that streamline operations and power growth.",
     heroHeadlineL1: "Build scalable cloud-native web applications",
     heroHeadlineL2: "that streamline operations and power growth.",
-    heroTitle: "Scalable Enterprise Web Applications Built for High-Throughput Performance",
-    heroSubtitle: "We engineer cloud-native, modular web applications that automate intricate enterprise workflows, connect disparate legacy data silos, and deliver lightning-fast interactive experiences to thousands of concurrent users.",
+    heroTitle: "Web application development",
+    heroSubtitle: "Build scalable cloud-native web apps that streamline operations and power growth.",
+    heroHighlights: [
+      "High-throughput REST & GraphQL API orchestration",
+      "Role-based access governance & end-to-end encryption",
+      "Sub-100ms response latency on distributed cloud"
+    ],
     illustration: null,
         heroImage: "/images/services/web_app_hero.jpg",
     features: [
@@ -257,8 +272,13 @@ export const WHAT_WE_DO_SERVICES = [
     heroHeadline: "Launch high-performance iOS and Android apps that engage active users and drive conversions.",
     heroHeadlineL1: "Launch high-performance iOS and Android apps",
     heroHeadlineL2: "that engage active users and drive conversions.",
-    heroTitle: "Intuitive iOS & Android Mobile Applications Built for Daily User Engagement",
-    heroSubtitle: "We develop sleek, native-feel mobile applications across iOS and Android that combine tactile animations, offline synchronization, push notifications, and biometric security to deliver unforgettable mobile experiences.",
+    heroTitle: "Mobile app development",
+    heroSubtitle: "Launch native iOS and Android applications that engage users and drive conversions.",
+    heroHighlights: [
+      "Fluid 60 FPS cross-platform & native performance",
+      "Offline-first local sync & biometric security",
+      "End-to-end Apple App Store & Google Play publishing"
+    ],
     illustration: null,
         heroImage: "/images/services/mobile_app_hero.jpg",
     features: [
@@ -327,8 +347,13 @@ export const WHAT_WE_DO_SERVICES = [
     heroHeadline: "Engineer custom, robust software solutions that eliminate friction and accelerate scale.",
     heroHeadlineL1: "Engineer custom, robust software solutions",
     heroHeadlineL2: "that eliminate friction and accelerate scale.",
-    heroTitle: "Bespoke Enterprise Software Systems Architected for Scalability & Resilience",
-    heroSubtitle: "We engineer customized, resilient software solutions that eliminate operational friction, automate manual workflows, and scale with your expanding business demands through disciplined agile execution.",
+    heroTitle: "Software development",
+    heroSubtitle: "Engineer custom software systems that eliminate operational bottlenecks at scale.",
+    heroHighlights: [
+      "Modular microservices architected for horizontal scale",
+      "Disciplined 2-week agile sprint delivery cycles",
+      "Zero-downtime blue/green deployment automation"
+    ],
     illustration: null,
         heroImage: "/images/services/software_dev_hero.jpg",
     features: [
@@ -397,8 +422,13 @@ export const WHAT_WE_DO_SERVICES = [
     heroHeadline: "Dominate search rankings and drive organic traffic that converts qualified visitors into customers.",
     heroHeadlineL1: "Dominate search rankings and drive organic traffic",
     heroHeadlineL2: "that converts qualified visitors into customers.",
-    heroTitle: "Organic Search Optimization Engineered to Capture High-Intent Enterprise Revenue",
-    heroSubtitle: "Elevate your market visibility with data-driven technical SEO audits, high-authority backlink acquisitions, semantic content structuring, and Core Web Vitals optimization that sustainably dominate Google search rankings.",
+    heroTitle: "Search engine optimization",
+    heroSubtitle: "Dominate search rankings and capture high-intent organic enterprise revenue.",
+    heroHighlights: [
+      "Technical crawl audits & Core Web Vitals remediation",
+      "High-authority white-hat editorial backlink acquisition",
+      "Structured JSON-LD schema & SERP ranking acceleration"
+    ],
     illustration: null,
         heroImage: "/images/services/seo_hero.jpg",
     features: [
@@ -467,8 +497,13 @@ export const WHAT_WE_DO_SERVICES = [
     heroHeadline: "Create memorable brand identities and visual art that elevate your business across every channel.",
     heroHeadlineL1: "Create memorable brand identities and visual art",
     heroHeadlineL2: "that elevate your business across every channel.",
-    heroTitle: "Bespoke Brand Identities & High-Impact Visual Communication Systems",
-    heroSubtitle: "Transform how the world perceives your brand with custom logo systems, corporate identity guidelines, marketing collateral, UI design languages, and presentation decks engineered to inspire client trust and drive conversion.",
+    heroTitle: "Graphics designing",
+    heroSubtitle: "Create memorable brand identities and visual systems that captivate audiences.",
+    heroHighlights: [
+      "100% original copyright-cleared vector artwork",
+      "Comprehensive enterprise brand style guidelines",
+      "Print-ready & high-resolution digital master files"
+    ],
     illustration: null,
         heroImage: "/images/services/graphic_design_hero.jpg",
     features: [
@@ -537,8 +572,13 @@ export const WHAT_WE_DO_SERVICES = [
     heroHeadline: "Keep your cloud servers secure and available with 24/7 proactive system administration.",
     heroHeadlineL1: "Keep your cloud servers secure and available",
     heroHeadlineL2: "with 24/7 proactive system administration.",
-    heroTitle: "Mission-Critical 24/7 Cloud Infrastructure Administration & DevOps Engineering",
-    heroSubtitle: "Safeguard business continuity with proactive 24/7 server monitoring, automated disaster recovery, kernel hardening, container orchestration, and continuous security patching across multi-cloud environments.",
+    heroTitle: "Server management",
+    heroSubtitle: "Keep cloud infrastructure secure, lightning fast, and 99.99% available 24/7.",
+    heroHighlights: [
+      "24/7 proactive NOC telemetry monitoring & 15-min SLA",
+      "Automated off-site encrypted disaster recovery backups",
+      "Enterprise firewall, kernel hardening & DDoS defense"
+    ],
     illustration: null,
         heroImage: "/images/services/server_management_hero.jpg",
     features: [
@@ -607,8 +647,13 @@ export const WHAT_WE_DO_SERVICES = [
     heroHeadline: "Bring your brand stories and products to life with high-retention 2D animated explainers.",
     heroHeadlineL1: "Bring your brand stories and products to life",
     heroHeadlineL2: "with high-retention 2D animated explainers.",
-    heroTitle: "Captivating 2D Explainer Videos & High-Retention Motion Graphics",
-    heroSubtitle: "Demystify complex enterprise software, engage target demographics, and supercharge sales conversions with studio-grade 2D animated explainers, motion graphic visual effects, and bespoke character animations.",
+    heroTitle: "2D animation",
+    heroSubtitle: "Bring your products to life with studio-grade 2D animated explainer videos.",
+    heroHighlights: [
+      "Custom visual scriptwriting, storyboarding & voiceover",
+      "Smooth 60 FPS character dynamics & motion graphics",
+      "Studio-grade 4K ultra-HD multi-format rendering"
+    ],
     illustration: null,
         heroImage: "/images/services/animation_hero.jpg",
     features: [
@@ -677,8 +722,13 @@ export const WHAT_WE_DO_SERVICES = [
     heroHeadline: "Scale your engineering team and tech capacity with dedicated, vetted offshore professionals.",
     heroHeadlineL1: "Scale your engineering team and tech capacity",
     heroHeadlineL2: "with dedicated, vetted offshore professionals.",
-    heroTitle: "Flexible IT Outsourcing & Dedicated Offshore Engineering Squads",
-    heroSubtitle: "Accelerate your product roadmap and bridge critical technical skill gaps with dedicated, elite software engineering squads, DevOps specialists, and QA engineers seamlessly embedded into your development sprints.",
+    heroTitle: "IT outsourcing",
+    heroSubtitle: "Scale your technical delivery with dedicated, top 3% vetted offshore engineering squads.",
+    heroHighlights: [
+      "Top 3% vetted senior software engineers & architects",
+      "Rapid sprint onboarding within 3 to 7 business days",
+      "Zero-risk trial guarantee & strict IP/NDA governance"
+    ],
     illustration: null,
         heroImage: "/images/services/it_outsourcing_hero.jpg",
     features: [
@@ -747,8 +797,13 @@ export const WHAT_WE_DO_SERVICES = [
     heroHeadline: "Keep your website fast, secure, and reliable with proactive maintenance and 24/7 support.",
     heroHeadlineL1: "Keep your website fast, secure, and reliable",
     heroHeadlineL2: "with proactive maintenance and 24/7 support.",
-    heroTitle: "Proactive Website Maintenance, Security Hardening & Continuous Care",
-    heroSubtitle: "Eliminate downtime, security vulnerabilities, and broken functionality with comprehensive website maintenance plans including daily cloud backups, CMS updates, speed audits, and allocated on-demand developer support.",
+    heroTitle: "Website maintenance",
+    heroSubtitle: "Ensure websites stay secure, bug-free, and always updated with continuous care.",
+    heroHighlights: [
+      "Daily automated cloud snapshots & zero-downtime restore",
+      "Continuous CMS, theme, and security patch updates",
+      "Priority technical support & quarterly speed audits"
+    ],
     illustration: null,
         heroImage: "/images/services/maintenance_hero.jpg",
     features: [
