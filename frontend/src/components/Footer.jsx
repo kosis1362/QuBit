@@ -82,8 +82,8 @@ export default function Footer({ onContactClick, onSimulateClick }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center py-2 sm:py-3">
 
           {/* Left Column: Signature Tagline */}
-          <div className="lg:col-span-6 flex items-start">
-            <h2 className="text-2xl sm:text-3xl lg:text-[70px] font-medium tracking-tight text-[#2B2B2B] leading-tight">
+          <div className="lg:col-span-6 flex items-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-[46px] xl:text-[52px] font-medium tracking-tight text-[#2B2B2B] leading-tight">
               Track Your Progress<sup className="text-xs sm:text-sm font-semibold ml-0.5">TM</sup>
             </h2>
           </div>

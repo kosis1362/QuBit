@@ -8,9 +8,7 @@ export default function FloatingSectionNav() {
   const sections = [
     { id: 'who-we-are', label: 'Who we are' },
     { id: 'customer-stories', label: 'Customer stories' },
-    { id: 'how-we-help', label: 'How we help' },
-    { id: 'our-expertise', label: 'Our expertise' },
-    { id: 'faq', label: 'FAQ' },
+    { id: 'connect-with-us', label: 'Connect with us' },
   ];
 
   useEffect(() => {
