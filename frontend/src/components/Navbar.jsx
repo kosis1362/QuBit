@@ -77,8 +77,13 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
                   onClick={() => toggleDropdown('what')}
                   className="flex items-center gap-2 hover:text-[#FF462D] py-2 cursor-pointer transition-colors"
                 >
+<<<<<<< Updated upstream
                   <span>What we do</span>
                   <ChevronDown className="w-4 h-4 text-white/70 transition-transform duration-200 group-hover:rotate-180" />
+=======
+                  <span>Services</span>
+                  <ChevronDown className="w-4 h-4 text-white/70 transition-transform group-hover:rotate-180" />
+>>>>>>> Stashed changes
                 </button>
 
                 {/* Mega Menu Dropdown */}
@@ -133,8 +138,13 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
                   onClick={() => toggleDropdown('who')}
                   className="flex items-center gap-2 hover:text-[#FF462D] py-2 cursor-pointer transition-colors"
                 >
+<<<<<<< Updated upstream
                   <span>Who we are</span>
                   <ChevronDown className="w-4 h-4 text-white/70 transition-transform duration-200 group-hover:rotate-180" />
+=======
+                  <span>About US</span>
+                  <ChevronDown className="w-4 h-4 text-white/70 transition-transform group-hover:rotate-180" />
+>>>>>>> Stashed changes
                 </button>
                 {/* Dropdown Menu */}
                 <div className="absolute top-full left-0 mt-3.5 w-72 bg-[#141414]/98 backdrop-blur-xl border border-white/15 rounded-2xl p-3.5 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200">
@@ -162,6 +172,7 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
                 </div>
               </div>
 
+<<<<<<< Updated upstream
               {/* Customer Stories */}
               <button
                 type="button"
@@ -188,6 +199,32 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
               >
                 Careers
               </button>
+=======
+              {/* Insights */}
+              <div className="relative group">
+                <button
+                  onClick={() => toggleDropdown('insights')}
+                  className="flex items-center gap-2 hover:text-white py-2 cursor-pointer transition-colors"
+                >
+                  <span>Products</span>
+                  <ChevronDown className="w-4 h-4 text-white/70 transition-transform group-hover:rotate-180" />
+                </button>
+                {/* Dropdown Menu */}
+                <div className="absolute top-full left-0 w-72 bg-[#141414]/95 backdrop-blur-xl border border-white/15 rounded-2xl p-3.5 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200">
+                  <a href="#readiness" className="block px-3.5 py-2.5 rounded-xl text-sm text-white/85 hover:text-white hover:bg-white/10 transition">
+                    2026 Readiness Report
+                  </a>
+                  <a href="#research" className="block px-3.5 py-2.5 rounded-xl text-sm text-white/85 hover:text-white hover:bg-white/10 transition">
+                    Topological Coherence Research
+                  </a>
+                  <a href="#pqc" className="block px-3.5 py-2.5 rounded-xl text-sm text-white/85 hover:text-white hover:bg-white/10 transition">
+                    Post-Quantum Cryptography Migration
+                  </a>
+                </div>
+              </div>
+
+         
+>>>>>>> Stashed changes
 
             </nav>
           </div>
@@ -195,6 +232,7 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
           {/* Right: Global Actions & CTAs */}
           <div className="flex items-center gap-3.5 sm:gap-4.5">
 
+<<<<<<< Updated upstream
             {/* Region / Language */}
             <div className="relative hidden md:block">
               <button
@@ -214,6 +252,20 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
             >
               Consult an expert
             </button>
+=======
+            {/* Investors Link */}
+            <a
+              href="#investors"
+              className="hidden lg:flex items-center gap-1.5 text-[14px] sm:text-[15px] text-white/85 hover:text-white transition-colors"
+            >
+              <span>Contact Us</span>
+              <ExternalLink className="w-3.5 h-3.5 text-white/60" />
+            </a>
+
+            
+
+         
+>>>>>>> Stashed changes
 
             {/* Bookmark with Badge */}
             <button
@@ -252,6 +304,7 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
+<<<<<<< Updated upstream
           <div className="xl:hidden py-4 border-t border-white/15 flex flex-col gap-3 text-base px-2 pb-5">
             {/* What we do mobile dropdown */}
             <div className="border-b border-white/10 pb-2">
@@ -315,6 +368,22 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
               <span>Region: IN - EN</span>
               <span className="text-white/50">QuBit Inc.</span>
             </div>
+=======
+          <div className="xl:hidden py-4 border-t border-white/15 flex flex-col gap-3.5 text-base px-2 pb-5">
+            <a href="#systems" onClick={() => setMobileMenuOpen(false)} className="px-2 py-1.5 text-white/90 hover:text-[#FF462D]">
+              About Us
+            </a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="px-2 py-1.5 text-white/90 hover:text-[#FF462D]">
+              Services
+            </a>
+            <a href="#insights" onClick={() => setMobileMenuOpen(false)} className="px-2 py-1.5 text-white/90 hover:text-[#FF462D]">
+              Products
+            </a>
+            <a href="#news" onClick={() => setMobileMenuOpen(false)} className="px-2 py-1.5 text-white/90 hover:text-[#FF462D]">
+              Contact Us
+           
+            </a>
+>>>>>>> Stashed changes
           </div>
         )}
 

@@ -84,7 +84,9 @@ export default function CustomerStoriesSection() {
   };
 
   return (
-    <section id="customer-stories" className="w-full bg-[#FBF9F5] text-[#121212] overflow-hidden pt-12 md:pt-16 pb-12">
+    <section id="Products" className="w-full bg-[#FBF9F5] text-[#121212] overflow-hidden pt-12 md:pt-16 pb-12">
+      <div id="products" />
+      <div id="customer-stories" />
       
       {/* Section Header Text (Above the full-width image/video) */}
       <div className="w-full px-6 sm:px-12 lg:px-20 xl:px-28 mb-8 sm:mb-10">

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Play, X } from 'lucide-react';
 
-export default function WhoWeAreSection() {
+export default function AboutUsSection() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
 
   const whoWeAreData = {
@@ -11,7 +11,7 @@ export default function WhoWeAreSection() {
     links: [
       { label: "Our story", href: "#story" },
       { label: "Awards and recognition", href: "#awards" },
-      { label: "Analyst recognition", href: "#who-we-are-recognition" }
+      { label: "Analyst recognition", href: "#Services" }
     ],
     cardTitle: "We are QuBit",
     hoverImage: "/images/qubit_cyber_face.jpg",
@@ -20,7 +20,9 @@ export default function WhoWeAreSection() {
   };
 
   return (
-    <section id="who-we-are" className="w-full bg-white text-[#121212] pt-8 pb-16 lg:pt-10 lg:pb-24 overflow-hidden border-b border-black/[0.06]">
+    <section id="About Us" className="w-full bg-white text-[#121212] pt-8 pb-16 lg:pt-10 lg:pb-24 overflow-hidden border-b border-black/[0.06]">
+      <div id="who-we-are" />
+      <div id="about-us" />
       {/* FULL-WIDTH HORIZONTAL CONTAINER */}
       <div className="w-full px-6 sm:px-12 lg:px-20 xl:px-28">
 

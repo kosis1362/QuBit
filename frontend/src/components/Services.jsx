@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function IndustryRecognition() {
+export default function Services() {
   const [activeIndex, setActiveIndex] = useState(1); // Default to 02 matching Kyndryl reference image
 
   const panels = [
     {
       id: "01",
       badge: "01",
-      headline: "QuBit a Leader in Sovereign Quantum and Hybrid Cloud Infrastructure",
-      analyst: "ISG Provider Lens™",
+      headline: "Software Development",
       bgHex: "#1FA452",
       logo: (
         <div className="flex items-center gap-2 text-white font-sans tracking-tight">
@@ -21,8 +20,7 @@ export default function IndustryRecognition() {
     {
       id: "02",
       badge: "02",
-      headline: "QuBit a Leader in Gartner® Magic Quadrant™ for Data Center Outsourcing Services",
-      analyst: "Gartner",
+      headline:"AI Automation & Data Analytics",
       bgHex: "#1B904B",
       logo: (
         <div className="text-white font-sans flex items-baseline">
@@ -34,7 +32,7 @@ export default function IndustryRecognition() {
     {
       id: "03",
       badge: "03",
-      headline: "IDC MarketScape names QuBit a Major Player in Worldwide Post-Quantum Cryptography & QKD",
+      headline: "Website Development",
       analyst: "IDC MarketScape",
       bgHex: "#187E3F",
       logo: (
@@ -47,7 +45,7 @@ export default function IndustryRecognition() {
     {
       id: "04",
       badge: "04",
-      headline: "Forrester Wave™ designates QuBit as a Top Performer in Enterprise High-Performance Acceleration",
+      headline: "Graphic Design & Branding",
       analyst: "Forrester",
       bgHex: "#126230",
       logo: (
@@ -67,7 +65,9 @@ export default function IndustryRecognition() {
   };
 
   return (
-    <section id="who-we-are-recognition" className="w-full bg-[#FBF9F5] py-8 sm:py-12 lg:py-16">
+    <section id="Services" className="w-full bg-[#FBF9F5] py-8 sm:py-12 lg:py-16">
+      <div id="services" />
+      <div id="who-we-are-recognition" />
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10">
         
         {/* Main Card Container (Rounded Card matching Kyndryl 1:1 reference image) */}
@@ -77,13 +77,11 @@ export default function IndustryRecognition() {
           <div className="lg:w-[32%] xl:w-[30%] p-8 sm:p-10 lg:p-12 xl:p-14 flex flex-col justify-between shrink-0 bg-[#EFF2F2] self-stretch z-10">
             <div>
               <h2 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-normal tracking-[-0.03em] leading-[1.08] text-[#121212]">
-                Industry
+                Services
                 <br />
-                recognition.
+                Provided
                 <br />
-                <span className="text-[#FF462D]">Customer</span>
-                <br />
-                <span className="text-[#FF462D]">trust.</span>
+                by <span className="text-[#FF462D]">QuBit</span>
               </h2>
             </div>
 
@@ -92,14 +90,14 @@ export default function IndustryRecognition() {
               <button
                 onClick={handlePrev}
                 className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-black/10 active:scale-95 transition-all cursor-pointer text-[#121212]"
-                aria-label="Previous Recognition"
+                aria-label="Previous Service"
               >
                 <ChevronLeft className="w-5 h-5 text-[#121212]" />
               </button>
               <button
                 onClick={handleNext}
                 className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-black/10 active:scale-95 transition-all cursor-pointer text-[#121212]"
-                aria-label="Next Recognition"
+                aria-label="Next Service"
               >
                 <ChevronRight className="w-5 h-5 text-[#121212]" />
               </button>
