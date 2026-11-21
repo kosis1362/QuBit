@@ -1,21 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function FloatingSectionNav() {
-  const [activeSection, setActiveSection] = useState('who-we-are');
+  const [activeSection, setActiveSection] = useState('About Us');
   const [isStuck, setIsStuck] = useState(false);
   const navRef = useRef(null);
 
   const sections = [
-<<<<<<< Updated upstream
-    { id: 'who-we-are', label: 'Who we are' },
-    { id: 'customer-stories', label: 'Customer stories' },
-    { id: 'connect-with-us', label: 'Connect with us' },
-=======
     { id: 'About Us', label: 'About Us' },
     { id: 'Services', label: 'Services' },
     { id: 'Products', label: 'Products' },
     { id: 'Contact Us', label: 'Contact Us' },
->>>>>>> Stashed changes
   ];
 
   useEffect(() => {
@@ -31,7 +25,12 @@ export default function FloatingSectionNav() {
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const sec = sections[i];
-        const el = document.getElementById(sec.id);
+        const el =
+          document.getElementById(sec.id) ||
+          document.getElementById(sec.id.toLowerCase().replace(/\s+/g, '-')) ||
+          (sec.id === 'About Us' ? document.getElementById('who-we-are') : null) ||
+          (sec.id === 'Products' ? document.getElementById('customer-stories') : null) ||
+          (sec.id === 'Contact Us' ? document.getElementById('connect-with-us') : null);
         if (el) {
           const top = el.getBoundingClientRect().top + window.scrollY;
           if (scrollPosition >= top) {
