@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown, ChevronRight, Bookmark, Search, Menu, X, ArrowUpRight } from 'lucide-react';
 import { WHAT_WE_DO_SERVICES } from '../data/servicesData';
@@ -11,6 +11,18 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const headerRef = useRef(null);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (headerRef.current && !headerRef.current.contains(event.target)) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // When user starts scrolling, the navbar smoothly disappears; when at top, it reappears
   useEffect(() => {
@@ -55,7 +67,10 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
       }`}
     >
       {/* Blurry Transparent Frosted Glass Header */}
-      <header className="pointer-events-auto w-full max-w-[98%] sm:max-w-[97%] lg:max-w-[98%] xl:max-w-[1720px] mx-auto bg-black/40 backdrop-blur-xl sm:backdrop-blur-2xl border border-white/20 rounded-[24px] sm:rounded-full px-5 sm:px-8 shadow-2xl text-white transition-all">
+      <header
+        ref={headerRef}
+        className="pointer-events-auto w-full max-w-[98%] sm:max-w-[97%] lg:max-w-[98%] xl:max-w-[1720px] mx-auto bg-black/40 backdrop-blur-xl sm:backdrop-blur-2xl border border-white/20 rounded-[24px] sm:rounded-full px-5 sm:px-8 shadow-2xl text-white transition-all"
+      >
         <div className="flex items-center justify-between h-[70px] sm:h-[76px]">
 
           {/* Left: Brand + Navigation Items */}
@@ -71,104 +86,151 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
             <nav className="hidden xl:flex items-center gap-8 text-[15px] sm:text-base text-white/95 font-normal tracking-wide">
 
               {/* What we do: 11 Dedicated Internal Service Pages */}
-              <div className="relative group">
+              <div
+                className="relative group py-2"
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
                 <button
                   type="button"
                   onClick={() => toggleDropdown('what')}
-                  className="flex items-center gap-2 hover:text-[#FF462D] py-2 cursor-pointer transition-colors"
+                  className="flex items-center gap-2 hover:text-[#FF462D] cursor-pointer transition-colors"
                 >
 <<<<<<< Updated upstream
                   <span>What we do</span>
+<<<<<<< HEAD
                   <ChevronDown className="w-4 h-4 text-white/70 transition-transform duration-200 group-hover:rotate-180" />
 =======
                   <span>Services</span>
                   <ChevronDown className="w-4 h-4 text-white/70 transition-transform group-hover:rotate-180" />
 >>>>>>> Stashed changes
+=======
+                  <ChevronDown
+                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
+                      activeDropdown === 'what' ? 'rotate-180' : 'group-hover:rotate-180'
+                    }`}
+                  />
+>>>>>>> f5b158924ee50c63d260f79e74d5979a777bae3f
                 </button>
 
-                {/* Mega Menu Dropdown */}
-                <div className="absolute top-full left-0 mt-3.5 w-[960px] max-w-[92vw] bg-[#101010] border border-white/20 rounded-3xl p-6 shadow-[0_30px_90px_rgba(0,0,0,0.9)] opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                  <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-white/10">
-                    <div className="flex items-center gap-2.5">
-                      <span className="text-[11px] font-mono uppercase tracking-widest text-[#FF462D] font-semibold">// WHAT WE DO</span>
-                      <div className="h-1 w-1 rounded-full bg-white/40" />
-                      <span className="text-xs text-white/60">Dedicated Internal Service Practices</span>
-                    </div>
-                    <Link
-                      to="/services/web-design"
-                      className="text-xs text-[#FF462D] hover:text-[#ff6b57] transition font-medium flex items-center gap-1 cursor-pointer"
-                    >
-                      <span>Explore Services</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
+                {/* Mega Menu Dropdown with Seamless Hover Bridge */}
+                <div
+                  className={`absolute top-full left-0 pt-3 w-[960px] max-w-[92vw] z-50 transition-all duration-200 ${
+                    activeDropdown === 'what'
+                      ? 'opacity-100 translate-y-0 pointer-events-auto'
+                      : 'opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto'
+                  }`}
+                >
+                  {/* Invisible Hover Safety Bridge spanning the gap */}
+                  <div className="absolute -top-3 left-0 right-0 h-4 bg-transparent" />
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5 max-h-[62vh] overflow-y-auto pr-1">
-                    {WHAT_WE_DO_SERVICES.map((item) => {
-                      const IconComponent = item.icon;
-                      return (
-                        <Link
-                          key={item.id}
-                          to={`/services/${item.id}`}
-                          className="flex items-start gap-3 p-3 rounded-2xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] hover:border-[#FF462D]/40 transition-all duration-200 group/item cursor-pointer"
-                        >
-                          <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 group-hover/item:bg-[#FF462D]/15 group-hover/item:border-[#FF462D]/40 flex items-center justify-center text-white/80 group-hover/item:text-[#FF462D] transition-colors shrink-0 mt-0.5">
-                            <IconComponent className="w-4.5 h-4.5" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-1 text-[13px] font-medium text-white group-hover/item:text-[#FF462D] transition-colors leading-snug">
-                              <span className="truncate">{item.title}</span>
-                              <ChevronRight className="w-3.5 h-3.5 opacity-40 group-hover/item:opacity-90 group-hover/item:translate-x-0.5 transition-all" />
+                  {/* Actual Mega Menu Card */}
+                  <div className="bg-[#101010] border border-white/20 rounded-3xl p-6 shadow-[0_30px_90px_rgba(0,0,0,0.9)]">
+                    <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-white/10">
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-[11px] font-mono uppercase tracking-widest text-[#FF462D] font-semibold">// WHAT WE DO</span>
+                        <div className="h-1 w-1 rounded-full bg-white/40" />
+                        <span className="text-xs text-white/60">Dedicated Internal Service Practices</span>
+                      </div>
+                      <Link
+                        to="/services/web-design"
+                        onClick={() => setActiveDropdown(null)}
+                        className="text-xs text-[#FF462D] hover:text-[#ff6b57] transition font-medium flex items-center gap-1 cursor-pointer"
+                      >
+                        <span>Explore Services</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5 max-h-[62vh] overflow-y-auto pr-1">
+                      {WHAT_WE_DO_SERVICES.map((item) => {
+                        const IconComponent = item.icon;
+                        return (
+                          <Link
+                            key={item.id}
+                            to={`/services/${item.id}`}
+                            onClick={() => setActiveDropdown(null)}
+                            className="flex items-start gap-3 p-3 rounded-2xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] hover:border-[#FF462D]/40 transition-all duration-200 group/item cursor-pointer"
+                          >
+                            <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 group-hover/item:bg-[#FF462D]/15 group-hover/item:border-[#FF462D]/40 flex items-center justify-center text-white/80 group-hover/item:text-[#FF462D] transition-colors shrink-0 mt-0.5">
+                              <IconComponent className="w-4.5 h-4.5" />
                             </div>
-                            <p className="text-[11px] text-white/50 line-clamp-1 mt-0.5 font-normal">
-                              {item.shortDesc}
-                            </p>
-                          </div>
-                        </Link>
-                      );
-                    })}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1 text-[13px] font-medium text-white group-hover/item:text-[#FF462D] transition-colors leading-snug">
+                                <span className="truncate">{item.title}</span>
+                                <ChevronRight className="w-3.5 h-3.5 opacity-40 group-hover/item:opacity-90 group-hover/item:translate-x-0.5 transition-all" />
+                              </div>
+                              <p className="text-[11px] text-white/50 line-clamp-1 mt-0.5 font-normal">
+                                {item.shortDesc}
+                              </p>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Who we are */}
-              <div className="relative group">
+              <div
+                className="relative group py-2"
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
                 <button
                   type="button"
                   onClick={() => toggleDropdown('who')}
-                  className="flex items-center gap-2 hover:text-[#FF462D] py-2 cursor-pointer transition-colors"
+                  className="flex items-center gap-2 hover:text-[#FF462D] cursor-pointer transition-colors"
                 >
 <<<<<<< Updated upstream
                   <span>Who we are</span>
+<<<<<<< HEAD
                   <ChevronDown className="w-4 h-4 text-white/70 transition-transform duration-200 group-hover:rotate-180" />
 =======
                   <span>About US</span>
                   <ChevronDown className="w-4 h-4 text-white/70 transition-transform group-hover:rotate-180" />
 >>>>>>> Stashed changes
+=======
+                  <ChevronDown
+                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
+                      activeDropdown === 'who' ? 'rotate-180' : 'group-hover:rotate-180'
+                    }`}
+                  />
+>>>>>>> f5b158924ee50c63d260f79e74d5979a777bae3f
                 </button>
-                {/* Dropdown Menu */}
-                <div className="absolute top-full left-0 mt-3.5 w-72 bg-[#141414]/98 backdrop-blur-xl border border-white/15 rounded-2xl p-3.5 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200">
-                  <button
-                    type="button"
-                    onClick={() => handleSectionNav('#who-we-are')}
-                    className="w-full text-left block px-3.5 py-2.5 rounded-xl text-sm text-white/85 hover:text-white hover:bg-white/10 transition cursor-pointer"
-                  >
-                    Mission & Continuous Innovation
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleSectionNav('#who-we-are-recognition')}
-                    className="w-full text-left block px-3.5 py-2.5 rounded-xl text-sm text-white/85 hover:text-white hover:bg-white/10 transition cursor-pointer"
-                  >
-                    Industry & Analyst Recognition
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleSectionNav('#customer-stories')}
-                    className="w-full text-left block px-3.5 py-2.5 rounded-xl text-sm text-white/85 hover:text-white hover:bg-white/10 transition cursor-pointer"
-                  >
-                    Enterprise Customer Stories
-                  </button>
+                {/* Dropdown Menu with Seamless Hover Bridge */}
+                <div
+                  className={`absolute top-full left-0 pt-3 w-72 z-50 transition-all duration-200 ${
+                    activeDropdown === 'who'
+                      ? 'opacity-100 translate-y-0 pointer-events-auto'
+                      : 'opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto'
+                  }`}
+                >
+                  {/* Invisible Hover Safety Bridge */}
+                  <div className="absolute -top-3 left-0 right-0 h-4 bg-transparent" />
+
+                  <div className="bg-[#141414]/98 backdrop-blur-xl border border-white/15 rounded-2xl p-3.5 shadow-2xl">
+                    <button
+                      type="button"
+                      onClick={() => { setActiveDropdown(null); handleSectionNav('#who-we-are'); }}
+                      className="w-full text-left block px-3.5 py-2.5 rounded-xl text-sm text-white/85 hover:text-white hover:bg-white/10 transition cursor-pointer"
+                    >
+                      Mission & Continuous Innovation
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => { setActiveDropdown(null); handleSectionNav('#who-we-are-recognition'); }}
+                      className="w-full text-left block px-3.5 py-2.5 rounded-xl text-sm text-white/85 hover:text-white hover:bg-white/10 transition cursor-pointer"
+                    >
+                      Industry & Analyst Recognition
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => { setActiveDropdown(null); handleSectionNav('#customer-stories'); }}
+                      className="w-full text-left block px-3.5 py-2.5 rounded-xl text-sm text-white/85 hover:text-white hover:bg-white/10 transition cursor-pointer"
+                    >
+                      Enterprise Customer Stories
+                    </button>
+                  </div>
                 </div>
               </div>
 
