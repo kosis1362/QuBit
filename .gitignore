@@ -1,0 +1,38 @@
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+.vite/
+frontend/.vite/
+dist/
+frontend/dist/
+.eslintcache
+
+# Python / Backend
+__pycache__/
+backend/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+backend/venv/
+backend/.venv/
+
+# Environment Variables
+.env
+backend/.env
+frontend/.env
+*.env.local
+
+# Databases
+*.db
+*.sqlite3
+qubit.db
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
