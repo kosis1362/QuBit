@@ -13,13 +13,22 @@ from models import (
     QuantumSimulationDB, SimulationCreate, SimulationResponse
 )
 
-# Ensure tables are created
-Base.metadata.create_all(bind=engine)
+from contextlib import asynccontextmanager
+
+# Define lifespan event to initialize database tables safely at runtime
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:
+        print(f"Warning: Database initialization deferred: {e}")
+    yield
 
 app = FastAPI(
     title="Qubit Quantum Systems API",
     description="Next-generation enterprise quantum infrastructure and consulting platform API",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan
 )
 
 # Enable CORS for frontend applications
