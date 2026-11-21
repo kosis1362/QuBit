@@ -14,7 +14,11 @@ from models import (
 )
 
 # Ensure tables are created
-Base.metadata.create_all(bind=engine)
+try:
+    Base.metadata.create_all(bind=engine)
+except Exception as e:
+    print(f"\n[WARNING] Database connection failed on startup: {e}")
+    print("[WARNING] The server will still start, but database operations may fail until the connection is restored.\n")
 
 app = FastAPI(
     title="Qubit Quantum Systems API",

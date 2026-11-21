@@ -10,12 +10,18 @@ DEFAULT_DB_URL = "postgresql://neondb_owner:npg_X9oOvA5kHEnt@ep-winter-recipe-bd
 DATABASE_URL = os.getenv("DATABASE_URL", DEFAULT_DB_URL)
 
 # Setup SQLAlchemy engine with connection pool
-engine = create_engine(
-    DATABASE_URL,
-    pool_size=5,
-    max_overflow=10,
-    pool_pre_ping=True
-)
+if DATABASE_URL.startswith("sqlite"):
+    engine = create_engine(
+        DATABASE_URL,
+        connect_args={"check_same_thread": False}
+    )
+else:
+    engine = create_engine(
+        DATABASE_URL,
+        pool_size=5,
+        max_overflow=10,
+        pool_pre_ping=True
+    )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
