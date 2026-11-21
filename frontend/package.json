@@ -10,7 +10,8 @@
     "postinstall": "node node_modules/esbuild/install.js || true"
   },
   "allowScripts": {
-    "esbuild": true
+    "esbuild": true,
+    "esbuild@0.25.12": true
   },
   "dependencies": {
     "clsx": "^2.1.1",
