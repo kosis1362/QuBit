@@ -36,3 +36,7 @@ qubit.db
 Thumbs.db
 .vscode/
 .idea/
+
+# Local Prompts / Notes
+PROJECT_CONTEXT_PROMPT.md
+
