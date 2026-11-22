@@ -8,6 +8,7 @@ export default function FloatingSectionNav() {
   const sections = [
     { id: 'who-we-are', label: 'Who we are' },
     { id: 'customer-stories', label: 'Customer stories' },
+    { id: 'our-projects', label: 'Our projects' },
     { id: 'connect-with-us', label: 'Connect with us' },
   ];
 
