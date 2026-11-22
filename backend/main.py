@@ -153,103 +153,36 @@ def get_quantum_metrics():
 def get_solutions():
     return [
         {
-            "id": "web-design",
-            "category": "WEB & DIGITAL PRESENCE",
-            "title": "Corporate Website Design",
-            "description": "Crafting unique, responsive, user-friendly, and search-engine-optimized corporate websites tailored to distinct brand values and enterprise business requirements.",
-            "metrics": "100% Mobile & SEO Optimized",
-            "badge": "Core Web Service",
-            "url": "https://deltatechnepal.com/services/web-design"
+            "id": "quantum-cloud",
+            "category": "CLOUD ARCHITECTURE",
+            "title": "Hybrid Quantum-Classical Infrastructure",
+            "description": "Seamlessly integrate fault-tolerant quantum coprocessors with existing AWS, Azure, and private high-performance compute clusters.",
+            "metrics": "Sub-millisecond API orchestration",
+            "badge": "Enterprise Core"
         },
         {
-            "id": "ecommerce-solution",
-            "category": "DIGITAL COMMERCE",
-            "title": "E-commerce Solution",
-            "description": "Developing custom online stores equipped with intuitive admin panels, secure payment gateways, dynamic product search, and 360° product previews across Shopify, WooCommerce, Magento, and custom stacks.",
-            "metrics": "99.9% Transaction Reliability",
-            "badge": "Enterprise Commerce",
-            "url": "https://deltatechnepal.com/services/ecommerce-solution"
+            "id": "qkd-cryptography",
+            "category": "SECURITY & RESILIENCY",
+            "title": "Post-Quantum Cryptography & QKD",
+            "description": "Protect critical infrastructure against future quantum decryption threats using NIST FIPS-approved lattice cryptography and Quantum Key Distribution.",
+            "metrics": "100% Quantum-Immune Keys",
+            "badge": "Mission Critical"
         },
         {
-            "id": "web-application-development",
-            "category": "ENTERPRISE WEB APPS",
-            "title": "Web Application Development",
-            "description": "Architecting scalable, cloud-native web applications tailored to streamline complex business operations, automate organizational workflows, and power high-throughput enterprise portals.",
-            "metrics": "Sub-Second Response Latency",
-            "badge": "Full-Stack Architecture",
-            "url": "https://deltatechnepal.com/services/web-application-development"
+            "id": "financial-arbitrage",
+            "category": "ALGORITHMIC FINANCE",
+            "title": "Quantum Monte Carlo Risk Modeling",
+            "description": "Accelerate multi-asset derivative pricing and portfolio tail-risk evaluation with quadratic speedups over traditional GPU compute grids.",
+            "metrics": "120x Speedup in Tail Risk",
+            "badge": "Financial Systems"
         },
         {
-            "id": "mobile-app-development",
-            "category": "MOBILE ECOSYSTEMS",
-            "title": "Mobile App Development",
-            "description": "Building high-performance, secure native and cross-platform Android and iOS applications with seamless UI/UX, real-time sync, and rapid launch cycles.",
-            "metrics": "4.9★ Store Rating Standards",
-            "badge": "iOS & Android",
-            "url": "https://deltatechnepal.com/services/mobile-app-development"
-        },
-        {
-            "id": "software-development",
-            "category": "CUSTOM SOFTWARE",
-            "title": "Software Development",
-            "description": "Tailored enterprise-grade software engineered through Agile sprints to optimize productivity, automate operational bottlenecks, and guarantee uncompromising data security.",
-            "metrics": "Zero-Downtime Deployments",
-            "badge": "Custom Engineering",
-            "url": "https://deltatechnepal.com/services/software-development"
-        },
-        {
-            "id": "search-engine-optimization",
-            "category": "DIGITAL MARKETING & GROWTH",
-            "title": "Search Engine Optimization (SEO)",
-            "description": "Targeted data-driven SEO strategies improving organic search rankings across Google and Bing to drive high-intent qualified leads and maximize online brand authority.",
-            "metrics": "300%+ Organic Traffic Uplift",
-            "badge": "Growth & Rankings",
-            "url": "https://deltatechnepal.com/services/search-engine-optimization"
-        },
-        {
-            "id": "graphic-design",
-            "category": "BRAND IDENTITY & CREATIVE",
-            "title": "Graphics Designing",
-            "description": "Creative visual design establishing a powerful brand identity through bespoke logos, marketing collateral, digital design assets, and engaging UI/UX design systems.",
-            "metrics": "Vector-Perfect Pixel Quality",
-            "badge": "Creative Studio",
-            "url": "https://deltatechnepal.com/services/graphic-design"
-        },
-        {
-            "id": "server-management",
-            "category": "INFRASTRUCTURE & DEVOPS",
-            "title": "Server Management",
-            "description": "Continuous 24/7 server administration, Linux/Windows cluster optimization, automated security patches, real-time uptime monitoring, and proactive disaster recovery.",
-            "metrics": "99.99% Uptime Guarantee",
-            "badge": "Cloud & DevOps",
-            "url": "https://deltatechnepal.com/services/server-management"
-        },
-        {
-            "id": "2d-animation",
-            "category": "MOTION & MULTIMEDIA",
-            "title": "2D Animation",
-            "description": "Dynamic 2D character animation, explainer videos, and motion graphics that transform complex technical concepts into captivating visual narratives for marketing and training.",
-            "metrics": "60fps Broadcast Quality",
-            "badge": "Motion Design",
-            "url": "https://deltatechnepal.com/services/2d-animation"
-        },
-        {
-            "id": "it-outsourcing",
-            "category": "TALENT & DEDICATED TEAMS",
-            "title": "IT Outsourcing",
-            "description": "Cost-effective dedicated offshore engineering talent spanning frontend, backend, mobile, and QA to accelerate product roadmaps without overhead friction.",
-            "metrics": "60% Overhead Reduction",
-            "badge": "Global Talent",
-            "url": "https://deltatechnepal.com/services/it-outsourcing"
-        },
-        {
-            "id": "website-maintenance",
-            "category": "MAINTENANCE & SECURITY",
-            "title": "Website Maintenance",
-            "description": "Proactive website monitoring, vulnerability patch deployment, speed optimization, regular database backups, and content updates ensuring 24/7 reliability.",
-            "metrics": "Zero-Vulnerability Assurance",
-            "badge": "Ongoing Support",
-            "url": "https://deltatechnepal.com/services/website-maintenance"
+            "id": "materials-chemistry",
+            "category": "MOLECULAR SIMULATION",
+            "title": "VQE Molecular Catalyst Synthesis",
+            "description": "Simulate transition-metal electron correlations and chemical bonding energies with exact ground-state quantum eigensolvers.",
+            "metrics": "Femtosecond Accuracy",
+            "badge": "Life Sciences & Materials"
         }
     ]
 
