@@ -24,7 +24,7 @@ export default function NewsTicker() {
   ];
 
   return (
-    <section className="bg-white border-b border-black/[0.08] text-[#121212]">
+    <section id="news" className="bg-white border-b border-black/[0.08] text-[#121212]">
       <div className="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black/[0.08]">
           {newsItems.map((item, index) => (
@@ -60,4 +60,3 @@ export default function NewsTicker() {
     </section>
   );
 }
-

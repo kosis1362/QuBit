@@ -377,7 +377,7 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
             </div>
 
           {/* 6 Minimalist Cards: Heading Only, click to open dropdown with animation */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
             {complications.map((comp, idx) => {
               const Icon = comp.icon;
               const isOpen = !!openComplications[idx];
@@ -523,7 +523,7 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
                   </div>
 
           {/* 4 Connected Stakeholder Cards: Same Card Format, Heading Only with Animated Dropdown */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 items-start">
             {solutionPillars.map((pillar, idx) => {
               const Icon = pillar.icon;
               const isOpen = !!openPillars[idx];
