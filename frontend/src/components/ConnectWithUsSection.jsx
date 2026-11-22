@@ -4,9 +4,11 @@ import TrellisPattern from './TrellisPattern';
 export default function ConnectWithUsSection({ onTalkClick }) {
   return (
     <section
-      id="connect-with-us"
+      id="Contact Us"
       className="relative w-full h-[50vh] min-h-[360px] max-h-[50vh] bg-[#FAFAF8] border-t border-black/[0.06] overflow-hidden flex items-center"
     >
+      <div id="contact-us" />
+      <div id="connect-with-us" />
       <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
 
@@ -17,7 +19,9 @@ export default function ConnectWithUsSection({ onTalkClick }) {
             </h2>
 
             <p className="text-sm sm:text-base lg:text-lg text-[#333333] font-normal leading-relaxed mb-6 max-w-[460px]">
-              Do you have a specific IT challenge, interest in a career at <b style={{ color: '#e62c2cff', fontWeight: '700' }}> QuBit</b>, or just want to get in touch?
+              Let's create something that moves your business forward.
+
+Whether you have a business challenge, an innovative idea, or an opportunity to collaborate, connect with us and discover what we can achieve together. <b style={{ color: '#e62c2cff', fontWeight: '700' }}> QuBit</b>, or just want to get in touch?
             </p>
 
             <div>

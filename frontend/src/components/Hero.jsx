@@ -8,33 +8,33 @@ export default function Hero({ onReportClick, onSimulateClick }) {
   const slides = [
     {
       id: 0,
-      title: "Readiness reframed",
-      subtitle: "Explore how AI is delivering greater returns and raising the bar for readiness",
-      cta: "Read the 2026 Readiness Report",
+      title: "Solve Smarter,Grow Faster",
+      subtitle: "From intelligent automation to custom software, AI-powered solutions, and digital experiences, we help businesses simplify operations, solve real problems, and unlock new opportunities.",
+      cta: "Contact Us",
       video: "/videos/qubit_interface.mp4",
       action: onReportClick
     },
     {
       id: 1,
-      title: "Scale without compromise",
-      subtitle: "Deploying fault-tolerant heavy-hex lattices engineered for sovereign enterprise compute",
-      cta: "Explore Quantum Systems",
+      title: "Reimagine business. Reinvent possibilities.",
+      subtitle: "We bring ideas, technology, and innovation together to solve real-world business challenges.",
+      cta: "Explore Services",
       video: "/videos/qubit_core.mp4",
       action: onSimulateClick
     },
     {
       id: 2,
-      title: "Quantum-safe resilience",
-      subtitle: "Protecting mission-critical data with NIST post-quantum cryptographic standards",
-      cta: "Discover QKD Solutions",
+      title: "Think beyond limits. Build beyond expectations.",
+      subtitle: "We empower businesses to move forward with smarter digital solutions.",
+      cta: "Explore Work",
       video: "/videos/qubit_matrix.mp4",
       action: onReportClick
     },
     {
       id: 3,
-      title: "Precision orchestration",
-      subtitle: "Unifying classical developer toolchains with sub-millisecond cryostat execution",
-      cta: "Launch Interactive Simulator",
+      title: "Less complexity. More possibilities.",
+      subtitle: "We design and deliver intelligent digital solutions that eliminate inefficiencies, simplify business operations, and help companies work smarter, move faster, and grow stronger.",
+      cta: "About Us",
       video: "/videos/qubit_quantum.mp4",
       action: onSimulateClick
     }

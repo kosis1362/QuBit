@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { ChevronDown, ChevronRight, Bookmark, Search, Menu, X, ArrowUpRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, Bookmark, Search, Menu, X } from 'lucide-react';
 import { WHAT_WE_DO_SERVICES } from '../data/servicesData';
 
 export default function Navbar({ onConsultClick, onSearchClick }) {
