@@ -6,12 +6,11 @@ export default function WhoWeAreSection() {
 
   const whoWeAreData = {
     eyebrow: "WHO WE ARE",
-    title: "Where continuous innovation meets operational excellence",
-    description: "We help customers in every industry ensure their essential systems will work when, where, and how they need them to. But steady operations aren't enough in today's dynamic IT landscape—QuBit brings the data, insights, patterns and proven methodologies businesses need to stay competitive.",
+    title: "Building the software, AI, and insights that drive your business forward",
+    description: "We don’t just write code; we solve real-world business challenges. Whether you need custom software to streamline operations, AI automation to eliminate repetitive manual work, or business analytics to make sense of your data, QuBit builds the practical technology that actually works. We partner with you to turn your toughest operational bottlenecks into your biggest competitive advantages.",
     links: [
-      { label: "Our story", href: "#story" },
-      { label: "Awards and recognition", href: "#awards" },
-      { label: "Analyst recognition", href: "#who-we-are-recognition" }
+
+
     ],
     cardTitle: "We are QuBit",
     hoverImage: "/images/qubit_cyber_face.jpg",

@@ -48,11 +48,10 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
 
   return (
     <div
-      className={`fixed top-2 sm:top-3.5 left-0 right-0 z-50 w-full px-2 sm:px-3 lg:px-4 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        isScrolled
-          ? '-translate-y-28 opacity-0'
-          : 'translate-y-0 opacity-100'
-      }`}
+      className={`fixed top-2 sm:top-3.5 left-0 right-0 z-50 w-full px-2 sm:px-3 lg:px-4 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isScrolled
+        ? '-translate-y-28 opacity-0'
+        : 'translate-y-0 opacity-100'
+        }`}
     >
       {/* Blurry Transparent Frosted Glass Header */}
       <header className="pointer-events-auto w-full max-w-[98%] sm:max-w-[97%] lg:max-w-[98%] xl:max-w-[1720px] mx-auto bg-black/40 backdrop-blur-xl sm:backdrop-blur-2xl border border-white/20 rounded-[24px] sm:rounded-full px-5 sm:px-8 shadow-2xl text-white transition-all">
@@ -171,23 +170,9 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
                 Customer Stories
               </button>
 
-              {/* News */}
-              <button
-                type="button"
-                onClick={() => handleSectionNav('#news')}
-                className="hover:text-[#FF462D] py-2 transition-colors cursor-pointer"
-              >
-                News
-              </button>
 
-              {/* Careers */}
-              <button
-                type="button"
-                onClick={() => handleSectionNav('#connect-with-us')}
-                className="hover:text-[#FF462D] py-2 transition-colors cursor-pointer"
-              >
-                Careers
-              </button>
+
+
 
             </nav>
           </div>
@@ -195,16 +180,7 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
           {/* Right: Global Actions & CTAs */}
           <div className="flex items-center gap-3.5 sm:gap-4.5">
 
-            {/* Region / Language */}
-            <div className="relative hidden md:block">
-              <button
-                type="button"
-                className="flex items-center gap-1.5 text-xs sm:text-sm text-white/80 hover:text-white font-medium py-1.5 px-3 rounded-full hover:bg-white/10 transition cursor-pointer"
-              >
-                <span>IN - EN</span>
-                <ChevronDown className="w-3.5 h-3.5 opacity-70" />
-              </button>
-            </div>
+
 
             {/* Kyndryl Vibrant Emerald Green Pill Button */}
             <button
@@ -215,16 +191,7 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
               Consult an expert
             </button>
 
-            {/* Bookmark with Badge */}
-            <button
-              type="button"
-              className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/15 hover:bg-white/25 transition text-white cursor-pointer border border-white/20 shadow-xs"
-              title="Saved items"
-            >
-              <Bookmark className="w-4 h-4" />
-              <span className="text-xs font-semibold">0</span>
-              <ChevronRight className="w-3 h-3 opacity-60" />
-            </button>
+
 
             {/* Search Glass Button */}
             <button
@@ -297,24 +264,6 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
             >
               Customer Stories
             </button>
-            <button
-              type="button"
-              onClick={() => { setMobileMenuOpen(false); handleSectionNav('#news'); }}
-              className="text-left px-2 py-1.5 text-white/90 hover:text-[#FF462D]"
-            >
-              News
-            </button>
-            <button
-              type="button"
-              onClick={() => { setMobileMenuOpen(false); handleSectionNav('#connect-with-us'); }}
-              className="text-left px-2 py-1.5 text-white/90 hover:text-[#FF462D]"
-            >
-              Careers
-            </button>
-            <div className="pt-2.5 border-t border-white/15 flex items-center justify-between px-2 text-sm text-white/70">
-              <span>Region: IN - EN</span>
-              <span className="text-white/50">QuBit Inc.</span>
-            </div>
           </div>
         )}
 

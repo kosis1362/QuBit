@@ -13,10 +13,10 @@ export default function CustomerStoriesSection() {
       id: 0,
       badge: "01",
       eyebrow: "IT MODERNIZATION",
-      title: "Smart Real Estate & PropTech: Digitizing Property Portfolios & Digital Twin BIM for 2.5M+ Units",
-      description: "Deploying high-resiliency cloud edge networks, digital twin architectural BIM models, and automated asset intelligence to optimize commercial real estate, smart power distribution, and multi-tenant property operations.",
+      title: "Smart Real Estate & PropTech: Digitizing Property Management.",
+      description: "Developing a modern real estate technology platform integrating cloud-based infrastructure, interactive Mapbox geospatial services, and intelligent property management workflows to enhance property discovery, streamline listing operations, and deliver seamless multi-user experiences.",
       video: "/videos/real_estate_5s.mp4",
-      details: "Through end-to-end cloud modernization and IoT smart building telemetry, the commercial real estate enterprise unified 2.5 million residential and commercial units into a single digital-twin control fabric, reducing building energy overhead by 34% and automating tenant lease lifecycle operations."
+      details: "Architected Luxe Real Estate Hub, a full-stack real estate platform integrating interactive property mapping, centralized listing management, and seamless buyer-seller workflows, enhancing property discovery and digitizing the end-to-end real estate transaction experience."
     },
     {
       id: 1,
@@ -27,16 +27,6 @@ export default function CustomerStoriesSection() {
       image: "/images/story_team_workshop_hd.jpg",
       video: "/videos/qubit_matrix.mp4",
       details: "Our consulting architects co-designed a multi-stage modernization roadmap across 14 global operating facilities, consolidating disparate data silos into a high-throughput hybrid cloud fabric that accelerated engineering delivery cycles by 3.5x."
-    },
-    {
-      id: 2,
-      badge: "03",
-      eyebrow: "ALGORITHMIC FINANCE & COMPUTING",
-      title: "Tier-1 Financial Institution Achieves 120x Acceleration in Real-Time Portfolio Risk Simulation",
-      description: "Eliminating legacy GPU cluster bottlenecks with next-generation algorithmic compute pipelines, processing complex derivatives and extreme volatility stress tests in under 5 seconds.",
-      image: "/images/story_team_success_hd.jpg",
-      video: "/videos/qubit_interface.mp4",
-      details: "By refactoring non-linear Monte Carlo pricing workflows and deploying advanced hardware-accelerated coprocessors, the institution achieved sub-second capital adequacy checks, reducing capital buffer reserves while maintaining full regulatory compliance."
     }
   ];
 
@@ -44,7 +34,7 @@ export default function CustomerStoriesSection() {
   useEffect(() => {
     if (currentSlide === 0 && videoRef.current) {
       videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().catch(() => { });
     }
   }, [currentSlide]);
 
@@ -85,7 +75,7 @@ export default function CustomerStoriesSection() {
 
   return (
     <section id="customer-stories" className="w-full bg-[#FBF9F5] text-[#121212] overflow-hidden pt-12 md:pt-16 pb-12">
-      
+
       {/* Section Header Text (Above the full-width image/video) */}
       <div className="w-full px-6 sm:px-12 lg:px-20 xl:px-28 mb-8 sm:mb-10">
         <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-light tracking-[-0.03em] leading-[1.12] text-[#121212] mb-3">
@@ -97,7 +87,7 @@ export default function CustomerStoriesSection() {
       </div>
 
       {/* FULL-WIDTH EDGE-TO-EDGE HORIZONTAL CAROUSEL (Covers 100% of the screen horizontally) */}
-      <div 
+      <div
         className="relative w-full aspect-[16/9] md:aspect-[21/9] lg:aspect-[24/10] min-h-[500px] md:min-h-[560px] lg:min-h-[620px] bg-black overflow-hidden select-none"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
@@ -109,9 +99,8 @@ export default function CustomerStoriesSection() {
           return (
             <div
               key={story.id}
-              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-                isCurrent ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-              }`}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${isCurrent ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                }`}
             >
               {/* Slide 1: Always plays the 5-second video (no static image, no 3D toggles) */}
               {idx === 0 ? (
@@ -130,9 +119,8 @@ export default function CustomerStoriesSection() {
                 <img
                   src={story.image}
                   alt={story.title}
-                  className={`w-full h-full object-cover object-center transition-transform duration-[6000ms] ease-out ${
-                    isCurrent ? 'scale-[1.03]' : 'scale-100'
-                  }`}
+                  className={`w-full h-full object-cover object-center transition-transform duration-[6000ms] ease-out ${isCurrent ? 'scale-[1.03]' : 'scale-100'
+                    }`}
                 />
               )}
 
@@ -143,7 +131,7 @@ export default function CustomerStoriesSection() {
               {/* Left Content Overlay: Eyebrow, Title, Description, and Buttons */}
               <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-16 lg:pl-20 xl:pl-28 z-20 max-w-4xl pointer-events-none">
                 <div className="pointer-events-auto">
-                  
+
                   {/* Eyebrow with Terracotta Red Accent Bar (Matching Kyndryl 1:1) */}
                   <div className="mb-3">
                     <span className="text-[11px] font-mono font-semibold tracking-wider uppercase text-white/90">
@@ -164,13 +152,7 @@ export default function CustomerStoriesSection() {
 
                   {/* Clickable Action Buttons matching Kyndryl 1:1 */}
                   <div className="flex flex-wrap items-center gap-3.5 mb-2">
-                    <button
-                      type="button"
-                      onClick={() => setStoryModal(story)}
-                      className="px-5 py-2.5 sm:px-6 sm:py-3 border border-white/80 bg-black/30 backdrop-blur-xs text-white hover:bg-white hover:text-[#121212] font-medium text-xs sm:text-sm rounded-none sm:rounded-sm transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
-                    >
-                      Highlights
-                    </button>
+
                     <button
                       type="button"
                       onClick={() => setStoryModal(story)}
@@ -221,7 +203,7 @@ export default function CustomerStoriesSection() {
       {/* THE 3 SLIDING PROGRESS STICKS AT THE DOWN SIDE (Matching Kyndryl 1:1) */}
       <div className="w-full bg-[#FAF7F2] pt-6 pb-4 px-4 sm:px-6 lg:px-8 border-b border-black/[0.06]">
         <div className="w-full px-6 sm:px-12 lg:px-20 xl:px-28 mx-auto flex items-center justify-center">
-          
+
           <div className="flex items-center gap-4 sm:gap-6 w-full max-w-xl justify-center">
             {stories.map((st, idx) => {
               const isActive = currentSlide === idx;
@@ -236,16 +218,15 @@ export default function CustomerStoriesSection() {
                 >
                   {/* The Horizontal Stick Container */}
                   <div className="h-[2.5px] sm:h-[3.5px] w-full bg-[#D1CBC1] rounded-full overflow-hidden relative transition-colors group-hover:bg-[#B5ADA1]">
-                    
+
                     {/* The Active Filling Stick: Fills over 5 seconds */}
                     <div
-                      className={`h-full rounded-full transition-all ${
-                        isActive
-                          ? 'bg-[#FF462D]'
-                          : isPast
+                      className={`h-full rounded-full transition-all ${isActive
+                        ? 'bg-[#FF462D]'
+                        : isPast
                           ? 'bg-[#121212]/40'
                           : 'bg-transparent'
-                      }`}
+                        }`}
                       style={{
                         width: isActive ? `${progress}%` : isPast ? '100%' : '0%',
                         transition: isActive ? 'width 40ms linear' : 'width 300ms ease'
@@ -262,11 +243,11 @@ export default function CustomerStoriesSection() {
 
       {/* Story Video & Case Study Modal */}
       {storyModal && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn"
           onClick={() => setStoryModal(null)}
         >
-          <div 
+          <div
             className="relative w-full max-w-3xl bg-white rounded-2xl overflow-hidden shadow-2xl p-6 sm:p-8"
             onClick={(e) => e.stopPropagation()}
           >
@@ -274,7 +255,7 @@ export default function CustomerStoriesSection() {
               <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#FF462D]">
                 // {storyModal.eyebrow}
               </span>
-              <button 
+              <button
                 onClick={() => setStoryModal(null)}
                 className="w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center text-[#121212] transition"
               >
