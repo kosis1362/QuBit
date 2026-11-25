@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function FloatingSectionNav() {
-  const [activeSection, setActiveSection] = useState('About Us');
+  const [activeSection, setActiveSection] = useState('who-we-are');
   const [isStuck, setIsStuck] = useState(false);
   const navRef = useRef(null);
 
   const sections = [
-    { id: 'About Us', label: 'About Us' },
-    { id: 'Services', label: 'Services' },
-    { id: 'Products', label: 'Products' },
-    { id: 'Contact Us', label: 'Contact Us' },
+    { id: 'who-we-are', label: 'Who we are' },
+    { id: 'services', label: 'Services' },
+    { id: 'customer-stories', label: 'Customer stories' },
+    { id: 'our-projects', label: 'Our projects' },
+    { id: 'connect-with-us', label: 'Connect with us' }
   ];
 
   useEffect(() => {
@@ -28,9 +29,11 @@ export default function FloatingSectionNav() {
         const el =
           document.getElementById(sec.id) ||
           document.getElementById(sec.id.toLowerCase().replace(/\s+/g, '-')) ||
-          (sec.id === 'About Us' ? document.getElementById('who-we-are') : null) ||
-          (sec.id === 'Products' ? document.getElementById('customer-stories') : null) ||
-          (sec.id === 'Contact Us' ? document.getElementById('connect-with-us') : null);
+          (sec.id === 'who-we-are' || sec.id === 'About Us' ? document.getElementById('who-we-are') || document.getElementById('About Us') : null) ||
+          (sec.id === 'services' || sec.id === 'Services' ? document.getElementById('services') || document.getElementById('Services') : null) ||
+          (sec.id === 'customer-stories' || sec.id === 'Products' ? document.getElementById('customer-stories') || document.getElementById('Products') : null) ||
+          (sec.id === 'our-projects' ? document.getElementById('our-projects') : null) ||
+          (sec.id === 'connect-with-us' || sec.id === 'Contact Us' ? document.getElementById('connect-with-us') || document.getElementById('Contact Us') : null);
         if (el) {
           const top = el.getBoundingClientRect().top + window.scrollY;
           if (scrollPosition >= top) {
@@ -50,9 +53,11 @@ export default function FloatingSectionNav() {
     const el =
       document.getElementById(id) ||
       document.getElementById(id.toLowerCase().replace(/\s+/g, '-')) ||
-      (id === 'About Us' ? document.getElementById('who-we-are') : null) ||
-      (id === 'Products' ? document.getElementById('customer-stories') : null) ||
-      (id === 'Contact Us' ? document.getElementById('connect-with-us') : null);
+      (id === 'who-we-are' || id === 'About Us' ? document.getElementById('who-we-are') || document.getElementById('About Us') : null) ||
+      (id === 'services' || id === 'Services' ? document.getElementById('services') || document.getElementById('Services') : null) ||
+      (id === 'customer-stories' || id === 'Products' ? document.getElementById('customer-stories') || document.getElementById('Products') : null) ||
+      (id === 'our-projects' ? document.getElementById('our-projects') : null) ||
+      (id === 'connect-with-us' || id === 'Contact Us' ? document.getElementById('connect-with-us') || document.getElementById('Contact Us') : null);
     if (el) {
       // Offset for floating section nav pill bar (~60px) + margin
       const yOffset = -90;

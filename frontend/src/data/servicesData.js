@@ -53,7 +53,7 @@ export const WHAT_WE_DO_SERVICES = [
       "Custom CMS integration & seamless team handover"
     ],
     illustration: null,
-        heroImage: "/images/services/corporate_web_design_hero.jpg",
+        heroImage: "/images/corporate_web_design_hero.jpg",
     features: [
       {
         title: "RESPONSIVE AND ATTRACTIVE FRONT-END DESIGN",
@@ -127,10 +127,10 @@ export const WHAT_WE_DO_SERVICES = [
       "Automated inventory sync & ERP integration",
       "99.99% transactional reliability under heavy load"
     ],
-    illustration: "/images/services/ecommerce_illustration_transparent.png",
-    bannerImage: "/images/services/ecommerce_hero_banner.png",
-    featuresImage: "/images/services/ecommerce_key_features.jpg",
-        heroImage: "/images/services/ecommerce_hero.jpg",
+    illustration: "/images/ecommerce_illustration_transparent.png",
+    bannerImage: "/images/ecommerce_hero_banner.png",
+    featuresImage: "/images/ecommerce_key_features.jpg",
+        heroImage: "/images/ecommerce_hero.jpg",
     features: [
       {
         title: "RESPONSIVE AND ATTRACTIVE FRONT-END DESIGN",
@@ -205,7 +205,7 @@ export const WHAT_WE_DO_SERVICES = [
       "Sub-100ms response latency on distributed cloud"
     ],
     illustration: null,
-        heroImage: "/images/services/web_app_hero.jpg",
+        heroImage: "/images/web_app_hero.jpg",
     features: [
       {
         title: "TAILORED BUSINESS LOGIC & ARCHITECTURE",
@@ -280,7 +280,7 @@ export const WHAT_WE_DO_SERVICES = [
       "End-to-end Apple App Store & Google Play publishing"
     ],
     illustration: null,
-        heroImage: "/images/services/mobile_app_hero.jpg",
+        heroImage: "/images/mobile_app_hero.jpg",
     features: [
       {
         title: "RESPONSIVE AND ATTRACTIVE MOBILE UI",
@@ -355,7 +355,7 @@ export const WHAT_WE_DO_SERVICES = [
       "Zero-downtime blue/green deployment automation"
     ],
     illustration: null,
-        heroImage: "/images/services/software_dev_hero.jpg",
+        heroImage: "/images/software_dev_hero.jpg",
     features: [
       {
         title: "RESPONSIVE AND ATTRACTIVE DESKTOP & WEB UI",
@@ -430,7 +430,7 @@ export const WHAT_WE_DO_SERVICES = [
       "Structured JSON-LD schema & SERP ranking acceleration"
     ],
     illustration: null,
-        heroImage: "/images/services/seo_hero.jpg",
+        heroImage: "/images/seo_hero.jpg",
     features: [
       {
         title: "RESPONSIVE AND SEARCH-FRIENDLY ARCHITECTURE",
@@ -505,7 +505,7 @@ export const WHAT_WE_DO_SERVICES = [
       "Print-ready & high-resolution digital master files"
     ],
     illustration: null,
-        heroImage: "/images/services/graphic_design_hero.jpg",
+        heroImage: "/images/graphic_design_hero.jpg",
     features: [
       {
         title: "RESPONSIVE AND ATTRACTIVE BRAND DESIGNS",
@@ -580,7 +580,7 @@ export const WHAT_WE_DO_SERVICES = [
       "Enterprise firewall, kernel hardening & DDoS defense"
     ],
     illustration: null,
-        heroImage: "/images/services/server_management_hero.jpg",
+        heroImage: "/images/server_management_hero.jpg",
     features: [
       {
         title: "RESPONSIVE AND ATTRACTIVE MONITORING CONSOLES",
@@ -655,7 +655,7 @@ export const WHAT_WE_DO_SERVICES = [
       "Studio-grade 4K ultra-HD multi-format rendering"
     ],
     illustration: null,
-        heroImage: "/images/services/animation_hero.jpg",
+        heroImage: "/images/animation_hero.jpg",
     features: [
       {
         title: "RESPONSIVE AND ATTRACTIVE ANIMATION DESIGNS",
@@ -730,7 +730,7 @@ export const WHAT_WE_DO_SERVICES = [
       "Zero-risk trial guarantee & strict IP/NDA governance"
     ],
     illustration: null,
-        heroImage: "/images/services/it_outsourcing_hero.jpg",
+        heroImage: "/images/it_outsourcing_hero.jpg",
     features: [
       {
         title: "RESPONSIVE AND ATTRACTIVE TALENT ONBOARDING",
@@ -805,7 +805,7 @@ export const WHAT_WE_DO_SERVICES = [
       "Priority technical support & quarterly speed audits"
     ],
     illustration: null,
-        heroImage: "/images/services/maintenance_hero.jpg",
+        heroImage: "/images/maintenance_hero.jpg",
     features: [
       {
         title: "RESPONSIVE AND ATTRACTIVE SITE HEALTH",

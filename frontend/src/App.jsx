@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
+import CustomerStoryDetailPage from './pages/CustomerStoryDetailPage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
 import ScrollToTop from './components/ScrollToTop';
 import ContactConsultation from './components/ContactConsultation';
 import { X } from 'lucide-react';
@@ -57,6 +59,38 @@ export default function App() {
                 onConsultClick={openContact}
               />
             }
+          />
+
+          {/* Customer Stories Case Study Detail Page */}
+          <Route
+            path="/customer-stories/:storyId"
+            element={
+              <CustomerStoryDetailPage
+                onConsultClick={openContact}
+              />
+            }
+          />
+          <Route
+            path="/customer-stories"
+            element={
+              <CustomerStoryDetailPage
+                onConsultClick={openContact}
+              />
+            }
+          />
+
+          {/* Dedicated Production Project Detail Page */}
+          <Route
+            path="/projects/:projectId"
+            element={
+              <ProjectDetailPage
+                onConsultClick={openContact}
+              />
+            }
+          />
+          <Route
+            path="/projects"
+            element={<Navigate to="/#our-projects" replace />}
           />
 
           {/* Fallback routes */}
