@@ -1,31 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { CheckCircle2, Building2, Mail, User } from 'lucide-react';
-
-const SENT_STORAGE_KEY = 'qubit_consultation_sent';
-
-export function getConsultationSent() {
-  try {
-    return sessionStorage.getItem(SENT_STORAGE_KEY) === 'true';
-  } catch {
-    return false;
-  }
-}
-
-function setConsultationSent() {
-  try {
-    sessionStorage.setItem(SENT_STORAGE_KEY, 'true');
-  } catch {
-    // Ignore storage errors in restricted contexts
-  }
-}
-
-function clearConsultationSent() {
-  try {
-    sessionStorage.removeItem(SENT_STORAGE_KEY);
-  } catch {
-    // Ignore storage errors in restricted contexts
-  }
-}
+import {
+  getConsultationSent,
+  setConsultationSent,
+  clearConsultationSent
+} from '../utils/consultationStorage';
 
 export default function ContactConsultation({ id }) {
   const [formData, setFormData] = useState({

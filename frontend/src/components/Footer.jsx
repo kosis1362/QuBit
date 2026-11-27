@@ -16,11 +16,9 @@ export default function Footer({ onContactClick, onSimulateClick }) {
     'Privacy',
     'Terms',
     'Security',
-    'Certifications',
     'Accessibility',
     'Sitemap',
-    'Do not sell or share my personal information',
-    'Cookie Preferences',
+
   ];
 
   return (

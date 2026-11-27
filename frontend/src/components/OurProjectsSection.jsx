@@ -198,6 +198,8 @@ export default function OurProjectsSection({ onConsultClick }) {
                   <img
                     src={proj.image}
                     alt={proj.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
                     draggable={false}
                   />

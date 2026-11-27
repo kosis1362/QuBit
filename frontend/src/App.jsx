@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
-import ServiceDetailPage from './pages/ServiceDetailPage';
-import CustomerStoryDetailPage from './pages/CustomerStoryDetailPage';
-import ProjectDetailPage from './pages/ProjectDetailPage';
 import ScrollToTop from './components/ScrollToTop';
-import ContactConsultation, { getConsultationSent } from './components/ContactConsultation';
+import { getConsultationSent } from './utils/consultationStorage';
 import { X } from 'lucide-react';
+
+const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage'));
+const CustomerStoryDetailPage = lazy(() => import('./pages/CustomerStoryDetailPage'));
+const ProjectDetailPage = lazy(() => import('./pages/ProjectDetailPage'));
+const ContactConsultation = lazy(() => import('./components/ContactConsultation'));
 
 export default function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(() => getConsultationSent());
@@ -49,64 +51,66 @@ export default function App() {
         />
 
         {/* Dynamic Multi-Page Router */}
-        <Routes>
-          {/* Main Landing Page */}
-          <Route
-            path="/"
-            element={
-              <HomePage
-                onConsultClick={openContact}
-                onSimulateClick={scrollToSimulator}
-              />
-            }
-          />
+        <Suspense fallback={<div className="min-h-screen bg-[#ECEAE6]" />}>
+          <Routes>
+            {/* Main Landing Page */}
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  onConsultClick={openContact}
+                  onSimulateClick={scrollToSimulator}
+                />
+              }
+            />
 
-          {/* 11 Dedicated Internal Service Detail Pages */}
-          <Route
-            path="/services/:serviceId"
-            element={
-              <ServiceDetailPage
-                onConsultClick={openContact}
-              />
-            }
-          />
+            {/* 11 Dedicated Internal Service Detail Pages */}
+            <Route
+              path="/services/:serviceId"
+              element={
+                <ServiceDetailPage
+                  onConsultClick={openContact}
+                />
+              }
+            />
 
-          {/* Customer Stories Case Study Detail Page */}
-          <Route
-            path="/customer-stories/:storyId"
-            element={
-              <CustomerStoryDetailPage
-                onConsultClick={openContact}
-              />
-            }
-          />
-          <Route
-            path="/customer-stories"
-            element={
-              <CustomerStoryDetailPage
-                onConsultClick={openContact}
-              />
-            }
-          />
+            {/* Customer Stories Case Study Detail Page */}
+            <Route
+              path="/customer-stories/:storyId"
+              element={
+                <CustomerStoryDetailPage
+                  onConsultClick={openContact}
+                />
+              }
+            />
+            <Route
+              path="/customer-stories"
+              element={
+                <CustomerStoryDetailPage
+                  onConsultClick={openContact}
+                />
+              }
+            />
 
-          {/* Dedicated Production Project Detail Page */}
-          <Route
-            path="/projects/:projectId"
-            element={
-              <ProjectDetailPage
-                onConsultClick={openContact}
-              />
-            }
-          />
-          <Route
-            path="/projects"
-            element={<Navigate to="/#our-projects" replace />}
-          />
+            {/* Dedicated Production Project Detail Page */}
+            <Route
+              path="/projects/:projectId"
+              element={
+                <ProjectDetailPage
+                  onConsultClick={openContact}
+                />
+              }
+            />
+            <Route
+              path="/projects"
+              element={<Navigate to="/#our-projects" replace />}
+            />
 
-          {/* Fallback routes */}
-          <Route path="/services" element={<Navigate to="/#what-we-do" replace />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+            {/* Fallback routes */}
+            <Route path="/services" element={<Navigate to="/#what-we-do" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
 
         {/* Global Consultation Modal Dialog */}
         {isContactModalOpen && (
@@ -124,7 +128,9 @@ export default function App() {
                 <X className="w-5 h-5" />
               </button>
 
-              <ContactConsultation />
+              <Suspense fallback={<div className="py-20 text-center text-sm text-[#666666]">Loading...</div>}>
+                <ContactConsultation />
+              </Suspense>
             </div>
           </div>
         )}
