@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
@@ -6,11 +6,21 @@ import ServiceDetailPage from './pages/ServiceDetailPage';
 import CustomerStoryDetailPage from './pages/CustomerStoryDetailPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import ScrollToTop from './components/ScrollToTop';
-import ContactConsultation from './components/ContactConsultation';
+import ContactConsultation, { getConsultationSent } from './components/ContactConsultation';
 import { X } from 'lucide-react';
 
 export default function App() {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(() => getConsultationSent());
+
+  useEffect(() => {
+    const syncModalOnReturn = () => {
+      if (getConsultationSent()) {
+        setIsContactModalOpen(true);
+      }
+    };
+    window.addEventListener('pageshow', syncModalOnReturn);
+    return () => window.removeEventListener('pageshow', syncModalOnReturn);
+  }, []);
 
   const openContact = () => {
     setIsContactModalOpen(true);
