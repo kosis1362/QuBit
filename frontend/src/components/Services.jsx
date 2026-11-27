@@ -10,49 +10,30 @@ export default function Services() {
       badge: "01",
       headline: "Software Development",
       bgHex: "#1FA452",
-      logo: (
-        <div className="flex items-center gap-2 text-white font-sans tracking-tight">
-          <span className="text-2xl font-bold tracking-tighter">iSG</span>
-          <span className="text-xs font-light tracking-wider uppercase ml-1 opacity-90">Provider Lens™</span>
-        </div>
-      )
+  
     },
     {
       id: "02",
       badge: "02",
       headline:"AI Automation & Data Analytics",
       bgHex: "#1B904B",
-      logo: (
-        <div className="text-white font-sans flex items-baseline">
-          <span className="text-3xl sm:text-4xl font-bold tracking-tight">Gartner</span>
-          <span className="text-xs align-super ml-0.5 font-bold">®</span>
-        </div>
-      )
+  
     },
     {
       id: "03",
       badge: "03",
       headline: "Website Development",
-      analyst: "IDC MarketScape",
+      
       bgHex: "#187E3F",
-      logo: (
-        <div className="text-white font-sans flex items-baseline gap-2">
-          <span className="text-2xl sm:text-3xl font-black tracking-widest">IDC</span>
-          <span className="text-xs font-medium uppercase opacity-90 tracking-wider">MarketScape</span>
-        </div>
-      )
+    
     },
     {
       id: "04",
       badge: "04",
       headline: "Graphic Design & Branding",
-      analyst: "Forrester",
+     
       bgHex: "#126230",
-      logo: (
-        <div className="text-white font-serif tracking-[0.2em]">
-          <span className="text-xl sm:text-2xl font-bold">FORRESTER</span>
-        </div>
-      )
+    
     }
   ];
 
