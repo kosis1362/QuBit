@@ -40,11 +40,11 @@ export default function ServiceDetailPage({ onConsultClick }) {
         ========================================================================
       */}
       <section className="relative w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] overflow-hidden bg-[#101314] text-white flex flex-col justify-between border-b border-black/[0.08] pt-28 sm:pt-32 lg:pt-36">
-        
+
         {/* Full-Bleed Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
-            src={service.heroImage || '/images/services/corporate_web_design_hero.jpg'}
+            src={service.heroImage || '/images/corporate_web_design_hero.jpg'}
             alt={service.title}
             className="w-full h-full object-cover object-center transform scale-102"
           />

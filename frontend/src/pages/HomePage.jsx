@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import AboutUsSection from '../components/AboutUsSection';
 import Services from '../components/Services';
 import CustomerStoriesSection from '../components/CustomerStoriesSection';
+import OurProjectsSection from '../components/OurProjectsSection';
 import ConnectWithUsSection from '../components/ConnectWithUsSection';
 import Footer from '../components/Footer';
 
@@ -37,6 +38,9 @@ export default function HomePage({ onConsultClick, onSimulateClick }) {
 
           {/* Page 4: "Progress, one customer at a time" with 5-second slide progress */}
           <CustomerStoriesSection onStoryClick={onConsultClick} />
+
+          {/* Page 5: "Our Projects" with 4 Featured Project Cards */}
+          <OurProjectsSection onConsultClick={onConsultClick} />
 
           {/* Last Content Section: 1:1 Match to Screenshot 1 "Connect with us" (Occupies top 50% of viewport when scrolled) */}
           <ConnectWithUsSection onTalkClick={onConsultClick} />

@@ -8,7 +8,7 @@ export default function Footer({ onContactClick, onSimulateClick }) {
   ];
 
   const quickLinksCol2 = [
-    
+
     { label: 'Technology services', href: '#our-expertise' },
   ];
 
@@ -40,18 +40,12 @@ export default function Footer({ onContactClick, onSimulateClick }) {
 
           {/* Top Right: Language Selector + Social Links */}
           <div className="flex items-center gap-5 sm:gap-7">
-            <button
-              type="button"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#2B2B2B] hover:text-[#FF462D] transition cursor-pointer"
-            >
-              <span>IN - EN</span>
-              <span className="text-[10px]">▲</span>
-            </button>
+
 
             <div className="flex items-center gap-3 sm:gap-4">
               {/* LinkedIn */}
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/qubit-tech-aaa7a3452"
                 target="_blank"
                 rel="noreferrer"
                 className="w-7 h-7 rounded bg-[#2B2B2B] text-[#ECEAE6] hover:bg-[#FF462D] hover:text-white transition flex items-center justify-center font-bold text-xs"
@@ -70,6 +64,20 @@ export default function Footer({ onContactClick, onSimulateClick }) {
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+
+              {/* Gmail */}
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=qubit.techsolutions11@gmail.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-7 h-7 text-[#2B2B2B] hover:text-[#FF462D] transition flex items-center justify-center font-bold text-sm"
+                aria-label="Gmail: qubit.techsolutions11@gmail.com"
+                title="Compose email to qubit.techsolutions11@gmail.com on Gmail"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.146C21.69 2.28 24 3.434 24 5.457z" />
                 </svg>
               </a>
             </div>

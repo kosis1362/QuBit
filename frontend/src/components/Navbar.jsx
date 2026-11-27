@@ -60,11 +60,10 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
 
   return (
     <div
-      className={`fixed top-2 sm:top-3.5 left-0 right-0 z-50 w-full px-2 sm:px-3 lg:px-4 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        isScrolled
-          ? '-translate-y-28 opacity-0'
-          : 'translate-y-0 opacity-100'
-      }`}
+      className={`fixed top-2 sm:top-3.5 left-0 right-0 z-50 w-full px-2 sm:px-3 lg:px-4 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isScrolled
+        ? '-translate-y-28 opacity-0'
+        : 'translate-y-0 opacity-100'
+        }`}
     >
       {/* Blurry Transparent Frosted Glass Header */}
       <header
@@ -97,19 +96,17 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
                 >
                   <span>What we do</span>
                   <ChevronDown
-                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
-                      activeDropdown === 'what' ? 'rotate-180' : 'group-hover:rotate-180'
-                    }`}
+                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${activeDropdown === 'what' ? 'rotate-180' : 'group-hover:rotate-180'
+                      }`}
                   />
                 </button>
 
                 {/* Mega Menu Dropdown with Seamless Hover Bridge */}
                 <div
-                  className={`absolute top-full left-0 pt-3 w-[960px] max-w-[92vw] z-50 transition-all duration-200 ${
-                    activeDropdown === 'what'
+                  className={`absolute top-full left-0 pt-3 w-[960px] max-w-[92vw] z-50 transition-all duration-200 ${activeDropdown === 'what'
                       ? 'opacity-100 translate-y-0 pointer-events-auto'
                       : 'opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto'
-                  }`}
+                    }`}
                 >
                   {/* Invisible Hover Safety Bridge spanning the gap */}
                   <div className="absolute -top-3 left-0 right-0 h-4 bg-transparent" />
@@ -174,18 +171,16 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
                 >
                   <span>Who we are</span>
                   <ChevronDown
-                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
-                      activeDropdown === 'who' ? 'rotate-180' : 'group-hover:rotate-180'
-                    }`}
+                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${activeDropdown === 'who' ? 'rotate-180' : 'group-hover:rotate-180'
+                      }`}
                   />
                 </button>
                 {/* Dropdown Menu with Seamless Hover Bridge */}
                 <div
-                  className={`absolute top-full left-0 pt-3 w-72 z-50 transition-all duration-200 ${
-                    activeDropdown === 'who'
+                  className={`absolute top-full left-0 pt-3 w-72 z-50 transition-all duration-200 ${activeDropdown === 'who'
                       ? 'opacity-100 translate-y-0 pointer-events-auto'
                       : 'opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto'
-                  }`}
+                    }`}
                 >
                   {/* Invisible Hover Safety Bridge */}
                   <div className="absolute -top-3 left-0 right-0 h-4 bg-transparent" />
@@ -225,23 +220,9 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
                 Customer Stories
               </button>
 
-              {/* News */}
-              <button
-                type="button"
-                onClick={() => handleSectionNav('#news')}
-                className="hover:text-[#FF462D] py-2 transition-colors cursor-pointer"
-              >
-                News
-              </button>
 
-              {/* Careers */}
-              <button
-                type="button"
-                onClick={() => handleSectionNav('#connect-with-us')}
-                className="hover:text-[#FF462D] py-2 transition-colors cursor-pointer"
-              >
-                Careers
-              </button>
+
+
 
             </nav>
           </div>
@@ -249,16 +230,7 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
           {/* Right: Global Actions & CTAs */}
           <div className="flex items-center gap-3.5 sm:gap-4.5">
 
-            {/* Region / Language */}
-            <div className="relative hidden md:block">
-              <button
-                type="button"
-                className="flex items-center gap-1.5 text-xs sm:text-sm text-white/80 hover:text-white font-medium py-1.5 px-3 rounded-full hover:bg-white/10 transition cursor-pointer"
-              >
-                <span>IN - EN</span>
-                <ChevronDown className="w-3.5 h-3.5 opacity-70" />
-              </button>
-            </div>
+
 
             {/* Kyndryl Vibrant Emerald Green Pill Button */}
             <button
@@ -269,26 +241,17 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
               Consult an expert
             </button>
 
-            {/* Bookmark with Badge */}
-            <button
-              type="button"
-              className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/15 hover:bg-white/25 transition text-white cursor-pointer border border-white/20 shadow-xs"
-              title="Saved items"
-            >
-              <Bookmark className="w-4 h-4" />
-              <span className="text-xs font-semibold">0</span>
-              <ChevronRight className="w-3 h-3 opacity-60" />
-            </button>
+
 
             {/* Search Glass Button */}
-            <button
+            {/* <button
               type="button"
               onClick={onSearchClick}
               className="w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 transition flex items-center justify-center text-white cursor-pointer border border-white/20 shadow-xs"
               title="Search"
             >
               <Search className="w-4.5 h-4.5" />
-            </button>
+            </button> */}
 
             {/* Mobile Hamburger Menu Toggle */}
             <button
@@ -351,24 +314,6 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
             >
               Customer Stories
             </button>
-            <button
-              type="button"
-              onClick={() => { setMobileMenuOpen(false); handleSectionNav('#news'); }}
-              className="text-left px-2 py-1.5 text-white/90 hover:text-[#FF462D]"
-            >
-              News
-            </button>
-            <button
-              type="button"
-              onClick={() => { setMobileMenuOpen(false); handleSectionNav('#connect-with-us'); }}
-              className="text-left px-2 py-1.5 text-white/90 hover:text-[#FF462D]"
-            >
-              Careers
-            </button>
-            <div className="pt-2.5 border-t border-white/15 flex items-center justify-between px-2 text-sm text-white/70">
-              <span>Region: IN - EN</span>
-              <span className="text-white/50">QuBit Inc.</span>
-            </div>
           </div>
         )}
 
