@@ -6,52 +6,47 @@ export default function ContactConsultation({ id }) {
     name: '',
     email: '',
     company: '',
-    interest: 'Quantum Cloud Infrastructure',
+    interest: 'Corporate Website Design',
     message: ''
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const [lastSubmitted, setLastSubmitted] = useState(null);
 
-  const handleSubmit = async (e) => {
+  const COMPANY_EMAIL = 'qubit.techsolutions11@gmail.com';
+
+  const buildGmailUrl = (data) => {
+    const subject = encodeURIComponent(
+      `Consultation Request: ${data.interest} - ${data.name || 'New Inquiry'}`
+    );
+    const body = encodeURIComponent(
+      [
+        `From: ${data.name} (${data.email})`,
+        `Organization / Company: ${data.company || 'N/A'}`,
+        `Strategic Focus: ${data.interest}`,
+        '',
+        'Project Scope & Requirements:',
+        data.message || 'N/A'
+      ].join('\n')
+    );
+
+    const authUserParam = data.email ? `&authuser=${encodeURIComponent(data.email)}` : '';
+    return `https://mail.google.com/mail/?view=cm&fs=1&to=${COMPANY_EMAIL}${authUserParam}&su=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
-
-    try {
-      const response = await fetch('/api/inquiries', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to submit consultation request. Please try again.');
-      }
-
-      const resData = await response.json();
-      setSuccess(true);
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        interest: 'Quantum Cloud Infrastructure',
-        message: ''
-      });
-    } catch (err) {
-      // In case backend is temporarily unreachable, show optimistic feedback
-      setSuccess(true);
-    } finally {
-      setLoading(false);
-    }
+    window.location.href = buildGmailUrl(formData);
   };
 
   return (
     <section id={id || "contact"} className="py-20 md:py-32 bg-[#FAF7F2] border-t border-black/[0.08]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Narrative Column */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-2 mb-3">
@@ -62,7 +57,7 @@ export default function ContactConsultation({ id }) {
             </div>
 
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#121212] mb-6">
-              Connect with QuBit Quantum architects.
+              Connect with QuBit.
             </h2>
 
             <p className="text-base sm:text-lg text-[#555555] leading-relaxed mb-8">
@@ -104,7 +99,7 @@ export default function ContactConsultation({ id }) {
 
           {/* Form Column */}
           <div className="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-12 border border-black/[0.08] shadow-kyndryl">
-            
+
             {success ? (
               <div className="text-center py-12">
                 <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
@@ -114,20 +109,31 @@ export default function ContactConsultation({ id }) {
                   Inquiry Successfully Recorded
                 </h3>
                 <p className="text-sm text-[#555555] max-w-md mx-auto mb-6">
-                  Your request has been stored in our PostgreSQL system. A principal quantum architect will reach out within 24 business hours.
+                  Your request has been send will and reviewd shortly . A principal Quibit architect will reach out within 24 business hours.
                 </p>
-                <button
-                  onClick={() => setSuccess(false)}
-                  className="px-6 py-2.5 rounded-full bg-[#121212] text-white text-sm font-medium hover:bg-[#FF462D] transition cursor-pointer"
-                >
-                  Submit Another Inquiry
-                </button>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  {lastSubmitted && (
+                    <a
+                      href={buildGmailUrl(lastSubmitted)}
+                      className="px-6 py-2.5 rounded-full bg-[#FF462D] text-white text-sm font-medium hover:bg-[#D82C00] transition cursor-pointer inline-flex items-center gap-2"
+                    >
+                      <Mail className="w-4 h-4" />
+                      <span>Compose in Gmail</span>
+                    </a>
+                  )}
+                  <button
+                    onClick={() => setSuccess(false)}
+                    className="px-6 py-2.5 rounded-full bg-[#121212] text-white text-sm font-medium hover:bg-[#FF462D] transition cursor-pointer"
+                  >
+                    Submit Another Inquiry
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  
+
                   {/* Full Name */}
                   <div>
                     <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
@@ -167,7 +173,7 @@ export default function ContactConsultation({ id }) {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  
+
                   {/* Company */}
                   <div>
                     <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
@@ -195,11 +201,14 @@ export default function ContactConsultation({ id }) {
                       onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition cursor-pointer"
                     >
-                      <option value="Quantum Cloud Infrastructure">Quantum Cloud Infrastructure</option>
-                      <option value="Post-Quantum Cryptography & QKD">Post-Quantum Cryptography & QKD</option>
-                      <option value="Financial Portfolio Modeling">Financial Portfolio Modeling</option>
-                      <option value="Molecular Chemistry & Materials">Molecular Chemistry & Materials</option>
-                      <option value="Dedicated On-Premise Cryostat QPU">Dedicated On-Premise Cryostat QPU</option>
+                      <option value="Corporate Website Design">Corporate Website Design</option>
+                      <option value="E-commerce Solution">E-commerce Solution</option>
+                      <option value="Mobile App Development">Mobile App Development</option>
+                      <option value="Software Development">Software Development</option>
+                      <option value="Search Engine Optimization ">Search Engine Optimization </option>
+                      <option value="Graphics Designing">Graphics Designing</option>
+                      <option value="2D Animation">2D Animation</option>
+                      <option value="Server Management">Server Management</option>
                     </select>
                   </div>
 
@@ -226,28 +235,16 @@ export default function ContactConsultation({ id }) {
                   </div>
                 )}
 
-                {/* Submit Button */}
+                {/* Compose an Email Button */}
                 <button
                   type="submit"
-                  disabled={loading}
-                  className="w-full py-4 rounded-full bg-[#FF462D] text-white font-medium text-base hover:bg-[#D82C00] transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg disabled:opacity-60 cursor-pointer"
+                  className="w-full py-4 rounded-full bg-[#FF462D] text-white font-medium text-base hover:bg-[#D82C00] transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg cursor-pointer"
                 >
-                  {loading ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      <span>Transmitting to QuBit Gateway...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Transmit Consultation Request</span>
-                      <Send className="w-4 h-4" />
-                    </>
-                  )}
+                  <Mail className="w-4 h-4" />
+                  <span>Compose an Email</span>
                 </button>
 
-                <p className="text-[11px] text-[#888888] font-mono text-center">
-                  Protected by end-to-end encryption. Stored securely in PostgreSQL database.
-                </p>
+
 
               </form>
             )}
