@@ -96,19 +96,17 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
                 >
                   <span>What we do</span>
                   <ChevronDown
-                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
-                      activeDropdown === 'what' ? 'rotate-180' : 'group-hover:rotate-180'
-                    }`}
+                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${activeDropdown === 'what' ? 'rotate-180' : 'group-hover:rotate-180'
+                      }`}
                   />
                 </button>
 
                 {/* Mega Menu Dropdown with Seamless Hover Bridge */}
                 <div
-                  className={`absolute top-full left-0 pt-3 w-[960px] max-w-[92vw] z-50 transition-all duration-200 ${
-                    activeDropdown === 'what'
+                  className={`absolute top-full left-0 pt-3 w-[960px] max-w-[92vw] z-50 transition-all duration-200 ${activeDropdown === 'what'
                       ? 'opacity-100 translate-y-0 pointer-events-auto'
                       : 'opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto'
-                  }`}
+                    }`}
                 >
                   {/* Invisible Hover Safety Bridge spanning the gap */}
                   <div className="absolute -top-3 left-0 right-0 h-4 bg-transparent" />
@@ -173,18 +171,16 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
                 >
                   <span>Who we are</span>
                   <ChevronDown
-                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
-                      activeDropdown === 'who' ? 'rotate-180' : 'group-hover:rotate-180'
-                    }`}
+                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${activeDropdown === 'who' ? 'rotate-180' : 'group-hover:rotate-180'
+                      }`}
                   />
                 </button>
                 {/* Dropdown Menu with Seamless Hover Bridge */}
                 <div
-                  className={`absolute top-full left-0 pt-3 w-72 z-50 transition-all duration-200 ${
-                    activeDropdown === 'who'
+                  className={`absolute top-full left-0 pt-3 w-72 z-50 transition-all duration-200 ${activeDropdown === 'who'
                       ? 'opacity-100 translate-y-0 pointer-events-auto'
                       : 'opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto'
-                  }`}
+                    }`}
                 >
                   {/* Invisible Hover Safety Bridge */}
                   <div className="absolute -top-3 left-0 right-0 h-4 bg-transparent" />
@@ -248,14 +244,14 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
 
 
             {/* Search Glass Button */}
-            <button
+            {/* <button
               type="button"
               onClick={onSearchClick}
               className="w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 transition flex items-center justify-center text-white cursor-pointer border border-white/20 shadow-xs"
               title="Search"
             >
               <Search className="w-4.5 h-4.5" />
-            </button>
+            </button> */}
 
             {/* Mobile Hamburger Menu Toggle */}
             <button

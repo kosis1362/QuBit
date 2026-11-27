@@ -24,11 +24,11 @@ export default function CustomerStoriesSection() {
       id: 1,
       badge: "02",
       eyebrow: "IT MODERNIZATION",
-      title: "Smart Real Estate & PropTech: Digitizing Property Portfolios & Digital Twin BIM for 2.5M+ Units",
-      description: "Deploying high-resiliency cloud edge networks, digital twin architectural BIM models, and automated asset intelligence to optimize commercial real estate, smart power distribution, and multi-tenant property operations.",
+      title: "Smart Real Estate & PropTech: Digitizing Property Management.",
+      description: "Developing a modern real estate technology platform integrating cloud-based infrastructure, interactive Mapbox geospatial services, and intelligent property management workflows to enhance property discovery, streamline listing operations, and deliver seamless multi-user experiences.",
       video: "/videos/real_estate_5s.mp4",
-      slug: "erp-system",
-      details: "Through end-to-end cloud modernization and IoT smart building telemetry, the commercial real estate enterprise unified 2.5 million residential and commercial units into a single digital-twin control fabric, reducing building energy overhead by 34% and automating tenant lease lifecycle operations."
+      slug: "real-estate-hub",
+      details: "Developed Luxe Real Estate Hub to address the challenges of fragmented property listings, difficult property discovery, and limited location-based visibility. The platform provides a centralized solution for buyers and sellers to explore properties, manage listings, and discover suitable properties based on location, simplifying the overall property search experience."
     },
     {
       id: 2,

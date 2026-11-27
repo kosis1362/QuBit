@@ -8,7 +8,7 @@ export default function Footer({ onContactClick, onSimulateClick }) {
   ];
 
   const quickLinksCol2 = [
-    
+
     { label: 'Technology services', href: '#our-expertise' },
   ];
 
@@ -40,12 +40,12 @@ export default function Footer({ onContactClick, onSimulateClick }) {
 
           {/* Top Right: Language Selector + Social Links */}
           <div className="flex items-center gap-5 sm:gap-7">
-           
+
 
             <div className="flex items-center gap-3 sm:gap-4">
               {/* LinkedIn */}
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/qubit-tech-aaa7a3452"
                 target="_blank"
                 rel="noreferrer"
                 className="w-7 h-7 rounded bg-[#2B2B2B] text-[#ECEAE6] hover:bg-[#FF462D] hover:text-white transition flex items-center justify-center font-bold text-xs"
