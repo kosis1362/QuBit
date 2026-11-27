@@ -540,7 +540,8 @@ export default function ProjectDetailPage({ onConsultClick }) {
   const [activeFlowIndex, setActiveFlowIndex] = useState(3);
 
   return (
-    <div className="relative min-h-screen bg-[#FAFAF8] text-[#121212] flex flex-col font-sans selection:bg-[#FF462D] selection:text-white">
+    <>
+      <div className="relative z-10 min-h-screen bg-[#FAFAF8] text-[#121212] flex flex-col font-sans selection:bg-[#FF462D] selection:text-white shadow-[0_20px_50px_rgba(0,0,0,0.18)] mb-[50vh]">
 
       {/* 
         ========================================================================
@@ -1323,14 +1324,17 @@ export default function ProjectDetailPage({ onConsultClick }) {
       */}
       <ConnectWithUsSection onTalkClick={onConsultClick} />
 
+      </div>
+
       {/* 
         ========================================================================
-        10. FOOTER
+        10. FOOTER (Fixed 50vh Curtain Reveal matching HomePage)
         ========================================================================
       */}
-      <Footer />
-
-    </div>
+      <div className="fixed bottom-0 left-0 w-full h-[50vh] z-0 pointer-events-auto overflow-hidden">
+        <Footer />
+      </div>
+    </>
   );
 }
 

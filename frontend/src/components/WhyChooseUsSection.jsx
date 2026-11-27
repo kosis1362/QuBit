@@ -33,7 +33,7 @@ export default function WhyChooseUsSection() {
         {/* Top-Left Minimalist Header */}
         <div className="mb-14 sm:mb-16">
           <span className="text-xs font-medium text-[#8E8E93] tracking-wide block">
-            Minimal
+
           </span>
           <div className="w-6 h-[1.5px] bg-[#1A1A1A] mt-2.5 mb-6" />
           <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-[#1A1A1A] leading-[1.08]">
@@ -57,11 +57,10 @@ export default function WhyChooseUsSection() {
                 {/* Cropped Oversized Number */}
                 <div className="h-[46px] sm:h-[52px] overflow-hidden flex items-start justify-center mb-4">
                   <span
-                    className={`text-6xl sm:text-[68px] font-black tracking-tighter leading-[0.82] transition-colors duration-200 ${
-                      isActive
+                    className={`text-6xl sm:text-[68px] font-black tracking-tighter leading-[0.82] transition-colors duration-200 ${isActive
                         ? 'text-[#2F5BEA]'
                         : 'text-[#D4D4D4] group-hover:text-[#9A9A9A]'
-                    }`}
+                      }`}
                   >
                     0{index + 1}
                   </span>

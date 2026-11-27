@@ -216,6 +216,15 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
                 </div>
               </div>
 
+              {/* Our Projects */}
+              <button
+                type="button"
+                onClick={() => handleSectionNav('#our-projects')}
+                className="hover:text-[#FF462D] py-2 transition-colors cursor-pointer"
+              >
+                Our Projects
+              </button>
+
               {/* Customer Stories */}
               <button
                 type="button"
@@ -343,6 +352,13 @@ export default function Navbar({ onConsultClick, onSearchClick }) {
               className="text-left px-2 py-1.5 text-white/90 hover:text-[#FF462D]"
             >
               Who we are
+            </button>
+            <button
+              type="button"
+              onClick={() => { setMobileMenuOpen(false); handleSectionNav('#our-projects'); }}
+              className="text-left px-2 py-1.5 text-white/90 hover:text-[#FF462D]"
+            >
+              Our Projects
             </button>
             <button
               type="button"

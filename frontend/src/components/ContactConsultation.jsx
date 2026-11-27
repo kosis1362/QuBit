@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle, Building2, Mail, User, MessageSquare } from 'lucide-react';
+import { ArrowRight, CheckCircle2, AlertCircle, Mail, MapPin, Phone } from 'lucide-react';
 
 export default function ContactConsultation({ id }) {
   const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ export default function ContactConsultation({ id }) {
         throw new Error('Failed to submit consultation request. Please try again.');
       }
 
-      const resData = await response.json();
+      await response.json();
       setSuccess(true);
       setFormData({
         name: '',
@@ -47,153 +47,136 @@ export default function ContactConsultation({ id }) {
   };
 
   return (
-    <section id={id || "contact"} className="py-20 md:py-32 bg-[#FAF7F2] border-t border-black/[0.08]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Narrative Column */}
-          <div className="lg:col-span-5">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-[#FF462D] font-mono text-xs font-semibold tracking-eyebrow uppercase">
-                // ENTERPRISE ENGAGEMENT
-              </span>
-              <div className="h-[1px] w-12 bg-[#FF462D]/40" />
+    <section id={id || 'contact'} className="py-6 sm:py-10 bg-white text-[#111111]">
+      <div className="w-full px-2 sm:px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+
+          {/* Left Column: Heading, Copy & Contact Details */}
+          <div className="lg:col-span-5 flex flex-col justify-between lg:min-h-[460px] pt-2">
+            <div>
+              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-medium tracking-[-0.03em] leading-[1.12] text-[#111111] mb-4">
+                Talk to our
+                <br />
+                support team
+              </h2>
+
+              <p className="text-sm sm:text-[15px] text-[#6E6E73] leading-relaxed max-w-xs">
+                Feel free to reach out for project inquiries, enterprise architecture, or any questions you may have.
+              </p>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#121212] mb-6">
-              Connect with QuBit Quantum architects.
-            </h2>
-
-            <p className="text-base sm:text-lg text-[#555555] leading-relaxed mb-8">
-              Whether you are preparing your enterprise infrastructure for post-quantum cryptographic migration or exploring high-performance algorithm acceleration on our QPU, our engineering leaders are ready to collaborate.
-            </p>
-
-            <div className="p-6 rounded-2xl bg-white border border-black/[0.08] space-y-4 shadow-xs">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#FF462D]/10 text-[#FF462D] flex items-center justify-center font-bold text-sm">
-                  1
+            {/* Contact Info Rows */}
+            <div className="mt-10 lg:mt-16 space-y-3.5">
+              <div className="flex items-center gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-[#F4F4F5] text-[#111111] flex items-center justify-center shrink-0">
+                  <Mail className="w-4 h-4" />
                 </div>
-                <div>
-                  <h4 className="text-sm font-bold text-[#121212]">Technical Discovery Session</h4>
-                  <p className="text-xs text-[#666666]">Comprehensive review of computational bottlenecks</p>
-                </div>
+                <span className="text-sm font-medium text-[#222222]">
+
+                  qubit.techsolutions11@gmail.com
+                </span>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#FF462D]/10 text-[#FF462D] flex items-center justify-center font-bold text-sm">
-                  2
+              <div className="flex items-center gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-[#F4F4F5] text-[#111111] flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4" />
                 </div>
-                <div>
-                  <h4 className="text-sm font-bold text-[#121212]">Fault-Tolerant Co-processor Mapping</h4>
-                  <p className="text-xs text-[#666666]">Direct benchmarking against your classical workload</p>
-                </div>
+                <span className="text-sm font-medium text-[#222222]">
+                  Nepal.Bhaktapur
+                </span>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#FF462D]/10 text-[#FF462D] flex items-center justify-center font-bold text-sm">
-                  3
+              <div className="flex items-center gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-[#F4F4F5] text-[#111111] flex items-center justify-center shrink-0">
+                  <Phone className="w-4 h-4" />
                 </div>
-                <div>
-                  <h4 className="text-sm font-bold text-[#121212]">Sovereign Deployment Roadmap</h4>
-                  <p className="text-xs text-[#666666]">Air-gapped on-premise or managed cloud integration</p>
-                </div>
+                <span className="text-sm font-medium text-[#222222]">
+                  +977
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Form Column */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-12 border border-black/[0.08] shadow-kyndryl">
-            
+          {/* Right Column: Soft Gray Form Card */}
+          <div className="lg:col-span-7 bg-[#F4F4F5] rounded-2xl p-6 sm:p-8">
             {success ? (
               <div className="text-center py-12">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle2 className="w-8 h-8" />
+                <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle2 className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#121212] mb-2">
+                <h3 className="text-xl font-semibold text-[#111111] mb-2">
                   Inquiry Successfully Recorded
                 </h3>
-                <p className="text-sm text-[#555555] max-w-md mx-auto mb-6">
-                  Your request has been stored in our PostgreSQL system. A principal quantum architect will reach out within 24 business hours.
+                <p className="text-sm text-[#6E6E73] max-w-sm mx-auto mb-6">
+                  Your request has been stored in our PostgreSQL system. A principal architect will reach out within 24 business hours.
                 </p>
                 <button
+                  type="button"
                   onClick={() => setSuccess(false)}
-                  className="px-6 py-2.5 rounded-full bg-[#121212] text-white text-sm font-medium hover:bg-[#FF462D] transition cursor-pointer"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1C1C1E] text-white text-sm font-medium hover:bg-black transition cursor-pointer"
                 >
-                  Submit Another Inquiry
+                  <span>Submit Another Inquiry</span>
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  
+              <form onSubmit={handleSubmit} className="space-y-4">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Full Name */}
                   <div>
-                    <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
+                    <label className="block text-xs font-medium text-[#444444] mb-1.5">
                       Full Name *
                     </label>
-                    <div className="relative">
-                      <User className="w-4 h-4 text-[#888888] absolute left-3.5 top-3.5 pointer-events-none" />
-                      <input
-                        type="text"
-                        required
-                        placeholder="Dr. Alan Turing"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition"
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Dr. Alan Turing"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] placeholder:text-[#9CA3AF] border border-transparent focus:border-[#111111]/20 focus:outline-none transition"
+                    />
                   </div>
 
                   {/* Work Email */}
                   <div>
-                    <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
+                    <label className="block text-xs font-medium text-[#444444] mb-1.5">
                       Work Email *
                     </label>
-                    <div className="relative">
-                      <Mail className="w-4 h-4 text-[#888888] absolute left-3.5 top-3.5 pointer-events-none" />
-                      <input
-                        type="email"
-                        required
-                        placeholder="alan@enterprise.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition"
-                      />
-                    </div>
+                    <input
+                      type="email"
+                      required
+                      placeholder="alan@enterprise.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] placeholder:text-[#9CA3AF] border border-transparent focus:border-[#111111]/20 focus:outline-none transition"
+                    />
                   </div>
-
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  
-                  {/* Company */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Organization / Company */}
                   <div>
-                    <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
+                    <label className="block text-xs font-medium text-[#444444] mb-1.5">
                       Organization / Company
                     </label>
-                    <div className="relative">
-                      <Building2 className="w-4 h-4 text-[#888888] absolute left-3.5 top-3.5 pointer-events-none" />
-                      <input
-                        type="text"
-                        placeholder="Acme Global Corp"
-                        value={formData.company}
-                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition"
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      placeholder="Acme Global Corp"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] placeholder:text-[#9CA3AF] border border-transparent focus:border-[#111111]/20 focus:outline-none transition"
+                    />
                   </div>
 
-                  {/* Area of Interest */}
+                  {/* Strategic Focus */}
                   <div>
-                    <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
+                    <label className="block text-xs font-medium text-[#444444] mb-1.5">
                       Strategic Focus
                     </label>
                     <select
                       value={formData.interest}
                       onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition cursor-pointer"
+                      className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] border border-transparent focus:border-[#111111]/20 focus:outline-none transition cursor-pointer"
                     >
                       <option value="Quantum Cloud Infrastructure">Quantum Cloud Infrastructure</option>
                       <option value="Post-Quantum Cryptography & QKD">Post-Quantum Cryptography & QKD</option>
@@ -202,12 +185,11 @@ export default function ContactConsultation({ id }) {
                       <option value="Dedicated On-Premise Cryostat QPU">Dedicated On-Premise Cryostat QPU</option>
                     </select>
                   </div>
-
                 </div>
 
-                {/* Message */}
+                {/* Project Scope & Computational Requirements */}
                 <div>
-                  <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
+                  <label className="block text-xs font-medium text-[#444444] mb-1.5">
                     Project Scope & Computational Requirements
                   </label>
                   <textarea
@@ -215,7 +197,7 @@ export default function ContactConsultation({ id }) {
                     placeholder="Describe your current computational bottlenecks or research targets..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full p-4 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition"
+                    className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] placeholder:text-[#9CA3AF] border border-transparent focus:border-[#111111]/20 focus:outline-none transition resize-none"
                   />
                 </div>
 
@@ -227,37 +209,32 @@ export default function ContactConsultation({ id }) {
                 )}
 
                 {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-4 rounded-full bg-[#FF462D] text-white font-medium text-base hover:bg-[#D82C00] transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg disabled:opacity-60 cursor-pointer"
-                >
-                  {loading ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      <span>Transmitting to QuBit Gateway...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Transmit Consultation Request</span>
-                      <Send className="w-4 h-4" />
-                    </>
-                  )}
-                </button>
-
-                <p className="text-[11px] text-[#888888] font-mono text-center">
-                  Protected by end-to-end encryption. Stored securely in PostgreSQL database.
-                </p>
+                <div className="pt-1">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#1C1C1E] hover:bg-black text-white text-sm font-medium transition-all cursor-pointer shadow-sm disabled:opacity-60 active:scale-[0.98]"
+                  >
+                    {loading ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <span>Transmitting...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </div>
 
               </form>
             )}
-
           </div>
 
         </div>
-
       </div>
     </section>
   );
 }
-

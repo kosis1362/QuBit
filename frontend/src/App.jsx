@@ -102,7 +102,7 @@ export default function App() {
         {isContactModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-black/60 backdrop-blur-sm animate-fade-in">
             <div
-              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#FAF7F2] rounded-3xl shadow-2xl border border-black/10 p-6 sm:p-10"
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl border border-black/10 p-6 sm:p-10"
               onClick={(e) => e.stopPropagation()}
             >
               <button

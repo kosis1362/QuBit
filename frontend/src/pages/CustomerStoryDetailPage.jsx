@@ -43,10 +43,7 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
   const [openComplications, setOpenComplications] = useState({});
 
   const togglePillar = (index) => {
-    setOpenPillars((prev) => ({
-      ...prev,
-      [index]: !prev[index]
-    }));
+    setOpenPillars((prev) => (prev[index] ? {} : { [index]: true }));
   };
 
   const toggleComplication = (index) => {
@@ -251,8 +248,8 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
           </div>
 
           {/* Hero Content */}
-          <div className="relative z-20 w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 flex-1 flex flex-col justify-center py-6 sm:py-8">
-            <div className="max-w-2xl lg:max-w-3xl">
+          <div className="relative z-20 w-full px-6 sm:px-10 lg:px-16 flex-1 flex flex-col justify-center py-6 sm:py-8">
+            <div className="w-full">
               {/* Breadcrumb */}
               <nav aria-label="Breadcrumb" className="text-xs sm:text-[13px] text-white/70 mb-6 sm:mb-8 font-normal flex items-center gap-2 flex-wrap">
                 <Link to="/" className="hover:text-white transition-colors">Home</Link>
@@ -305,7 +302,7 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
 
           {/* Bottom 3-Column Highlight Strip */}
           <div className="relative z-20 w-full border-t border-white/20 bg-black/50 backdrop-blur-md">
-            <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+            <div className="w-full px-6 sm:px-10 lg:px-16">
               <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20">
                 <div className="py-4 sm:py-5 md:px-6 first:pl-0 flex items-center gap-3 text-sm sm:text-[15px] font-normal text-white/90 leading-snug">
                   <Building2 className="w-5 h-5 text-[#FF462D] shrink-0" />
@@ -330,7 +327,7 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
         ========================================================================
       */}
         <section id="story-flow" className="py-16 sm:py-20 lg:py-24 bg-[#FAF7F2] border-b border-black/[0.06]">
-          <div className="w-full max-w-[1100px] mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="w-full px-6 sm:px-10 lg:px-16">
             <span className="text-xs font-mono font-semibold uppercase tracking-[0.22em] text-[#FF462D] block mb-3">
               THE REALITY OF SCALE
             </span>
@@ -364,10 +361,10 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
         ========================================================================
       */}
         <section className="py-20 lg:py-28 bg-[#FFFFFF] border-b border-black/[0.06]">
-          <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="w-full px-6 sm:px-10 lg:px-16">
 
             {/* Section Header: Heading Only */}
-            <div className="max-w-3xl mb-12 sm:mb-14">
+            <div className="w-full mb-12 sm:mb-14">
               <span className="text-xs font-mono font-semibold uppercase tracking-[0.22em] text-[#FF462D] block mb-2">
                 THE END-OF-MONTH SPIRAL
               </span>
@@ -458,23 +455,23 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
           {/* Subtle background glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-[#FF462D]/10 rounded-full blur-[140px] pointer-events-none" />
 
-          <div className="w-full max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10 text-center">
+          <div className="w-full lg:w-[70%] mx-auto px-6 sm:px-10 lg:px-0 relative z-10 text-center">
 
             <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#FF462D] font-semibold block mb-4">
               THE ROOT CAUSE
             </span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-tight max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-tight w-full">
               The real problem isn't the people. <br />
               <span className="text-[#FF462D]">It's the process.</span>
             </h2>
 
-            <p className="text-base sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
+            <p className="text-base sm:text-xl text-white/80 w-full leading-relaxed mb-10 font-normal">
               Without a centralised system, every department works with disconnected information. Even simple tasks require multiple conversations, manual updates and unnecessary follow-ups.
             </p>
 
             {/* Quotation highlight block */}
-            <div className="max-w-3xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 backdrop-blur-md">
+            <div className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 backdrop-blur-md">
               <p className="text-lg sm:text-2xl font-light italic text-white/95 leading-relaxed mb-4">
                 "When information is scattered, work becomes complicated. When everything is connected, people can focus on what really matters."
               </p>
@@ -499,31 +496,30 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
         {/* 
         ========================================================================
         6. THE SOLUTION: What if everything worked from one place?
-        Matching the whole page color palette (warm sandstone #FAF7F2 / #FAFAF8)
         ========================================================================
       */}
-          <section className="py-20 lg:py-28 bg-[#FAF7F2] border-b border-black/[0.06]">
-            <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+          <section className="py-20 lg:py-28 bg-[#F7F7F7] border-b border-black/[0.05]">
+            <div className="w-full px-6 sm:px-10 lg:px-16">
 
               {/* Section Header */}
-              <div className="max-w-3xl mx-auto text-center mb-16">
-                  <span className="text-xs font-mono uppercase font-semibold tracking-[0.22em] text-[#FF462D] block mb-2">
-                    THE CONNECTED ARCHITECTURE
-                  </span>
-                  <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-[#121212] mb-4">
-                    What if everything worked from one place?
-                  </h2>
-                    <div className="w-12 h-1 bg-[#FF462D] mx-auto mb-6 rounded-full" />
-                    <p className="text-base sm:text-lg text-[#333333] leading-relaxed mb-4">
-                      That's where the <span className="font-semibold text-[#121212]">ERP / Employee Management System</span> comes in.
-                    </p>
-                    <p className="text-sm sm:text-base text-[#666666] leading-relaxed max-w-2xl mx-auto">
-                      A single platform where employees can manage their profiles, attendance and leave requests; HR can manage employee records and approvals; managers can monitor operations; and administrators can access the information they need.
-                    </p>
-                  </div>
+              <div className="w-full text-center mb-16">
+                <span className="inline-block px-3 py-1 rounded-md bg-[#EAEAEA] text-[#555555] text-xs font-medium tracking-tight mb-5">
+                  The Connected Architecture
+                </span>
+                <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-[-0.03em] leading-[1.14] text-[#111111] mb-4">
+                  What if everything{' '}
+                  <span className="text-[#8E8E93]">worked from one place?</span>
+                </h2>
+                <p className="text-base sm:text-lg text-[#3A3A3C] leading-relaxed mb-3 font-medium">
+                  That's where the <span className="font-bold text-[#111111]">ERP / Employee Management System</span> comes in.
+                </p>
+                <p className="text-sm sm:text-base text-[#6E6E73] leading-relaxed w-full max-w-4xl mx-auto">
+                  A single platform where employees can manage their profiles, attendance and leave requests; HR can manage employee records and approvals; managers can monitor operations; and administrators can access the information they need.
+                </p>
+              </div>
 
-          {/* 4 Connected Stakeholder Cards: Same Card Format, Heading Only with Animated Dropdown */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 items-start">
+          {/* 4 Connected Stakeholder Cards: Single-Open Accordion with Dot Points */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-16 items-start">
             {solutionPillars.map((pillar, idx) => {
               const Icon = pillar.icon;
               const isOpen = !!openPillars[idx];
@@ -533,27 +529,27 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
                 <div
                   key={idx}
                   onClick={() => togglePillar(idx)}
-                  className={`group relative rounded-2xl p-7 sm:p-8 border transition-all duration-300 flex flex-col justify-between cursor-pointer ${
+                  className={`group relative rounded-2xl p-6 sm:p-7 border transition-all duration-300 flex flex-col justify-between cursor-pointer ${
                     isOpen
-                      ? 'bg-white border-[#FF462D]/50 shadow-md ring-1 ring-[#FF462D]/15'
-                      : 'bg-[#FAFAF8] border-black/[0.08] hover:border-[#FF462D]/40 hover:bg-white hover:shadow-lg'
+                      ? 'bg-white border-black/[0.12] shadow-md'
+                      : 'bg-white/85 border-black/[0.05] hover:border-black/[0.12] hover:bg-white hover:shadow-md'
                   }`}
                 >
                   <div>
-                    {/* Top Row: Sequential Number and Icon (Matching Complications Cards) */}
-                    <div className="flex items-center justify-between mb-5">
-                      <span className="text-2xl font-mono font-bold text-[#FF462D]">
+                    {/* Top Row: Sequential Number and Icon */}
+                    <div className="flex items-center justify-between mb-6">
+                      <span className="text-sm font-semibold tracking-tight text-[#8E8E93]">
                         {pillarNum}
                       </span>
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-200 ${
-                        isOpen ? 'bg-[#FF462D] text-white' : 'bg-red-50 text-[#FF462D] group-hover:bg-[#FF462D] group-hover:text-white'
+                        isOpen ? 'bg-[#141414] text-white' : 'bg-[#F2F2F2] text-[#141414] group-hover:bg-[#141414] group-hover:text-white'
                       }`}>
-                        <Icon className="w-5 h-5" />
+                        <Icon className="w-4.5 h-4.5" />
                       </div>
                     </div>
 
-                    {/* Heading Only */}
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#121212] tracking-tight group-hover:text-[#FF462D] transition-colors leading-snug">
+                    {/* Heading */}
+                    <h3 className="text-lg sm:text-xl font-bold text-[#111111] tracking-[-0.02em] leading-snug">
                       {pillar.role}
                     </h3>
 
@@ -564,13 +560,13 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
                       }`}
                     >
                       <div className="overflow-hidden">
-                        <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#FF462D] block mb-3">
-                          CONNECTED FEATURES & TOOLS
+                        <span className="text-[11px] font-medium text-[#8E8E93] block mb-3">
+                          Connected Features & Tools
                         </span>
                         <ul className="space-y-2.5">
                           {pillar.points.map((pt, pIdx) => (
-                            <li key={pIdx} className="text-xs sm:text-[13px] text-[#444444] flex items-start gap-2.5 leading-relaxed">
-                              <Check className="w-3.5 h-3.5 text-[#FF462D] shrink-0 mt-0.5" />
+                            <li key={pIdx} className="text-[13px] text-[#444444] flex items-start gap-2.5 leading-relaxed">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#141414] shrink-0 mt-2" />
                               <span>{pt}</span>
                             </li>
                           ))}
@@ -580,16 +576,16 @@ export default function CustomerStoryDetailPage({ onConsultClick }) {
                   </div>
 
                   {/* Bottom Row with Indicator and Rotating Chevron */}
-                  <div className="mt-5 pt-4 border-t border-black/[0.06] flex items-center justify-between text-xs font-mono text-[#888888]">
-                    <span className="group-hover:text-[#121212] transition-colors">
-                      {isOpen ? 'COLLAPSE' : 'EXPAND FEATURES'}
+                  <div className="mt-5 pt-4 border-t border-black/[0.05] flex items-center justify-between text-xs font-medium text-[#8E8E93]">
+                    <span className="group-hover:text-[#111111] transition-colors">
+                      {isOpen ? 'Collapse' : 'Expand features'}
                     </span>
-                    <ChevronDown className={`w-4 h-4 text-[#FF462D] transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0 group-hover:translate-y-0.5'}`} />
+                    <ChevronDown className={`w-4 h-4 text-[#141414] transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0 group-hover:translate-y-0.5'}`} />
                   </div>
                 </div>
               );
             })}
-                          </div>
+          </div>
 
                           {/* Connected System Banner */}
                           <div className="p-8 sm:p-10 rounded-3xl bg-white border border-black/[0.08] shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6">

@@ -12,16 +12,20 @@ export default function ConnectWithUsSection({ onTalkClick }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-0">
 
           {/* Left Column: Copy & Action */}
-          <div className="lg:col-span-6 z-10 py-4 sm:py-6 pr-4 sm:pr-8">
+          <div className="lg:col-span-7 z-10 py-4 sm:py-6 pr-4 sm:pr-8">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1A1A1A] mb-3 sm:mb-4">
               Connect with us
             </h2>
 
-            <p className="text-sm sm:text-base lg:text-lg text-[#333333] font-normal leading-relaxed mb-6 max-w-[460px]">
-              Let's create something that moves your business forward.
-
-Whether you have a business challenge, an innovative idea, or an opportunity to collaborate, connect with us and discover what we can achieve together. <b style={{ color: '#e62c2cff', fontWeight: '700' }}> QuBit</b>, or just want to get in touch?
-            </p>
+            <div className="text-sm sm:text-[15px] text-[#333333] font-normal leading-relaxed mb-6 space-y-1">
+              <p>
+                Let's create something that moves your business forward.
+              </p>
+              <p>
+                Whether you have a business challenge, an innovative idea, or an opportunity to collaborate, connect with us and discover what we can achieve together.{' '}
+                <b style={{ color: '#e62c2cff', fontWeight: '700' }}>QuBit</b>, or just want to get in touch?
+              </p>
+            </div>
 
             <div>
               <button
@@ -36,7 +40,7 @@ Whether you have a business challenge, an innovative idea, or an opportunity to 
           </div>
 
           {/* Right Column: QuBit Logo */}
-          <div className="lg:col-span-6 flex items-center justify-center">
+          <div className="lg:col-span-5 flex items-center justify-center">
             <img
               src="/images/qubit-logo.png"
               alt="QuBit — Track Your Progress"
