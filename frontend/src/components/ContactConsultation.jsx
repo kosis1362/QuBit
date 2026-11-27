@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Send, CheckCircle2, AlertCircle, Building2, Mail, User, MessageSquare } from 'lucide-react';
+
+const SENT_STORAGE_KEY = 'qubit_consultation_sent';
 
 export default function ContactConsultation({ id }) {
   const [formData, setFormData] = useState({
@@ -9,10 +11,20 @@ export default function ContactConsultation({ id }) {
     interest: 'Corporate Website Design',
     message: ''
   });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(
+    () => sessionStorage.getItem(SENT_STORAGE_KEY) === 'true'
+  );
   const [error, setError] = useState(null);
-  const [lastSubmitted, setLastSubmitted] = useState(null);
+
+  useEffect(() => {
+    const syncSentState = () => {
+      if (sessionStorage.getItem(SENT_STORAGE_KEY) === 'true') {
+        setSuccess(true);
+      }
+    };
+    window.addEventListener('pageshow', syncSentState);
+    return () => window.removeEventListener('pageshow', syncSentState);
+  }, []);
 
   const COMPANY_EMAIL = 'qubit.techsolutions11@gmail.com';
 
@@ -38,7 +50,25 @@ export default function ContactConsultation({ id }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(null);
-    window.location.href = buildGmailUrl(formData);
+
+    const gmailUrl = buildGmailUrl(formData);
+
+    sessionStorage.setItem(SENT_STORAGE_KEY, 'true');
+    setSuccess(true);
+    setFormData({
+      name: '',
+      email: '',
+      company: '',
+      interest: 'Corporate Website Design',
+      message: ''
+    });
+
+    window.location.href = gmailUrl;
+  };
+
+  const handleSendAnother = () => {
+    sessionStorage.removeItem(SENT_STORAGE_KEY);
+    setSuccess(false);
   };
 
   return (
@@ -106,28 +136,18 @@ export default function ContactConsultation({ id }) {
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-[#121212] mb-2">
-                  Inquiry Successfully Recorded
+                  Consultation Request Ready &amp; Sent
                 </h3>
                 <p className="text-sm text-[#555555] max-w-md mx-auto mb-6">
-                  Your request has been send will and reviewd shortly . A principal Quibit architect will reach out within 24 business hours.
+                  Your request has been sent and will be reviewed shortly. A principal QuBit architect will reach out within 24 business hours.
                 </p>
-                <div className="flex flex-wrap items-center justify-center gap-3">
-                  {lastSubmitted && (
-                    <a
-                      href={buildGmailUrl(lastSubmitted)}
-                      className="px-6 py-2.5 rounded-full bg-[#FF462D] text-white text-sm font-medium hover:bg-[#D82C00] transition cursor-pointer inline-flex items-center gap-2"
-                    >
-                      <Mail className="w-4 h-4" />
-                      <span>Compose in Gmail</span>
-                    </a>
-                  )}
-                  <button
-                    onClick={() => setSuccess(false)}
-                    className="px-6 py-2.5 rounded-full bg-[#121212] text-white text-sm font-medium hover:bg-[#FF462D] transition cursor-pointer"
-                  >
-                    Submit Another Inquiry
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={handleSendAnother}
+                  className="px-6 py-2.5 rounded-full bg-[#121212] text-white text-sm font-medium hover:bg-[#FF462D] transition cursor-pointer"
+                >
+                  Send Another Query
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
