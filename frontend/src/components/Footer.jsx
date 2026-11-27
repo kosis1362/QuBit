@@ -3,14 +3,12 @@ import React from 'react';
 export default function Footer({ onContactClick, onSimulateClick }) {
   const quickLinksCol1 = [
     { label: 'About us', href: '#who-we-are' },
-    { label: 'Careers', href: '#careers' },
     { label: 'Consulting services', href: '#how-we-help' },
     { label: 'Contact us', href: '#connect-with-us', onClick: onContactClick },
   ];
 
   const quickLinksCol2 = [
-    { label: 'Industries', href: '#industries' },
-    { label: 'Locations', href: '#locations' },
+    
     { label: 'Technology services', href: '#our-expertise' },
   ];
 

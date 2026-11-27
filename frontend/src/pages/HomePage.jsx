@@ -1,10 +1,10 @@
 import React from 'react';
 import FloatingSectionNav from '../components/FloatingSectionNav';
 import Hero from '../components/Hero';
-import NewsTicker from '../components/NewsTicker';
-import WhoWeAreSection from '../components/WhoWeAreSection';
-import IndustryRecognition from '../components/IndustryRecognition';
+import AboutUsSection from '../components/AboutUsSection';
+import Services from '../components/Services';
 import CustomerStoriesSection from '../components/CustomerStoriesSection';
+import OurProjectsSection from '../components/OurProjectsSection';
 import ConnectWithUsSection from '../components/ConnectWithUsSection';
 import Footer from '../components/Footer';
 
@@ -27,20 +27,20 @@ export default function HomePage({ onConsultClick, onSimulateClick }) {
             onSimulateClick={onSimulateClick}
           />
 
-          {/* 3-Column News / Events / Whitepaper Strip */}
-          <NewsTicker />
-
           {/* Sticky Pill Bar: Floats persistently over sections */}
           <FloatingSectionNav />
 
-          {/* Page 2: "Who we are" */}
-          <WhoWeAreSection />
+          {/* Page 2: "About Us" */}
+          <AboutUsSection />
 
-          {/* Page 3: "Industry recognition. Customer trust." with green sliding accordion */}
-          <IndustryRecognition />
+          {/* Page 3: "Services" */}
+          <Services />
 
           {/* Page 4: "Progress, one customer at a time" with 5-second slide progress */}
           <CustomerStoriesSection onStoryClick={onConsultClick} />
+
+          {/* Page 5: "Our Projects" with 4 Featured Project Cards */}
+          <OurProjectsSection onConsultClick={onConsultClick} />
 
           {/* Last Content Section: 1:1 Match to Screenshot 1 "Connect with us" (Occupies top 50% of viewport when scrolled) */}
           <ConnectWithUsSection onTalkClick={onConsultClick} />
@@ -61,4 +61,3 @@ export default function HomePage({ onConsultClick, onSimulateClick }) {
     </>
   );
 }
-

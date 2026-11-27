@@ -44,7 +44,7 @@ export default function ServiceDetailPage({ onConsultClick }) {
         {/* Full-Bleed Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
-            src={service.heroImage || '/images/services/corporate_web_design_hero.jpg'}
+            src={service.heroImage || '/images/corporate_web_design_hero.jpg'}
             alt={service.title}
             className="w-full h-full object-cover object-center transform scale-102"
           />

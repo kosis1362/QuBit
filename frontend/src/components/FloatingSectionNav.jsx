@@ -7,8 +7,10 @@ export default function FloatingSectionNav() {
 
   const sections = [
     { id: 'who-we-are', label: 'Who we are' },
+    { id: 'services', label: 'Services' },
     { id: 'customer-stories', label: 'Customer stories' },
-    { id: 'connect-with-us', label: 'Connect with us' },
+    { id: 'our-projects', label: 'Our projects' },
+    { id: 'connect-with-us', label: 'Connect with us' }
   ];
 
   useEffect(() => {
@@ -24,7 +26,14 @@ export default function FloatingSectionNav() {
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const sec = sections[i];
-        const el = document.getElementById(sec.id);
+        const el =
+          document.getElementById(sec.id) ||
+          document.getElementById(sec.id.toLowerCase().replace(/\s+/g, '-')) ||
+          (sec.id === 'who-we-are' || sec.id === 'About Us' ? document.getElementById('who-we-are') || document.getElementById('About Us') : null) ||
+          (sec.id === 'services' || sec.id === 'Services' ? document.getElementById('services') || document.getElementById('Services') : null) ||
+          (sec.id === 'customer-stories' || sec.id === 'Products' ? document.getElementById('customer-stories') || document.getElementById('Products') : null) ||
+          (sec.id === 'our-projects' ? document.getElementById('our-projects') : null) ||
+          (sec.id === 'connect-with-us' || sec.id === 'Contact Us' ? document.getElementById('connect-with-us') || document.getElementById('Contact Us') : null);
         if (el) {
           const top = el.getBoundingClientRect().top + window.scrollY;
           if (scrollPosition >= top) {
@@ -41,7 +50,14 @@ export default function FloatingSectionNav() {
   }, []);
 
   const scrollToSection = (id) => {
-    const el = document.getElementById(id);
+    const el =
+      document.getElementById(id) ||
+      document.getElementById(id.toLowerCase().replace(/\s+/g, '-')) ||
+      (id === 'who-we-are' || id === 'About Us' ? document.getElementById('who-we-are') || document.getElementById('About Us') : null) ||
+      (id === 'services' || id === 'Services' ? document.getElementById('services') || document.getElementById('Services') : null) ||
+      (id === 'customer-stories' || id === 'Products' ? document.getElementById('customer-stories') || document.getElementById('Products') : null) ||
+      (id === 'our-projects' ? document.getElementById('our-projects') : null) ||
+      (id === 'connect-with-us' || id === 'Contact Us' ? document.getElementById('connect-with-us') || document.getElementById('Contact Us') : null);
     if (el) {
       // Offset for floating section nav pill bar (~60px) + margin
       const yOffset = -90;
@@ -58,10 +74,8 @@ export default function FloatingSectionNav() {
       className="sticky top-4 sm:top-5 z-40 w-full flex justify-center py-2 pointer-events-none transition-all duration-300"
     >
       <div
-        className={`pointer-events-auto inline-flex items-center gap-1 sm:gap-2 p-1.5 rounded-full transition-all duration-300 max-w-[95vw] overflow-x-auto no-scrollbar ${
-          isStuck
-            ? 'bg-white/95 backdrop-blur-md border border-black/[0.1] shadow-lg'
-            : 'bg-[#F4F0E8]/90 backdrop-blur-xs border border-black/[0.06] shadow-sm'
+        className={`pointer-events-auto inline-flex items-center gap-1 sm:gap-2 p-1.5 rounded-full transition-all duration-300 max-w-[95vw] overflow-x-auto no-scrollbar bg-[#FF462D] border border-orange-600/30 shadow-[0_8px_30px_rgba(255,70,45,0.35)] ${
+          isStuck ? 'backdrop-blur-md shadow-[0_10px_35px_rgba(255,70,45,0.45)]' : ''
         }`}
       >
         {sections.map((sec) => {
@@ -72,8 +86,8 @@ export default function FloatingSectionNav() {
               onClick={() => scrollToSection(sec.id)}
               className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap cursor-pointer ${
                 isActive
-                  ? 'bg-[#121212] text-white shadow-sm'
-                  : 'text-[#555555] hover:text-[#121212] hover:bg-black/[0.04]'
+                  ? 'bg-white text-[#FF462D] font-semibold shadow-sm'
+                  : 'text-white/90 hover:text-white hover:bg-white/15'
               }`}
             >
               {sec.label}

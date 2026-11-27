@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Play, Pause, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Play, Pause, ChevronLeft, ChevronRight, X, Sparkles, CheckCircle2 } from 'lucide-react';
 
 export default function CustomerStoriesSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -12,27 +13,38 @@ export default function CustomerStoriesSection() {
     {
       id: 0,
       badge: "01",
-      eyebrow: "IT MODERNIZATION",
-      title: "Smart Real Estate & PropTech: Digitizing Property Management.",
-      description: "Developing a modern real estate technology platform integrating cloud-based infrastructure, interactive Mapbox geospatial services, and intelligent property management workflows to enhance property discovery, streamline listing operations, and deliver seamless multi-user experiences.",
-      video: "/videos/real_estate_5s.mp4",
-      details: "Architected Luxe Real Estate Hub, a full-stack real estate platform integrating interactive property mapping, centralized listing management, and seamless buyer-seller workflows, enhancing property discovery and digitizing the end-to-end real estate transaction experience."
+      eyebrow: "ENTERPRISE OPERATIONS // ERP",
+      title: "The Hidden Cost of Managing a Business Without an ERP System",
+      description: "Imagine a growing company with 100 employees, multiple departments and several outlets—transforming morning spreadsheets, attendance chaos, and payroll friction into a single unified platform.",
+      image: "/images/hr1.jpg",
+      slug: "erp-system",
+      details: "A business doesn't lose time only when work stops. Sometimes, it loses time every day through small tasks that never seem to end. By unifying employee profiles, attendance, leave requests, and payroll approvals into a single ERP platform, administrative chasing dropped by 94% and payroll calculation mistakes were eliminated."
     },
     {
       id: 1,
       badge: "02",
-      eyebrow: "HYBRID CLOUD & STRATEGIC ADVISORY",
-      title: "Enterprise Consortium Unifies Mission-Critical Workloads on Sovereign Cloud Architecture",
-      description: "Collaborating with cross-functional leadership to migrate legacy ERP and high-performance compute clusters into a unified hybrid platform with zero operational downtime.",
-      image: "/images/story_team_workshop_hd.jpg",
-      video: "/videos/qubit_matrix.mp4",
-      details: "Our consulting architects co-designed a multi-stage modernization roadmap across 14 global operating facilities, consolidating disparate data silos into a high-throughput hybrid cloud fabric that accelerated engineering delivery cycles by 3.5x."
+      eyebrow: "IT MODERNIZATION",
+      title: "Smart Real Estate & PropTech: Digitizing Property Portfolios & Digital Twin BIM for 2.5M+ Units",
+      description: "Deploying high-resiliency cloud edge networks, digital twin architectural BIM models, and automated asset intelligence to optimize commercial real estate, smart power distribution, and multi-tenant property operations.",
+      video: "/videos/real_estate_5s.mp4",
+      slug: "erp-system",
+      details: "Through end-to-end cloud modernization and IoT smart building telemetry, the commercial real estate enterprise unified 2.5 million residential and commercial units into a single digital-twin control fabric, reducing building energy overhead by 34% and automating tenant lease lifecycle operations."
+    },
+    {
+      id: 2,
+      badge: "03",
+      eyebrow: "ALGORITHMIC FINANCE & COMPUTING",
+      title: "Tier-1 Financial Institution Achieves 120x Acceleration in Real-Time Portfolio Risk Simulation",
+      description: "Eliminating legacy GPU cluster bottlenecks with next-generation algorithmic compute pipelines, processing complex derivatives and extreme volatility stress tests in under 5 seconds.",
+      image: "/images/story_team_success_hd.jpg",
+      slug: "erp-system",
+      details: "By refactoring non-linear Monte Carlo pricing workflows and deploying advanced hardware-accelerated coprocessors, the institution achieved sub-second capital adequacy checks, reducing capital buffer reserves while maintaining full regulatory compliance."
     }
   ];
 
-  // Auto-play the 5s video when Slide 1 is active
+  // Auto-play video when an active slide contains a video
   useEffect(() => {
-    if (currentSlide === 0 && videoRef.current) {
+    if (stories[currentSlide]?.video && videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.play().catch(() => { });
     }
@@ -75,7 +87,8 @@ export default function CustomerStoriesSection() {
 
   return (
     <section id="customer-stories" className="w-full bg-[#FBF9F5] text-[#121212] overflow-hidden pt-12 md:pt-16 pb-12">
-
+      <div id="Products" />
+      <div id="products" />
       {/* Section Header Text (Above the full-width image/video) */}
       <div className="w-full px-6 sm:px-12 lg:px-20 xl:px-28 mb-8 sm:mb-10">
         <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-light tracking-[-0.03em] leading-[1.12] text-[#121212] mb-3">
@@ -102,8 +115,8 @@ export default function CustomerStoriesSection() {
               className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${isCurrent ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                 }`}
             >
-              {/* Slide 1: Always plays the 5-second video (no static image, no 3D toggles) */}
-              {idx === 0 ? (
+              {/* Renders Video or Enhanced Full-Bleed Image */}
+              {story.video ? (
                 <video
                   ref={videoRef}
                   src={story.video}
@@ -115,7 +128,6 @@ export default function CustomerStoriesSection() {
                   className="w-full h-full object-cover object-center"
                 />
               ) : (
-                /* High-Quality Enhanced Full-Screen Image for subsequent stories */
                 <img
                   src={story.image}
                   alt={story.title}
@@ -124,9 +136,17 @@ export default function CustomerStoriesSection() {
                 />
               )}
 
-              {/* Cinematic Gradient Vignette (Provides dark contrast on left for crystal clear typography) */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/25 pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none" />
+              {/* Deep Corner Blackness & Layered Overlays for High Text Contrast */}
+              {/* Left Corner & Edge */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/98 via-black/85 via-50% to-black/30 pointer-events-none" />
+              {/* Right Corner & Edge */}
+              <div className="absolute inset-0 bg-gradient-to-l from-black/90 via-black/40 to-transparent pointer-events-none" />
+              {/* Bottom Corners */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/98 via-black/70 to-transparent pointer-events-none" />
+              {/* Top Corners */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 to-transparent pointer-events-none" />
+              {/* Radial Corner Vignette */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_rgba(0,0,0,0.85)_100%)] pointer-events-none" />
 
               {/* Left Content Overlay: Eyebrow, Title, Description, and Buttons */}
               <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-16 lg:pl-20 xl:pl-28 z-20 max-w-4xl pointer-events-none">
@@ -152,15 +172,20 @@ export default function CustomerStoriesSection() {
 
                   {/* Clickable Action Buttons matching Kyndryl 1:1 */}
                   <div className="flex flex-wrap items-center gap-3.5 mb-2">
-
                     <button
                       type="button"
                       onClick={() => setStoryModal(story)}
+                      className="px-5 py-2.5 sm:px-6 sm:py-3 border border-white/80 bg-black/30 backdrop-blur-xs text-white hover:bg-white hover:text-[#121212] font-medium text-xs sm:text-sm rounded-none sm:rounded-sm transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
+                    >
+                      Highlights
+                    </button>
+                    <Link
+                      to={`/customer-stories/${story.slug || 'erp-system'}`}
                       className="px-5 py-2.5 sm:px-6 sm:py-3 border border-white/80 bg-black/30 backdrop-blur-xs text-white hover:bg-white hover:text-[#121212] font-medium text-xs sm:text-sm rounded-none sm:rounded-sm transition-all duration-200 cursor-pointer shadow-sm active:scale-95 flex items-center gap-2 group"
                     >
                       <span>Read full story</span>
                       <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                    </button>
+                    </Link>
                   </div>
 
                 </div>
@@ -241,17 +266,17 @@ export default function CustomerStoriesSection() {
         </div>
       </div>
 
-      {/* Story Video & Case Study Modal */}
+      {/* Story Case Study Highlights Modal (No Video Player) */}
       {storyModal && (
         <div
           className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn"
           onClick={() => setStoryModal(null)}
         >
           <div
-            className="relative w-full max-w-3xl bg-white rounded-2xl overflow-hidden shadow-2xl p-6 sm:p-8"
+            className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl p-6 sm:p-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between pb-4 border-b border-black/10 mb-4">
+            <div className="flex items-center justify-between pb-4 border-b border-black/10 mb-5">
               <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#FF462D]">
                 // {storyModal.eyebrow}
               </span>
@@ -263,35 +288,47 @@ export default function CustomerStoriesSection() {
               </button>
             </div>
 
-            {/* Video Player inside Modal */}
-            <div className="aspect-[16/9] w-full rounded-xl overflow-hidden bg-black mb-6">
-              <video
-                src={storyModal.video || "/videos/real_estate_5s.mp4"}
-                autoPlay
-                loop
-                controls
-                className="w-full h-full object-cover"
-              />
+            <div className="mb-6">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#121212] tracking-tight mb-4">
+                {storyModal.title}
+              </h3>
+
+              <div className="p-5 rounded-2xl bg-[#FAF7F2] border border-black/[0.06] mb-5">
+                <span className="text-xs font-mono font-semibold text-[#888888] uppercase block mb-1">
+                  EXECUTIVE SUMMARY
+                </span>
+                <p className="text-sm sm:text-base text-[#333333] leading-relaxed font-normal">
+                  {storyModal.details}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 text-xs font-mono text-[#555555]">
+                <div className="p-3 rounded-xl bg-gray-50 border border-black/[0.04] flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Architecture Verified</span>
+                </div>
+                <div className="p-3 rounded-xl bg-gray-50 border border-black/[0.04] flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-[#FF462D] shrink-0" />
+                  <span>Modernized Infrastructure</span>
+                </div>
+              </div>
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-bold text-[#121212] tracking-tight mb-3">
-              {storyModal.title}
-            </h3>
-
-            <p className="text-sm sm:text-base text-[#555555] leading-relaxed mb-6 font-normal">
-              {storyModal.details}
-            </p>
-
-            <div className="pt-4 border-t border-black/10 flex items-center justify-between">
-              <span className="text-xs font-mono text-[#888888]">
-                VERIFIED ARCHITECTURE DISPATCH // 2026
-              </span>
+            <div className="pt-4 border-t border-black/10 flex items-center justify-between gap-4">
               <button
                 onClick={() => setStoryModal(null)}
-                className="px-5 py-2 rounded-full bg-[#121212] hover:bg-[#FF462D] text-white text-xs font-medium transition cursor-pointer"
+                className="px-5 py-2.5 rounded-xl border border-black/15 text-xs font-semibold text-[#555555] hover:text-[#121212] transition cursor-pointer"
               >
-                Close Presentation
+                Close
               </button>
+              <Link
+                to={`/customer-stories/${storyModal.slug || 'erp-system'}`}
+                onClick={() => setStoryModal(null)}
+                className="px-6 py-2.5 rounded-xl bg-[#FF462D] hover:bg-[#E0351E] text-white text-xs sm:text-sm font-semibold transition cursor-pointer shadow-md flex items-center gap-2"
+              >
+                <span>Read Full Case Study</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </div>
