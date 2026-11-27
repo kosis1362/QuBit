@@ -29,12 +29,12 @@ export default function OurProjectsSection({ onConsultClick }) {
     },
     {
       id: 'proptech-digital-twin-bim',
-      title: 'Smart Real Estate & PropTech Digital Twin',
-      subheading: 'An IoT-connected 3D BIM spatial engine and commercial property management fabric automating smart energy distribution, tenant operations, and lease lifecycles across 2.5M+ sq.ft.',
+      title: 'Smart Real Estate & PropTech: Digitizing Property Management.',
+      subheading: 'Developing a modern real estate technology platform integrating cloud-based infrastructure, interactive Mapbox geospatial services, and intelligent property management workflows to enhance property discovery, streamline listing operations, and deliver seamless multi-user experiences.',
       category: 'Cloud Edge & 3D Spatial Telemetry',
       //badge: 'COMMERCIAL PROPTECH',
       image: '/images/corporate_web_design_hero.jpg',
-      demoUrl: 'https://qubit-proptech.vercel.app',
+      demoUrl: 'https://real-estate-beta-beige.vercel.app/',
       detailSlug: 'erp-employee-management-system', // Fallback to technical dossier
       tags: [],
       icon: Building2

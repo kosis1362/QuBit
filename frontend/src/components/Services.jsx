@@ -33,7 +33,7 @@ export default function Services() {
       id: "03",
       badge: "03",
       headline: "Website Development",
-      analyst: "IDC MarketScape",
+
       bgHex: "#187E3F",
       logo: (
         <div className="text-white font-sans flex items-baseline gap-2">
@@ -46,7 +46,7 @@ export default function Services() {
       id: "04",
       badge: "04",
       headline: "Graphic Design & Branding",
-      analyst: "Forrester",
+
       bgHex: "#126230",
       logo: (
         <div className="text-white font-serif tracking-[0.2em]">
