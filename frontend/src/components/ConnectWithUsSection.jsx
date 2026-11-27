@@ -1,18 +1,17 @@
 import React from 'react';
-import TrellisPattern from './TrellisPattern';
 
 export default function ConnectWithUsSection({ onTalkClick }) {
   return (
     <section
       id="Contact Us"
-      className="relative w-full h-[50vh] min-h-[360px] max-h-[50vh] bg-[#FAFAF8] border-t border-black/[0.06] overflow-hidden flex items-center"
+      className="relative w-full min-h-[360px] lg:h-[50vh] lg:max-h-[50vh] py-10 lg:py-0 bg-[#FAFAF8] border-t border-black/[0.06] overflow-hidden flex items-center"
     >
       <div id="contact-us" />
       <div id="connect-with-us" />
       <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-0">
 
-          {/* Left Column: Copy & Action (exact 1:1 match to Screenshot 1) */}
+          {/* Left Column: Copy & Action */}
           <div className="lg:col-span-6 z-10 py-4 sm:py-6 pr-4 sm:pr-8">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1A1A1A] mb-3 sm:mb-4">
               Connect with us
@@ -36,26 +35,16 @@ Whether you have a business challenge, an innovative idea, or an opportunity to 
             </div>
           </div>
 
-          {/* Spacer for desktop 12-col layout */}
-          <div className="hidden lg:block lg:col-span-6" />
+          {/* Right Column: QuBit Logo */}
+          <div className="lg:col-span-6 flex items-center justify-center">
+            <img
+              src="/images/qubit-logo.png"
+              alt="QuBit — Track Your Progress"
+              className="w-52 sm:w-64 lg:w-80 xl:w-[340px] h-auto object-contain select-none"
+            />
+          </div>
 
         </div>
-      </div>
-
-      {/* Right-aligned Full-Bleed Architectural Red Trellis Pattern (1:1 with Screenshot 1) */}
-      <div className="hidden lg:block absolute top-0 bottom-0 right-0 w-[50%] pointer-events-none overflow-hidden">
-        <TrellisPattern
-          preserveAspectRatio="xMinYMid slice"
-          className="w-full h-full"
-        />
-      </div>
-
-      {/* Responsive Pattern for Tablet / Mobile */}
-      <div className="block lg:hidden absolute right-0 bottom-0 w-1/2 h-full opacity-25 pointer-events-none overflow-hidden">
-        <TrellisPattern
-          preserveAspectRatio="xMinYMid slice"
-          className="w-full h-full"
-        />
       </div>
     </section>
   );
