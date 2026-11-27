@@ -20,11 +20,11 @@ export default function OurProjectsSection({ onConsultClick }) {
       title: 'ERP / Employee Management System',
       subheading: 'A cross-platform React Native, Spring Boot 3.2 & Neon PostgreSQL enterprise platform streamlining workforce lifecycle operations, attendance telemetry, and multi-outlet management.',
       category: 'Enterprise ERP & Mobile Apps',
-      badge: 'FEATURED PRODUCTION SYSTEM',
+      //badge: 'FEATURED PRODUCTION SYSTEM',
       image: '/images/hr1.jpg',
       demoUrl: 'https://employee-management-system-rose-tau.vercel.app/',
       detailSlug: 'erp-employee-management-system',
-      tags: ['React Native', 'Spring Boot 3.2', 'Neon PostgreSQL', 'Expo'],
+      tags: [],
       icon: UsersIcon
     },
     {
@@ -32,23 +32,23 @@ export default function OurProjectsSection({ onConsultClick }) {
       title: 'Smart Real Estate & PropTech Digital Twin',
       subheading: 'An IoT-connected 3D BIM spatial engine and commercial property management fabric automating smart energy distribution, tenant operations, and lease lifecycles across 2.5M+ sq.ft.',
       category: 'Cloud Edge & 3D Spatial Telemetry',
-      badge: 'COMMERCIAL PROPTECH',
+      //badge: 'COMMERCIAL PROPTECH',
       image: '/images/corporate_web_design_hero.jpg',
       demoUrl: 'https://qubit-proptech.vercel.app',
       detailSlug: 'erp-employee-management-system', // Fallback to technical dossier
-      tags: ['Three.js', 'FastAPI', 'IoT Edge', 'WebSockets'],
+      tags: [],
       icon: Building2
     },
     {
-      id: 'algorithmic-financial-risk-engine',
-      title: 'Tier-1 Quantitative Portfolio Risk Engine',
-      subheading: 'Ultra-low-latency financial compute pipeline executing non-linear Monte Carlo derivatives simulations and real-time capital adequacy stress tests with 120x acceleration.',
-      category: 'Algorithmic Finance & HPC',
-      badge: 'FINANCIAL INFRASTRUCTURE',
+      id: 'khata-ai',
+      title: 'Khata AI — Business Management SaaS',
+      subheading: 'A full-stack business management SaaS replacing traditional notebooks, registers, and scattered Excel spreadsheets with centralized sales, inventory, billing, expenses, and analytics.',
+      category: 'Business Management SaaS',
+      //badge: 'FULL-STACK SAAS',
       image: '/images/story_team_success_hd.jpg',
-      demoUrl: 'https://qubit-quant.vercel.app',
-      detailSlug: 'erp-employee-management-system',
-      tags: ['Rust', 'CUDA', 'Python', 'Kafka'],
+      demoUrl: 'https://khata-ai-69e93.web.app/',
+      detailSlug: 'khata-ai',
+      tags: [],
       icon: Cpu
     },
     {
@@ -56,11 +56,11 @@ export default function OurProjectsSection({ onConsultClick }) {
       title: 'Omnichannel Headless E-Commerce Suite',
       subheading: 'High-concurrency headless commerce platform delivering sub-second page performance, multi-currency checkout, and real-time multi-warehouse inventory synchronization.',
       category: 'Distributed Digital Commerce',
-      badge: 'HEADLESS RETAIL',
+      //badge: 'HEADLESS RETAIL',
       image: '/images/ecommerce_hero.jpg',
       demoUrl: 'https://qubit-commerce.vercel.app',
       detailSlug: 'erp-employee-management-system',
-      tags: ['Next.js', 'GraphQL', 'Stripe', 'Redis'],
+      tags: [],
       icon: ShoppingBag
     }
   ];
@@ -143,13 +143,12 @@ export default function OurProjectsSection({ onConsultClick }) {
 
   return (
     <section id="our-projects" className="py-16 sm:py-20 lg:py-24 bg-[#FFFFFF] border-b border-black/[0.06] text-[#121212] overflow-hidden">
-      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+      <div className="w-full px-6 sm:px-10 lg:px-16">
 
         {/* Section Header */}
         <div className="mb-8 sm:mb-10 max-w-2xl">
           <div className="mb-2.5">
             <span className="text-xs font-mono font-semibold uppercase tracking-[0.22em] text-[#FF462D] block">
-              ENGINEERING PORTFOLIO // SHIPPED SYSTEMS
             </span>
             <div className="w-6 h-[2px] bg-[#FF462D] mt-1.5" />
           </div>
@@ -180,9 +179,8 @@ export default function OurProjectsSection({ onConsultClick }) {
           onMouseLeave={handleMouseLeaveOrUp}
           onMouseUp={handleMouseLeaveOrUp}
           onMouseMove={handleMouseMove}
-          className={`flex items-stretch gap-5 sm:gap-6 overflow-x-auto py-8 px-6 sm:px-10 lg:px-16 scroll-smooth snap-x snap-mandatory select-none ${
-            isDragging ? 'cursor-grabbing' : 'cursor-grab'
-          }`}
+          className={`flex items-stretch gap-5 sm:gap-6 overflow-x-auto py-8 px-6 sm:px-10 lg:px-16 scroll-smooth snap-x snap-mandatory select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'
+            }`}
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none'
@@ -236,7 +234,7 @@ export default function OurProjectsSection({ onConsultClick }) {
                 <div className="p-5 sm:p-6">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#FF462D]">
-                      PROJECT // 0{idx + 1}
+                      PROJECT  0{idx + 1}
                     </span>
                     <span className="text-[11px] font-mono text-[#888888]">
                       {proj.category}

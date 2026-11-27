@@ -204,6 +204,7 @@ function TechIcon({ type }) {
 
 export default function ProjectDetailPage({ onConsultClick }) {
   const { projectId } = useParams();
+  const isKhata = projectId === 'khata-ai';
   const [activeStackTab, setActiveStackTab] = useState('all'); // 'all' | 'frontend' | 'backend' | 'database' | 'cloud'
   const [openModules, setOpenModules] = useState({}); // Track each module independently
 
@@ -214,8 +215,60 @@ export default function ProjectDetailPage({ onConsultClick }) {
     }));
   };
 
-  // High-level 7-Step Request and Data Flow (from Page 8 of Document)
-  const dataFlowSteps = [
+  // High-level 7-Step Request and Data Flow
+  const dataFlowSteps = isKhata
+    ? [
+        {
+          step: '01',
+          title: 'Business Owner UI',
+          layer: 'Presentation Layer',
+          tech: 'React.js & Vite',
+          desc: 'Business owner adds products, records sales, or updates inventory from the centralized dashboard.'
+        },
+        {
+          step: '02',
+          title: 'REST API Request',
+          layer: 'Client Networking',
+          tech: 'HTTP / JSON',
+          desc: 'React frontend dispatches structured HTTP requests to Express.js REST API endpoints.'
+        },
+        {
+          step: '03',
+          title: 'CORS & Validation',
+          layer: 'Security Perimeter',
+          tech: 'CORS & Middleware',
+          desc: 'Backend enforces origin access policies and validates submitted product, billing, and expense payloads.'
+        },
+        {
+          step: '04',
+          title: 'Business Logic Engine',
+          layer: 'Application Layer',
+          tech: 'Node.js & Express.js',
+          desc: 'Processes sales transactions, calculates totals, and updates corresponding inventory stock quantities.'
+        },
+        {
+          step: '05',
+          title: 'Neon Persistence',
+          layer: 'Data Layer',
+          tech: 'PostgreSQL on Neon',
+          desc: 'Stores structured sales, purchase, supplier, inventory, and expense records persistently.'
+        },
+        {
+          step: '06',
+          title: 'Visual & Excel Engine',
+          layer: 'Analytics Layer',
+          tech: 'Chart.js & ExcelJS',
+          desc: 'Transforms business metrics into interactive visual charts and downloadable Excel spreadsheets.'
+        },
+        {
+          step: '07',
+          title: 'Live Dashboard Sync',
+          layer: 'Response Delivery',
+          tech: 'React State Update',
+          desc: 'Returns updated records to the React UI so the dashboard reflects real-time business performance.'
+        }
+      ]
+    : [
     {
       step: '01',
       title: 'User Interaction',
@@ -390,7 +443,23 @@ export default function ProjectDetailPage({ onConsultClick }) {
   ];
 
   // Technical Stack Badges (Matching Brand Shield Badges Layout)
-  const techStackBadges = [
+  const techStackBadges = isKhata
+    ? [
+        { name: 'REACT.JS', category: 'frontend', bg: '#20232A', textColor: '#61DAFB', icon: 'react' },
+        { name: 'VITE', category: 'frontend', bg: '#646CFF', textColor: '#FFFFFF', icon: 'vite' },
+        { name: 'CHART.JS', category: 'frontend', bg: '#FF6384', textColor: '#FFFFFF', icon: 'code' },
+        { name: 'EXCELJS', category: 'frontend', bg: '#217346', textColor: '#FFFFFF', icon: 'code' },
+        { name: 'NODE.JS', category: 'backend', bg: '#339933', textColor: '#FFFFFF', icon: 'code' },
+        { name: 'EXPRESS.JS', category: 'backend', bg: '#334155', textColor: '#FFFFFF', icon: 'code' },
+        { name: 'CORS', category: 'backend', bg: '#0F172A', textColor: '#FFFFFF', icon: 'code' },
+        { name: 'POSTGRESQL', category: 'database', bg: '#336791', textColor: '#FFFFFF', icon: 'postgres' },
+        { name: 'NEON', category: 'database', bg: '#00E599', textColor: '#000000', icon: 'neon' },
+        { name: 'FIREBASE HOSTING', category: 'cloud', bg: '#FFA611', textColor: '#FFFFFF', icon: 'firebase' },
+        { name: 'RENDER', category: 'cloud', bg: '#46E3B7', textColor: '#000000', icon: 'render' },
+        { name: 'GIT', category: 'cloud', bg: '#F05032', textColor: '#FFFFFF', icon: 'git' },
+        { name: 'GITHUB', category: 'cloud', bg: '#181717', textColor: '#FFFFFF', icon: 'github' }
+      ]
+    : [
     // Frontend Stack
     { name: 'REACT NATIVE', category: 'frontend', bg: '#20232A', textColor: '#61DAFB', icon: 'react' },
     { name: 'REACT', category: 'frontend', bg: '#20232A', textColor: '#61DAFB', icon: 'react' },
@@ -468,6 +537,8 @@ export default function ProjectDetailPage({ onConsultClick }) {
     }
   ];
 
+  const [activeFlowIndex, setActiveFlowIndex] = useState(3);
+
   return (
     <div className="relative min-h-screen bg-[#FAFAF8] text-[#121212] flex flex-col font-sans selection:bg-[#FF462D] selection:text-white">
 
@@ -481,8 +552,8 @@ export default function ProjectDetailPage({ onConsultClick }) {
         {/* Full-Bleed Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
-            src="/images/hr1.jpg"
-            alt="ERP / Employee Management System"
+            src={isKhata ? '/images/story_team_success_hd.jpg' : '/images/hr1.jpg'}
+            alt={isKhata ? 'Khata AI — Business Management SaaS' : 'ERP / Employee Management System'}
             className="w-full h-full object-cover object-center transform scale-105"
           />
 
@@ -495,531 +566,771 @@ export default function ProjectDetailPage({ onConsultClick }) {
           <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-[#FF462D]/15 rounded-full blur-[140px] pointer-events-none z-10" />
         </div>
 
-            {/* Hero Content - Placed at the Down Side of Image, Starting from Screen Left */}
-            <div className="relative z-20 w-full px-6 sm:px-10 lg:px-16 flex-1 flex flex-col justify-end pb-8 sm:pb-12 lg:pb-14 pt-20">
-              <div className="max-w-4xl text-left">
-                {/* Breadcrumb */}
-                  <nav aria-label="Breadcrumb" className="text-xs sm:text-[13px] text-white/70 mb-4 font-normal flex items-center gap-2 flex-wrap">
-                    <Link to="/" className="hover:text-white transition-colors">Home</Link>
-                    <span className="text-white/40">/</span>
-                    <Link to="/#our-projects" className="hover:text-white transition-colors">Projects</Link>
-                    <span className="text-white/40">/</span>
-                    <span className="text-white font-medium">ERP / Employee Management System</span>
-                  </nav>
+        {/* Hero Content - Placed at the Down Side of Image, Starting from Screen Left */}
+        <div className="relative z-20 w-full px-6 sm:px-10 lg:px-16 flex-1 flex flex-col justify-end pb-8 sm:pb-12 lg:pb-14 pt-20">
+          <div className="max-w-4xl text-left">
+            {/* Breadcrumb */}
+            <nav aria-label="Breadcrumb" className="text-xs sm:text-[13px] text-white/70 mb-4 font-normal flex items-center gap-2 flex-wrap">
+              <Link to="/" className="hover:text-white transition-colors">Home</Link>
+              <span className="text-white/40">/</span>
+              <Link to="/#our-projects" className="hover:text-white transition-colors">Projects</Link>
+              <span className="text-white/40">/</span>
+              <span className="text-white font-medium">
+                {isKhata ? 'Khata AI — Business Management SaaS' : 'ERP / Employee Management System'}
+              </span>
+            </nav>
 
-                  {/* Category Eyebrow with Red Line */}
-                    <div className="mb-3">
-                      <span className="text-xs font-mono uppercase tracking-[0.22em] text-[#FF462D] font-semibold block">
+            {/* Category Eyebrow with Red Line */}
+            <div className="mb-3">
+              <span className="text-xs font-mono uppercase tracking-[0.22em] text-[#FF462D] font-semibold block">
 
-                      </span>
-                      <div className="w-6 h-[2px] bg-[#FF462D] mt-1.5" />
+              </span>
+              <div className="w-6 h-[2px] bg-[#FF462D] mt-1.5" />
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-bold tracking-tight text-white mb-4 leading-[1.12]">
+              {isKhata ? 'Khata AI — Business Management SaaS' : 'ERP / Employee Management System'}
+            </h1>
+
+            {/* Sub-heading */}
+            <p className="text-base sm:text-lg lg:text-[19px] text-white/90 font-light leading-relaxed mb-7 max-w-3xl">
+              {isKhata
+                ? 'Full-stack business management SaaS application helping small and medium-sized businesses manage daily sales, inventory, billing, purchases, expenses, and analytics in one centralized digital platform.'
+                : 'Cross-platform ERP and Human Resource Management application unifying employee records, attendance telemetry, leave approvals, salary workflows, and PDF payslips across Web, Android, and iOS.'}
+            </p>
+
+            {/* Action CTAs: Button 1: Visit Website, Button 2: Consult Lead */}
+            <div className="flex flex-wrap items-center gap-4 mb-2">
+              <a
+                href={isKhata ? 'https://khata-ai-69e93.web.app/' : 'https://employee-management-system-rose-tau.vercel.app/'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-[#FF462D] text-white text-sm font-semibold tracking-wide hover:bg-[#E0351E] transition-all cursor-pointer shadow-md hover:shadow-lg active:scale-95 group/btn"
+              >
+                <span>Visit Website</span>
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+              </a>
+
+              <button
+                type="button"
+                onClick={onConsultClick}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/25 text-sm font-semibold transition-all backdrop-blur-sm cursor-pointer active:scale-95 group/consult"
+              >
+                <span>Consult Lead</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover/consult:translate-x-0.5" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom 3-Column Highlight Strip */}
+        <div className="relative z-20 w-full border-t border-white/20 bg-black/55 backdrop-blur-md">
+          <div className="w-full px-6 sm:px-10 lg:px-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20">
+              <div className="py-4 sm:py-5 md:px-6 first:pl-0 flex items-center gap-3 text-sm text-white/90">
+                <Smartphone className="w-5 h-5 text-[#FF462D] shrink-0" />
+                <span>
+                  {isKhata
+                    ? 'Frontend: React.js, Vite, Chart.js & ExcelJS (Firebase)'
+                    : 'Cross-Platform: Web, Android & iOS (React Native)'}
+                </span>
+              </div>
+              <div className="py-4 sm:py-5 md:px-6 flex items-center gap-3 text-sm text-white/90">
+                <Server className="w-5 h-5 text-[#FF462D] shrink-0" />
+                <span>
+                  {isKhata
+                    ? 'Backend: Node.js & Express.js REST APIs (Render)'
+                    : 'Backend: Java 17 & Spring Boot 3.2.4 REST APIs'}
+                </span>
+              </div>
+              <div className="py-4 sm:py-5 md:px-6 last:pr-0 flex items-center gap-3 text-sm text-white/90">
+                <Database className="w-5 h-5 text-[#FF462D] shrink-0" />
+                <span>Persistence: PostgreSQL Hosted on Neon Serverless</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        ========================================================================
+        2. PROJECT AT A GLANCE & CLIENT DISCUSSION DOSSIER (NURA-INSPIRED EDITORIAL UI)
+        ========================================================================
+      */}
+      <section className="py-20 lg:py-28 bg-[#F7F7F7] border-b border-black/[0.05]">
+        <div className="w-full px-6 sm:px-10 lg:px-16">
+
+          {/* 1. PROJECT AT A GLANCE — Full-Page Horizontal */}
+          <div className="w-full">
+            <span className="inline-block px-3 py-1 rounded-md bg-[#EAEAEA] text-[#555555] text-xs font-medium tracking-tight mb-5">
+              1. Project at a Glance
+            </span>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-bold tracking-[-0.03em] leading-[1.12] text-[#111111] mb-8 w-full">
+              {isKhata ? (
+                <>
+                  Replacing manual registers{' '}
+                  <span className="text-[#8E8E93]">and scattered spreadsheets,</span>{' '}
+                  built for unified business control.
+                </>
+              ) : (
+                <>
+                  Bridging employee workflows{' '}
+                  <span className="text-[#8E8E93]">and enterprise governance,</span>{' '}
+                  built for clarity and real-time control.
+                </>
+              )}
+            </h2>
+
+            {/* Single Unified Narrative */}
+            <div className="mb-14 w-full">
+              <p className="text-lg sm:text-xl lg:text-[23px] font-normal tracking-[-0.015em] text-[#3A3A3C] leading-[1.55]">
+                {isKhata ? (
+                  <>
+                    Many small businesses manage their sales, purchases, inventory, expenses, supplier information, and financial records separately—making it difficult to maintain accurate records, monitor stock levels, calculate revenue and expenses, and understand overall business performance. So we came up with{' '}
+                    <span className="font-semibold text-[#111111]">Khata AI</span>—delivering a centralized business dashboard, sales and billing management, real-time inventory tracking, supplier and purchase records, expense management, and visual reporting with Excel exports in one unified platform.
+                  </>
+                ) : (
+                  <>
+                    In many growing organisations, employee information and routine HR activities are scattered across spreadsheets, paper forms, chat messages, and disconnected tools—creating record inconsistencies, attendance disputes, and payroll exposure. So we came up with the{' '}
+                    <span className="font-semibold text-[#111111]">ERP / Employee Management System</span>—delivering centralized digital employee dossiers, real-time multi-outlet attendance tracking, structured leave approvals, 3-state salary workflows, and automated PDF payslips in one unified platform.
+                  </>
+                )}
+              </p>
+            </div>
+
+            {/* Horizontal 5-Card Key Value Pillars (Nura Card Style) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {(isKhata
+                ? [
+                    {
+                      title: 'Business Analytics',
+                      desc: 'Centralized dashboard displaying total sales, revenue, expenses, and stock trends via Chart.js.',
+                      icon: Activity
+                    },
+                    {
+                      title: 'Sales & Billing',
+                      desc: 'Digital customer transactions with organized quantities, prices, and automated billing totals.',
+                      icon: FileSpreadsheet
+                    },
+                    {
+                      title: 'Inventory Control',
+                      desc: 'Real-time stock updates on every purchase and sale with low-stock visibility.',
+                      icon: Layers
+                    },
+                    {
+                      title: 'Purchase & Suppliers',
+                      desc: 'Structured supplier directory and incoming purchase history tracking.',
+                      icon: Building2
+                    },
+                    {
+                      title: 'Financials & Exports',
+                      desc: 'Centralized expense tracking and ExcelJS spreadsheet reporting.',
+                      icon: FileText
+                    }
+                  ]
+                : [
+                    {
+                      title: 'Identity Dossiers',
+                      desc: 'Consolidated employee records and digital identity profiles in one place.',
+                      icon: Users
+                    },
+                    {
+                      title: 'Attendance Telemetry',
+                      desc: 'Real-time check-in/out tracking across multi-outlet locations.',
+                      icon: Clock
+                    },
+                    {
+                      title: 'Leave Workflows',
+                      desc: 'Structured multi-tier leave authorization and status visibility.',
+                      icon: CalendarCheck
+                    },
+                    {
+                      title: 'Salary Approvals',
+                      desc: '3-state compensation approval engine from Pending to Approved.',
+                      icon: ShieldCheck
+                    },
+                    {
+                      title: 'PDF Payslips',
+                      desc: 'Standardized payroll synthesis and binary PDF payslip generation.',
+                      icon: FileText
+                    }
+                  ]
+              ).map((item, idx) => {
+                const CardIcon = item.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="group bg-white rounded-2xl p-6 sm:p-7 border border-black/[0.04] shadow-[0_1px_2px_rgba(0,0,0,0.02)] hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-[#141414] text-white flex items-center justify-center mb-10 transition-transform duration-200 group-hover:scale-105">
+                      <CardIcon className="w-4.5 h-4.5" />
                     </div>
+                    <div>
+                      <h3 className="text-[17px] font-bold text-[#111111] tracking-[-0.02em] mb-1.5">
+                        {item.title}
+                      </h3>
+                      <p className="text-[13px] text-[#6E6E73] leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
 
-                    {/* Main Headline */}
-                      <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-medium tracking-tight text-white mb-4 leading-[1.12]">
-                        ERP / Employee Management System
-                      </h1>
+          {/* // CLIENT DISCUSSION DOSSIER — Nura Minimalist Bento UI */}
+          <div className="mt-20 pt-16 border-t border-black/[0.06]">
+            <h3 className="text-2xl sm:text-3xl lg:text-[36px] font-bold tracking-[-0.03em] leading-[1.16] text-[#111111] mb-10 w-full">
+              Technical specification{' '}
+              <span className="text-[#8E8E93]">and platform blueprint,</span>{' '}
+              engineered for scale.
+            </h3>
 
-                      {/* Sub-heading */}
-                        <p className="text-base sm:text-lg lg:text-[19px] text-white/90 font-light leading-relaxed mb-7 max-w-3xl">
-                          Cross-platform ERP and Human Resource Management application unifying employee records, attendance telemetry, leave approvals, salary workflows, and PDF payslips across Web, Android, and iOS.
-                        </p>
-
-                          {/* Action CTAs: Button 1: Visit Website, Button 2: Consult Lead */}
-                          <div className="flex flex-wrap items-center gap-4 mb-2">
-                            <a
-                              href="https://employee-management-system-rose-tau.vercel.app/"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-[#FF462D] text-white text-sm font-semibold tracking-wide hover:bg-[#E0351E] transition-all cursor-pointer shadow-md hover:shadow-lg active:scale-95 group/btn"
-                            >
-                              <span>Visit Website</span>
-                              <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                            </a>
-
-                            <button
-                              type="button"
-                              onClick={onConsultClick}
-                              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/25 text-sm font-semibold transition-all backdrop-blur-sm cursor-pointer active:scale-95 group/consult"
-                            >
-                              <span>Consult Lead</span>
-                              <ArrowRight className="w-4 h-4 transition-transform group-hover/consult:translate-x-0.5" />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Bottom 3-Column Highlight Strip */}
-                      <div className="relative z-20 w-full border-t border-white/20 bg-black/55 backdrop-blur-md">
-                          <div className="w-full px-6 sm:px-10 lg:px-16">
-                            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20">
-                              <div className="py-4 sm:py-5 md:px-6 first:pl-0 flex items-center gap-3 text-sm text-white/90">
-                                <Smartphone className="w-5 h-5 text-[#FF462D] shrink-0" />
-                                <span>Cross-Platform: Web, Android & iOS (React Native)</span>
+            {/* Clean Full-Width Tabular Specification View */}
+            <div className="bg-white rounded-2xl border border-black/[0.06] shadow-[0_1px_3px_rgba(0,0,0,0.03)] overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-[#FAFAFA] border-b border-black/[0.06]">
+                      <th className="py-4 px-6 sm:px-8 text-xs font-semibold uppercase tracking-wider text-[#6E6E73] w-[28%]">
+                        Specification
+                      </th>
+                      <th className="py-4 px-6 sm:px-8 text-xs font-semibold uppercase tracking-wider text-[#6E6E73]">
+                        Technology & Blueprint
+                      </th>
+                      <th className="py-4 px-6 sm:px-8 text-xs font-semibold uppercase tracking-wider text-[#6E6E73] text-right hidden sm:table-cell w-[18%]">
+                        Layer
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-black/[0.05]">
+                    {(isKhata
+                      ? [
+                          { label: 'Project Category', val: 'Full-Stack Business Management SaaS Application', layer: 'Domain', icon: Layers },
+                          { label: 'Frontend & UI', val: 'React.js, Vite, Chart.js & ExcelJS', layer: 'UI Layer', icon: Cpu },
+                          { label: 'Backend Architecture', val: 'Node.js & Express.js REST API', layer: 'API Layer', icon: Server },
+                          { label: 'Security & Access', val: 'CORS Origin Control & Request Payload Validation', layer: 'Security', icon: ShieldCheck },
+                          { label: 'Database Cloud', val: 'PostgreSQL Hosted on Neon Serverless', layer: 'Persistence', icon: Database },
+                          { label: 'Frontend Hosting', val: 'Firebase Hosting (CDN & Web)', layer: 'Web Cloud', icon: Activity },
+                          { label: 'Backend & SCM', val: 'Render Cloud Service, Git & GitHub', layer: 'Infrastructure', icon: GitBranch }
+                        ]
+                      : [
+                          { label: 'Project Category', val: 'Cross-platform ERP & HR Management Application', layer: 'Domain', icon: Layers },
+                          { label: 'Target Platforms', val: 'Web, Android, and iOS', layer: 'Clients', icon: Smartphone },
+                          { label: 'Frontend Technology', val: 'React Native 0.81.5, Expo ~54 & TypeScript ~5.9', layer: 'UI Layer', icon: Cpu },
+                          { label: 'Backend Architecture', val: 'Java 17 & Spring Boot 3.2.4 REST API', layer: 'API Layer', icon: Server },
+                          { label: 'Security & Auth', val: 'Stateless JJWT Bearer Tokens + Spring Security RBAC', layer: 'Security', icon: ShieldCheck },
+                          { label: 'Database Cloud', val: 'PostgreSQL Hosted on Neon Serverless (SSL)', layer: 'Persistence', icon: Database },
+                          { label: 'Deployment Targets', val: 'Vercel (Web), Render (API), EAS Build (Mobile)', layer: 'Infrastructure', icon: Activity }
+                        ]
+                    ).map((spec, sIdx) => {
+                      const SpecIcon = spec.icon;
+                      return (
+                        <tr
+                          key={sIdx}
+                          className="group hover:bg-[#F7F7F7]/80 transition-colors duration-150"
+                        >
+                          <td className="py-4 sm:py-5 px-6 sm:px-8">
+                            <div className="flex items-center gap-3.5">
+                              <div className="w-8 h-8 rounded-lg bg-[#141414] text-white flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105">
+                                <SpecIcon className="w-4 h-4" />
                               </div>
-                              <div className="py-4 sm:py-5 md:px-6 flex items-center gap-3 text-sm text-white/90">
-                                <Server className="w-5 h-5 text-[#FF462D] shrink-0" />
-                                <span>Backend: Java 17 & Spring Boot 3.2.4 REST APIs</span>
-                              </div>
-                              <div className="py-4 sm:py-5 md:px-6 last:pr-0 flex items-center gap-3 text-sm text-white/90">
-                                <Database className="w-5 h-5 text-[#FF462D] shrink-0" />
-                                <span>Persistence: PostgreSQL Hosted on Neon Serverless</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </section>
-
-                      {/* 
-        ========================================================================
-        2. PROJECT AT A GLANCE & EXECUTIVE VALUE PROPOSITION
-        ========================================================================
-      */}
-                      <section className="py-20 lg:py-28 bg-[#FFFFFF] border-b border-black/[0.06]">
-                        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-
-                          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-
-                            {/* Left Column: Context & Business Problem */}
-                            <div className="lg:col-span-6">
-                              <span className="text-xs font-mono font-semibold uppercase tracking-[0.22em] text-[#FF462D] block mb-2">
-                                1. PROJECT AT A GLANCE
+                              <span className="text-sm sm:text-[15px] font-semibold text-[#111111]">
+                                {spec.label}
                               </span>
-                              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#121212] mb-6">
-                                Bridging the Gap Between Employee Workflows & Enterprise Governance
-                              </h2>
-
-                              <p className="text-base text-[#444444] leading-relaxed mb-5">
-                                In many growing organisations, employee information and routine HR activities are scattered across spreadsheets, paper forms, chat messages, and disconnected tools. This creates record inconsistencies, attendance disputes, delayed leave handling, and payroll exposure.
-                              </p>
-
-                              <p className="text-base text-[#444444] leading-relaxed mb-8">
-                                The <span className="font-semibold text-[#121212]">ERP / Employee Management System</span> solves this through a client-server architecture: a cross-platform React Native frontend communicates with a secure Java Spring Boot REST API, persisting data to an auto-scaling Neon PostgreSQL database.
-                              </p>
-
-                              {/* Key Value Checklist */}
-                              <div className="space-y-3">
-                                {[
-                                  'Consolidated employee records & digital identity dossiers',
-                                  'Real-time check-in/out and multi-outlet attendance telemetry',
-                                  'Structured multi-tier leave authorization workflows',
-                                  '3-state salary compensation approval engine (Pending → Approved)',
-                                  'Standardized payroll synthesis and binary PDF payslips'
-                                ].map((item, idx) => (
-                                  <div key={idx} className="flex items-center gap-3 text-sm text-[#222222] font-medium">
-                                    <div className="w-5 h-5 rounded-full bg-red-50 text-[#FF462D] flex items-center justify-center shrink-0">
-                                      <Check className="w-3.5 h-3.5" />
-                                    </div>
-                                    <span>{item}</span>
-                                  </div>
-                                ))}
-                              </div>
                             </div>
+                          </td>
+                          <td className="py-4 sm:py-5 px-6 sm:px-8 text-sm sm:text-[15px] text-[#3A3A3C] font-medium">
+                            {spec.val}
+                          </td>
+                          <td className="py-4 sm:py-5 px-6 sm:px-8 text-right hidden sm:table-cell">
+                            <span className="inline-block px-2.5 py-1 rounded-md bg-[#F2F2F2] text-[#555555] text-xs font-medium">
+                              {spec.layer}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
-                            {/* Right Column: Technical Specification Dossier Card */}
-                            <div className="lg:col-span-6 bg-[#FAF7F2] rounded-3xl p-7 sm:p-9 border border-black/[0.08] shadow-sm">
-                              <div className="flex items-center justify-between pb-4 border-b border-black/[0.08] mb-6">
-                                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#FF462D]">
-                  // CLIENT DISCUSSION DOSSIER
-                                </span>
-                                <span className="text-xs px-2.5 py-1 rounded-full bg-white border border-black/10 font-mono text-[#555555]">
-                                  Nov 22, 2026
-                                </span>
-                              </div>
+        </div>
+      </section>
 
-                              {/* Spec Rows */}
-                              <div className="space-y-4">
-                                {[
-                                  { label: 'Project Category', val: 'Cross-platform ERP & HR Management Application' },
-                                  { label: 'Target Platforms', val: 'Web, Android, and iOS' },
-                                  { label: 'Frontend Technology', val: 'React Native 0.81.5, Expo ~54 & TypeScript ~5.9' },
-                                  { label: 'Backend Architecture', val: 'Java 17 & Spring Boot 3.2.4 REST API' },
-                                  { label: 'Security & Auth', val: 'Stateless JJWT Bearer Tokens + Spring Security RBAC' },
-                                  { label: 'Database Cloud', val: 'PostgreSQL Hosted on Neon Serverless (SSL)' },
-                                  { label: 'Deployment Targets', val: 'Vercel (Web), Render (API), EAS Build (Mobile)' }
-                                ].map((spec, sIdx) => (
-                                  <div key={sIdx} className="flex flex-col sm:flex-row sm:items-center justify-between py-2 border-b border-black/[0.05] gap-1">
-                                    <span className="text-xs font-mono uppercase text-[#777777] font-medium">
-                                      {spec.label}
-                                    </span>
-                                    <span className="text-sm font-semibold text-[#121212] sm:text-right">
-                                      {spec.val}
-                                    </span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-
-                          </div>
-
-                        </div>
-                      </section>
-
-                      {/* 
+      {/* 
         ========================================================================
-        3. DIRECTED GRAPH: 7-Step High-Level Request & Data Flow
+        3. DIRECTED GRAPH: 7-Step High-Level Request & Data Flow (GLOWING NODE-GRAPH TEMPLATE)
         ========================================================================
       */}
-                      <section id="system-architecture" className="py-20 lg:py-28 bg-[#FAFAF8] border-b border-black/[0.06]">
-                        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+      <section id="system-architecture" className="py-20 lg:py-28 bg-[#F7F7F7] border-b border-black/[0.05]">
+        <div className="w-full px-6 sm:px-10 lg:px-16">
 
-                          <div className="max-w-3xl mx-auto text-center mb-16">
-                            <span className="text-xs font-mono uppercase font-semibold tracking-[0.22em] text-[#FF462D] block mb-2">
-                              HOW THE SYSTEM WORKS // END-TO-END DATA FLOW
-                            </span>
-                            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-[#121212] mb-4">
-                              High-Level Request and Data Flow
-                            </h2>
-                            <div className="w-12 h-1 bg-[#FF462D] mx-auto mb-5 rounded-full" />
-                            <p className="text-base text-[#555555]">
-                              Tracing the lifecycle of an authenticated request from user touchpoint to Neon PostgreSQL and back.
-                            </p>
-                          </div>
+          {/* Editorial Header */}
+          <div className="w-full mb-10">
+            <span className="inline-block px-3 py-1 rounded-md bg-[#EAEAEA] text-[#555555] text-xs font-medium tracking-tight mb-5">
+              End-to-End Data Flow
+            </span>
 
-                          {/* 7-Step Directed Horizontal/Vertical Connected Card Pipeline */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4 relative">
-                            {dataFlowSteps.map((step, idx) => (
-                              <div
-                                key={step.step}
-                                className="group bg-white rounded-2xl p-5 border border-black/[0.08] hover:border-[#FF462D]/60 hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 flex flex-col justify-between relative cursor-default"
-                              >
-                                <div>
-                                  <div className="flex items-center justify-between mb-3">
-                                    <span className="text-xs font-mono font-bold text-[#FF462D] bg-red-50 px-2 py-0.5 rounded transition-transform duration-300 group-hover:scale-105">
-                                      STEP {step.step}
-                                    </span>
-                                    {idx < dataFlowSteps.length - 1 && (
-                                      <span className="hidden lg:block text-[#FF462D] font-bold text-xs transition-transform duration-300 group-hover:translate-x-1">➔</span>
-                                    )}
-                                  </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-[-0.03em] leading-[1.14] text-[#111111] mb-4">
+              High-Level Request{' '}
+              <span className="text-[#8E8E93]">and Data Flow,</span>{' '}
+              from touchpoint to Neon PostgreSQL.
+            </h2>
 
-                                  <span className="text-[10px] font-mono uppercase text-[#888888] block mb-1">
-                                    {step.layer}
-                                  </span>
+            <p className="text-[15px] sm:text-base text-[#555555] leading-relaxed">
+              Interactive architecture flow tracing an authenticated request from React Native touchpoints through Spring Security to Neon Serverless PostgreSQL.
+            </p>
+          </div>
 
-                                  <h3 className="text-sm font-bold text-[#121212] mb-1.5 leading-snug group-hover:text-[#FF462D] transition-colors">
-                                    {step.title}
-                                  </h3>
+          {/* Deep Midnight Navy Interactive Node-Graph Canvas */}
+          <div className="relative rounded-3xl bg-gradient-to-br from-[#020617] via-[#040E29] to-[#020718] border border-[#1E3A8A]/40 shadow-[0_24px_80px_rgba(2,8,27,0.45)] p-6 sm:p-10 lg:p-12 overflow-hidden text-white">
 
-                                  <p className="text-xs text-[#666666] leading-relaxed">
-                                    {step.desc}
-                                  </p>
-                                </div>
+            {/* Ambient Cyan / Electric Blue Glows */}
+            <div className="pointer-events-none absolute -top-24 left-1/3 w-96 h-96 rounded-full bg-[#0070F3]/20 blur-[130px]" />
+            <div className="pointer-events-none absolute -bottom-24 right-1/4 w-80 h-80 rounded-full bg-[#00D2FF]/15 blur-[120px]" />
 
-                                <div className="mt-4 pt-3 border-t border-black/[0.06]">
-                                  <span className="text-[10px] font-mono font-semibold text-[#121212] block truncate">
-                                    {step.tech}
-                                  </span>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
+            {/* Desktop Interactive Node-Graph Diagram (lg+) */}
+            <div className="hidden lg:block relative w-full h-[460px]">
+              {/* SVG Curved Connector Paths & Arrowheads */}
+              <svg
+                viewBox="0 0 1000 460"
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                fill="none"
+              >
+                <defs>
+                  <marker id="flow-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38BDF8" />
+                  </marker>
+                  <marker id="flow-arrow-dim" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2563EB" />
+                  </marker>
+                </defs>
 
-                        </div>
-                      </section>
+                {/* 01 User Interaction -> 02 API Request Dispatch */}
+                <path
+                  d="M 205 215 L 265 215"
+                  stroke="#38BDF8"
+                  strokeWidth="1.5"
+                  strokeOpacity="0.8"
+                  markerEnd="url(#flow-arrow)"
+                />
+                <text x="235" y="185" textAnchor="middle" fill="#94A3B8" fontSize="12" fontFamily="sans-serif">
+                  Activity
+                </text>
 
-                      {/* 
+                {/* 02 API Request Dispatch -> 03 Session Token Injection (Top Curve) */}
+                <path
+                  d="M 380 180 C 380 100, 410 72, 448 72"
+                  stroke="#2563EB"
+                  strokeWidth="1.5"
+                  strokeOpacity="0.85"
+                  markerEnd="url(#flow-arrow-dim)"
+                />
+                <text x="388" y="102" textAnchor="end" fill="#94A3B8" fontSize="11" fontFamily="sans-serif">
+                  Bearer JWT
+                </text>
+
+                {/* 03 Session Token Injection -> 04 Security Verification */}
+                <path
+                  d="M 675 72 C 712 72, 715 128, 700 170"
+                  stroke="#38BDF8"
+                  strokeWidth="1.5"
+                  strokeOpacity="0.85"
+                  markerEnd="url(#flow-arrow)"
+                />
+
+                {/* 04 Security Verification -> 05 Business Processing */}
+                <path
+                  d="M 620 245 C 580 280, 560 290, 545 305"
+                  stroke="#38BDF8"
+                  strokeWidth="1.5"
+                  strokeOpacity="0.85"
+                  markerEnd="url(#flow-arrow)"
+                />
+
+                {/* 05 Business Processing -> 06 Data Persistence */}
+                <path
+                  d="M 555 342 C 620 342, 640 385, 688 395"
+                  stroke="#2563EB"
+                  strokeWidth="1.5"
+                  strokeOpacity="0.85"
+                  markerEnd="url(#flow-arrow-dim)"
+                />
+                <text x="615" y="388" textAnchor="middle" fill="#94A3B8" fontSize="11" fontFamily="sans-serif">
+                  JPA / SSL
+                </text>
+
+                {/* 04 Security Verification / 06 Data Persistence -> 07 Response / PDF Render */}
+                <path
+                  d="M 885 360 L 885 118"
+                  stroke="#1E40AF"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 4"
+                  markerEnd="url(#flow-arrow)"
+                />
+
+                {/* 07 Response / PDF Render -> 02 API Request Dispatch (Return Path) */}
+                <path
+                  d="M 755 35 C 560 -5, 340 15, 330 175"
+                  stroke="#1E40AF"
+                  strokeWidth="1.25"
+                  strokeOpacity="0.6"
+                  strokeDasharray="4 4"
+                  markerEnd="url(#flow-arrow-dim)"
+                />
+                <text x="305" y="295" textAnchor="middle" fill="#94A3B8" fontSize="12" fontFamily="sans-serif">
+                  JSON / PDF
+                </text>
+                <path
+                  d="M 425 330 C 350 330, 335 280, 335 252"
+                  stroke="#38BDF8"
+                  strokeWidth="1.5"
+                  strokeOpacity="0.7"
+                  markerEnd="url(#flow-arrow)"
+                />
+              </svg>
+
+              {/* Positioned Glowing Pill Nodes */}
+              {[
+                { idx: 0, icon: Smartphone, style: 'left-[1%] top-[39%] w-[205px]' },
+                { idx: 1, icon: Workflow, style: 'left-[27%] top-[39%] w-[210px]' },
+                { idx: 2, icon: Lock, style: 'left-[45%] top-[6%] w-[230px]' },
+                { idx: 3, icon: ShieldCheck, style: 'left-[57%] top-[37%] w-[250px]', hero: true },
+                { idx: 4, icon: Cpu, style: 'left-[42%] top-[66%] w-[230px]' },
+                { idx: 5, icon: Database, style: 'left-[69%] top-[78%] w-[240px]' },
+                { idx: 6, icon: FileText, style: 'left-[74%] top-[6%] w-[240px]' }
+              ].map(({ idx, icon: NodeIcon, style }) => {
+                const step = dataFlowSteps[idx];
+                const isActive = activeFlowIndex === idx;
+                const isHero = idx === 3;
+
+                return (
+                  <button
+                    key={step.step}
+                    type="button"
+                    onMouseEnter={() => setActiveFlowIndex(idx)}
+                    onClick={() => setActiveFlowIndex(idx)}
+                    className={`absolute ${style} text-left rounded-full p-2 pr-5 flex items-center gap-3.5 transition-all duration-300 cursor-pointer ${
+                      isHero
+                        ? 'bg-gradient-to-r from-[#00D2FF] via-[#1E7BFF] to-[#0052FF] text-white shadow-[0_0_38px_rgba(0,180,255,0.45)] border border-[#7DD3FC]/60 scale-[1.03]'
+                        : isActive
+                        ? 'bg-[#0B1E48] border border-[#38BDF8] shadow-[0_0_28px_rgba(56,189,248,0.35)] scale-[1.02]'
+                        : 'bg-[#06122E]/95 border border-[#2563EB]/60 shadow-[0_0_22px_rgba(37,99,235,0.2)] hover:border-[#38BDF8] hover:shadow-[0_0_28px_rgba(56,189,248,0.35)]'
+                    }`}
+                  >
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
+                        isHero
+                          ? 'bg-[#031338] text-[#38BDF8]'
+                          : 'bg-[#0A1D45] border border-[#38BDF8]/40 text-[#38BDF8]'
+                      }`}
+                    >
+                      <NodeIcon className="w-4.5 h-4.5" />
+                    </div>
+                    <div className="min-w-0">
+                      <span className={`text-[10px] font-medium block leading-none mb-1 ${isHero ? 'text-white/85' : 'text-[#7DD3FC]/80'}`}>
+                        {step.step} · {step.layer}
+                      </span>
+                      <span className="text-[13.5px] font-medium text-white block truncate leading-tight">
+                        {step.title}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Mobile & Tablet Vertical Connected Pill Flow (< lg) */}
+            <div className="lg:hidden flex flex-col gap-3">
+              {dataFlowSteps.map((step, idx) => {
+                const icons = [Smartphone, Workflow, Lock, ShieldCheck, Cpu, Database, FileText];
+                const NodeIcon = icons[idx];
+                const isHero = idx === 3;
+                return (
+                  <div
+                    key={step.step}
+                    onClick={() => setActiveFlowIndex(idx)}
+                    className={`rounded-2xl p-4 flex items-start gap-3.5 transition-all cursor-pointer ${
+                      isHero
+                        ? 'bg-gradient-to-r from-[#00D2FF] via-[#1E7BFF] to-[#0052FF] text-white shadow-[0_0_30px_rgba(0,180,255,0.35)] border border-[#7DD3FC]/60'
+                        : 'bg-[#06122E]/95 border border-[#2563EB]/50'
+                    }`}
+                  >
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
+                        isHero
+                          ? 'bg-[#031338] text-[#38BDF8]'
+                          : 'bg-[#0A1D45] border border-[#38BDF8]/40 text-[#38BDF8]'
+                      }`}
+                    >
+                      <NodeIcon className="w-4.5 h-4.5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-2 mb-0.5">
+                        <span className={`text-[11px] font-medium ${isHero ? 'text-white/85' : 'text-[#7DD3FC]/80'}`}>
+                          Step {step.step} · {step.layer}
+                        </span>
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full ${isHero ? 'bg-white/20 text-white' : 'bg-[#0A1D45] text-[#93C5FD]'}`}>
+                          {step.tech}
+                        </span>
+                      </div>
+                      <h3 className="text-sm font-medium text-white mb-1">{step.title}</h3>
+                      <p className={`text-xs leading-relaxed ${isHero ? 'text-white/90' : 'text-slate-300'}`}>
+                        {step.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Bottom Interactive Step Inspector Bar */}
+            <div className="mt-8 pt-6 border-t border-[#1E3A8A]/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-start sm:items-center gap-3.5">
+                <span className="px-3 py-1 rounded-full bg-[#0070F3]/20 border border-[#38BDF8]/40 text-[#38BDF8] text-xs font-medium shrink-0">
+                  Step {dataFlowSteps[activeFlowIndex].step}
+                </span>
+                <div>
+                  <div className="text-sm font-medium text-white">
+                    {dataFlowSteps[activeFlowIndex].title}{' '}
+                    <span className="text-[#7DD3FC]/80 font-normal">
+                      — {dataFlowSteps[activeFlowIndex].layer}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-[13px] text-slate-300 mt-0.5">
+                    {dataFlowSteps[activeFlowIndex].desc}
+                  </p>
+                </div>
+              </div>
+
+              <div className="shrink-0">
+                <span className="inline-block px-3.5 py-1.5 rounded-full bg-[#0A1D45] border border-[#2563EB]/60 text-xs font-medium text-[#93C5FD]">
+                  {dataFlowSteps[activeFlowIndex].tech}
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* 
         ========================================================================
-        4. ROLE-BASED ACCESS CONTROL (RBAC) MATRIX
+        4. ROLE-BASED ACCESS CONTROL / KEY FEATURES MATRIX
         ========================================================================
       */}
-                      <section className="py-20 lg:py-28 bg-[#FFFFFF] border-b border-black/[0.06]">
-                        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+      <section className="py-20 lg:py-28 bg-[#F7F7F7] border-b border-black/[0.05]">
+        <div className="w-full px-6 sm:px-10 lg:px-16">
 
-                          <div className="max-w-3xl mb-14">
-                            <span className="text-xs font-mono font-semibold uppercase tracking-[0.22em] text-[#FF462D] block mb-2">
-                              4. USER ROLES & ACCESS CONTROL
-                            </span>
-                            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#121212] mb-4">
-                              8 Segregated Roles for Complete Enterprise Governance
-                            </h2>
-                            <p className="text-base text-[#555555]">
-                              The frontend uses Expo Router route groups for role segregation, while Spring Security validates authorities on every API endpoint.
-                            </p>
-                          </div>
+          <div className="w-full mb-14">
+            <span className="inline-block px-3 py-1 rounded-md bg-[#EAEAEA] text-[#555555] text-xs font-medium tracking-tight mb-5">
+              {isKhata ? '4. Key Features & Objectives' : '4. User Roles & Access Control'}
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-[-0.03em] leading-[1.14] text-[#111111] mb-4">
+              {isKhata ? (
+                <>
+                  Core Capabilities{' '}
+                  <span className="text-[#8E8E93]">for unified SMB operations.</span>
+                </>
+              ) : (
+                <>
+                  8 Segregated Roles{' '}
+                  <span className="text-[#8E8E93]">for complete enterprise governance.</span>
+                </>
+              )}
+            </h2>
+            <p className="text-[15px] sm:text-base text-[#555555] leading-relaxed">
+              {isKhata
+                ? 'Bringing sales, inventory, billing, purchasing, expenses, and visual analytics together into one accessible digital assistant.'
+                : 'The frontend uses Expo Router route groups for role segregation, while Spring Security validates authorities on every API endpoint.'}
+            </p>
+          </div>
 
-                          {/* 8 Roles Responsive Grid */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {userRoles.map((r, rIdx) => (
-                              <div
-                                key={rIdx}
-                                className="p-6 rounded-2xl bg-[#FAFAF8] border border-black/[0.08] hover:border-[#FF462D]/50 hover:bg-white hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 flex flex-col justify-between group cursor-default"
-                              >
-                                <div>
-                                  <div className="flex items-center justify-between mb-4">
-                                    <span className="text-xs font-mono font-bold text-[#121212] transition-colors group-hover:text-[#FF462D]">
-                                      0{rIdx + 1}
-                                    </span>
-                                    <span className={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full border transition-transform duration-300 group-hover:scale-105 ${r.color}`}>
-                                      {r.authority}
-                                    </span>
-                                  </div>
+          {/* 8 Cards Responsive Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {(isKhata
+              ? [
+                  {
+                    role: 'Business Dashboard & Analytics',
+                    scope: 'Overview of total sales, revenue, expenses, and inventory status with visual charts and trend comparisons.'
+                  },
+                  {
+                    role: 'Sales & Billing Management',
+                    scope: 'Record customer transactions with organized product quantities, unit prices, total amounts, and billing history.'
+                  },
+                  {
+                    role: 'Inventory Management',
+                    scope: 'Maintain product catalogs and automatically update stock quantities on purchases and sales to prevent shortages.'
+                  },
+                  {
+                    role: 'Purchase & Supplier Management',
+                    scope: 'Track supplier directories, incoming product quantities, purchase orders, and historical purchasing records.'
+                  },
+                  {
+                    role: 'Expense & Financial Management',
+                    scope: 'Organize daily business expenses alongside sales in one centralized system for clearer financial visibility.'
+                  },
+                  {
+                    role: 'Data Visualization & Reporting',
+                    scope: 'Interactive Chart.js graphs paired with ExcelJS spreadsheet support for working with business reports.'
+                  },
+                  {
+                    role: 'Overall Objective',
+                    scope: 'Make business management simpler and accessible for small businesses without expensive enterprise software.'
+                  },
+                  {
+                    role: 'Future AI Insights',
+                    scope: 'Extensible toward automated business insights, demand forecasting, inventory recommendations, and predictive restocking.'
+                  }
+                ]
+              : userRoles
+            ).map((r, rIdx) => (
+              <div
+                key={rIdx}
+                className="group p-6 sm:p-7 rounded-2xl bg-white border border-black/[0.04] shadow-[0_1px_2px_rgba(0,0,0,0.02)] hover:shadow-md transition-all duration-200 flex flex-col justify-between cursor-default"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-[#141414] text-white flex items-center justify-center mb-8 text-xs font-medium tracking-tight transition-transform duration-200 group-hover:scale-105">
+                    0{rIdx + 1}
+                  </div>
 
-                                  <h3 className="text-lg font-bold text-[#121212] mb-2 group-hover:text-[#FF462D] transition-colors">
-                                    {r.role}
-                                  </h3>
+                  <h3 className="text-[17px] font-bold text-[#111111] tracking-[-0.02em] mb-2">
+                    {r.role}
+                  </h3>
 
-                                  <p className="text-xs text-[#555555] leading-relaxed">
-                                    {r.scope}
-                                  </p>
-                                </div>
+                  <p className="text-[13px] text-[#6E6E73] leading-relaxed">
+                    {r.scope}
+                  </p>
+                </div>
 
-                                <div className="mt-5 pt-3 border-t border-black/[0.06] flex items-center justify-between text-[11px] font-mono text-[#888888]">
-                                  <span>ROLE SEGREGATION</span>
-                                  <ShieldCheck className="w-3.5 h-3.5 text-[#FF462D] transition-transform duration-300 group-hover:scale-125" />
-                                </div>
-                              </div>
-                            ))}
-                          </div>
+                <div className="mt-6 pt-3.5 border-t border-black/[0.05] flex items-center justify-between text-xs font-medium text-[#8E8E93]">
+                  <span>{isKhata ? 'Khata AI Module' : 'Role Segregation'}</span>
+                  <ShieldCheck className="w-4 h-4 text-[#141414] transition-transform duration-200 group-hover:scale-110" />
+                </div>
+              </div>
+            ))}
+          </div>
 
-                        </div>
-                      </section>
+        </div>
+      </section>
 
-                      {/* 
-        ========================================================================
-        5. FUNCTIONAL MODULES: Interactive Accordion Cards
-        ========================================================================
-      */}
-                      <section className="py-20 lg:py-28 bg-[#FAF7F2] border-b border-black/[0.06]">
-                        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-
-                          <div className="max-w-3xl mb-14">
-                            <span className="text-xs font-mono font-semibold uppercase tracking-[0.22em] text-[#FF462D] block mb-2">
-                              3. FEATURES & FUNCTIONAL MODULES
-                            </span>
-                            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#121212] mb-4">
-                              Comprehensive Modules Engineered for Scale
-                            </h2>
-                            <p className="text-base text-[#555555]">
-                              Click any module to inspect its core functional requirements and system capabilities.
-                            </p>
-                          </div>
-
-                          {/* 6 Functional Modules Grid with Animated Dropdowns */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
-                            {functionalModules.map((mod, idx) => {
-                              const isOpen = Boolean(openModules[idx]);
-
-                              return (
-                                <div
-                                  key={mod.id}
-                                  onClick={() => toggleModule(idx)}
-                                  className={`group rounded-2xl p-7 border transform transition-all duration-300 cursor-pointer flex flex-col justify-between hover:-translate-y-2 hover:shadow-xl ${isOpen
-                                      ? 'bg-white border-[#FF462D]/60 shadow-lg ring-2 ring-[#FF462D]/15'
-                                      : 'bg-white/80 border-black/[0.08] hover:border-[#FF462D]/40 hover:bg-white'
-                                    }`}
-                                >
-                                  <div>
-                                    <div className="flex items-center justify-between mb-4">
-                                      <span className="text-2xl font-mono font-bold text-[#FF462D] transition-transform duration-300 group-hover:scale-110">
-                                        {mod.id}
-                                      </span>
-                                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-[#FF462D] text-white rotate-6' : 'bg-red-50 text-[#FF462D] group-hover:bg-[#FF462D] group-hover:text-white'
-                                        }`}>
-                                        <Workflow className="w-4 h-4" />
-                                      </div>
-                                    </div>
-
-                                    <h3 className="text-lg font-bold text-[#121212] mb-2 group-hover:text-[#FF462D] transition-colors leading-snug">
-                                      {mod.title}
-                                    </h3>
-
-                                    <p className="text-xs text-[#666666] leading-relaxed mb-4">
-                                      {mod.summary}
-                                    </p>
-
-                                    {/* Animated Dropdown Capability List */}
-                                    <div
-                                      className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 pt-3 border-t border-black/[0.06]' : 'grid-rows-[0fr] opacity-0'
-                                        }`}
-                                    >
-                                      <div className="overflow-hidden">
-                                        <div className="p-3.5 sm:p-4 rounded-xl bg-[#FAF7F2] border border-black/[0.04]">
-                                          <span className="text-[11px] font-mono font-bold uppercase tracking-[0.16em] text-[#FF462D] block mb-2.5">
-                                            CORE CAPABILITIES & SPECS:
-                                          </span>
-                                          <ul className="space-y-2.5">
-                                            {mod.points.map((pt, pIdx) => (
-                                              <li key={pIdx} className="text-xs sm:text-[13px] text-[#222222] font-medium flex items-start gap-2.5 leading-relaxed">
-                                                <span className="w-4 h-4 rounded-full bg-red-50 text-[#FF462D] flex items-center justify-center shrink-0 mt-0.5 border border-red-200/60">
-                                                  <Check className="w-2.5 h-2.5 stroke-[3]" />
-                                                </span>
-                                                <span>{pt}</span>
-                                              </li>
-                                            ))}
-                                          </ul>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="mt-5 pt-4 border-t border-black/[0.06] flex items-center justify-between text-xs font-mono text-[#888888]">
-                                    <span>{isOpen ? 'COLLAPSE' : 'EXPAND MODULE'}</span>
-                                    <ChevronDown className={`w-4 h-4 text-[#FF462D] transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`} />
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-
-                        </div>
-                      </section>
-
-                      {/* 
+      {/* 
         ========================================================================
         6. FULL TECHNOLOGY STACK SPECIFICATION: SHIELDS / BADGES FORMAT
         ========================================================================
       */}
-                      <section className="py-20 lg:py-28 bg-[#FFFFFF] border-b border-black/[0.06]">
-                        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+      <section className="py-20 lg:py-28 bg-[#FFFFFF] border-b border-black/[0.06]">
+        <div className="w-full px-6 sm:px-10 lg:px-16">
 
-                          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-                            <div>
-                              <span className="text-xs font-mono font-semibold uppercase tracking-[0.22em] text-[#FF462D] block mb-2">
-                                5. TECHNOLOGY STACK
-                              </span>
-                              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#121212]">
-                                Architectural Frameworks & Dependencies
-                              </h2>
-                            </div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+            <div>
+              <span className="text-xs font-mono font-semibold uppercase tracking-[0.22em] text-[#FF462D] block mb-2">
+                5. TECHNOLOGY STACK
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#121212]">
+                Architectural Frameworks & Dependencies
+              </h2>
+            </div>
 
-                            {/* Stack Switcher Tabs */}
-                            <div className="inline-flex p-1.5 rounded-2xl bg-[#EBE7DF] border border-black/[0.06] gap-1 self-start md:self-auto flex-wrap">
-                              <button
-                                type="button"
-                                onClick={() => setActiveStackTab('all')}
-                                className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeStackTab === 'all' ? 'bg-white text-[#121212] shadow-sm' : 'text-[#666666] hover:text-[#121212]'
-                                  }`}
-                              >
-                                All Tech
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => setActiveStackTab('frontend')}
-                                className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeStackTab === 'frontend' ? 'bg-white text-[#121212] shadow-sm' : 'text-[#666666] hover:text-[#121212]'
-                                  }`}
-                              >
-                                Frontend
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => setActiveStackTab('backend')}
-                                className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeStackTab === 'backend' ? 'bg-white text-[#121212] shadow-sm' : 'text-[#666666] hover:text-[#121212]'
-                                  }`}
-                              >
-                                Backend
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => setActiveStackTab('database')}
-                                className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeStackTab === 'database' ? 'bg-white text-[#121212] shadow-sm' : 'text-[#666666] hover:text-[#121212]'
-                                  }`}
-                              >
-                                Database
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => setActiveStackTab('cloud')}
-                                className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeStackTab === 'cloud' ? 'bg-white text-[#121212] shadow-sm' : 'text-[#666666] hover:text-[#121212]'
-                                  }`}
-                              >
-                                Cloud & DevOps
-                              </button>
-                            </div>
-                          </div>
+            {/* Stack Switcher Tabs */}
+            <div className="inline-flex p-1.5 rounded-2xl bg-[#EBE7DF] border border-black/[0.06] gap-1 self-start md:self-auto flex-wrap">
+              <button
+                type="button"
+                onClick={() => setActiveStackTab('all')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeStackTab === 'all' ? 'bg-white text-[#121212] shadow-sm' : 'text-[#666666] hover:text-[#121212]'
+                  }`}
+              >
+                All Tech
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveStackTab('frontend')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeStackTab === 'frontend' ? 'bg-white text-[#121212] shadow-sm' : 'text-[#666666] hover:text-[#121212]'
+                  }`}
+              >
+                Frontend
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveStackTab('backend')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeStackTab === 'backend' ? 'bg-white text-[#121212] shadow-sm' : 'text-[#666666] hover:text-[#121212]'
+                  }`}
+              >
+                Backend
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveStackTab('database')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeStackTab === 'database' ? 'bg-white text-[#121212] shadow-sm' : 'text-[#666666] hover:text-[#121212]'
+                  }`}
+              >
+                Database
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveStackTab('cloud')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeStackTab === 'cloud' ? 'bg-white text-[#121212] shadow-sm' : 'text-[#666666] hover:text-[#121212]'
+                  }`}
+              >
+                Cloud & DevOps
+              </button>
+            </div>
+          </div>
 
-                          {/* Tech Stack Badges */}
-                          <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-2">
-                            {filteredStack.map((tech) => (
-                              <div
-                                key={tech.name}
-                                style={{
-                                  backgroundColor: tech.bg,
-                                  color: tech.textColor || '#FFFFFF',
-                                  boxShadow: '0 2px 4px rgba(0,0,0,0.08)'
-                                }}
-                                className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-[4px] font-bold text-xs uppercase tracking-wider border border-black/10 hover:border-black/30 transform hover:scale-108 hover:-translate-y-1 active:scale-95 transition-all duration-200 cursor-pointer select-none shadow-xs hover:shadow-lg group/badge"
-                              >
-                                <span className="w-4 h-4 flex items-center justify-center shrink-0">
-                                  <TechIcon type={tech.icon} />
-                                </span>
-                                <span className="font-extrabold tracking-wide text-[11px] sm:text-xs">
-                                  {tech.name}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
+          {/* Tech Stack Badges */}
+          <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-2">
+            {filteredStack.map((tech) => (
+              <div
+                key={tech.name}
+                style={{
+                  backgroundColor: tech.bg,
+                  color: tech.textColor || '#FFFFFF',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.08)'
+                }}
+                className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-[4px] font-bold text-xs uppercase tracking-wider border border-black/10 hover:border-black/30 transform hover:scale-108 hover:-translate-y-1 active:scale-95 transition-all duration-200 cursor-pointer select-none shadow-xs hover:shadow-lg group/badge"
+              >
+                <span className="w-4 h-4 flex items-center justify-center shrink-0">
+                  <TechIcon type={tech.icon} />
+                </span>
+                <span className="font-extrabold tracking-wide text-[11px] sm:text-xs">
+                  {tech.name}
+                </span>
+              </div>
+            ))}
+          </div>
 
-                        </div>
-                      </section>
+        </div>
+      </section>
 
-                      {/* 
-        ========================================================================
-        7. SUGGESTED DELIVERY PHASES (ROADMAP)
-        ========================================================================
-      */}
-                      <section className="py-20 lg:py-28 bg-[#FAF7F2] border-b border-black/[0.06]">
-                        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-
-                          <div className="max-w-3xl mb-14">
-                            <span className="text-xs font-mono font-semibold uppercase tracking-[0.22em] text-[#FF462D] block mb-2">
-                              12. DELIVERY ROADMAP
-                            </span>
-                            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#121212] mb-4">
-                              Suggested 5-Phase Implementation Strategy
-                            </h2>
-                            <p className="text-base text-[#555555]">
-                              Progressing the current advanced MVP codebase into an enterprise-ready, hardened production platform.
-                            </p>
-                          </div>
-
-                          {/* 5-Phase Timeline Grid */}
-                          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
-                            {roadmapPhases.map((phase) => (
-                              <div
-                                key={phase.phase}
-                                className="p-6 rounded-2xl bg-white border border-black/[0.08] shadow-xs flex flex-col justify-between group transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-[#FF462D]/50 cursor-default"
-                              >
-                                <div>
-                                  <span className="text-xs font-mono font-bold text-[#FF462D] block mb-2 transition-transform duration-300 group-hover:translate-x-1">
-                                    {phase.phase}
-                                  </span>
-                                  <h3 className="text-base font-bold text-[#121212] mb-3 leading-snug group-hover:text-[#FF462D] transition-colors">
-                                    {phase.title}
-                                  </h3>
-                                </div>
-                                <p className="text-xs text-[#666666] leading-relaxed mt-2 pt-3 border-t border-black/[0.05]">
-                                  {phase.deliverable}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-
-                        </div>
-                      </section>
-
-                      {/* 
+      {/* 
         ========================================================================
         8. WHY CHOOSE US?
         ========================================================================
       */}
-                      <WhyChooseUsSection />
+      <WhyChooseUsSection />
 
-                      {/* 
+      {/* 
         ========================================================================
         9. CONNECT WITH US
         ========================================================================
       */}
-                      <ConnectWithUsSection onTalkClick={onConsultClick} />
+      <ConnectWithUsSection onTalkClick={onConsultClick} />
 
-                      {/* 
+      {/* 
         ========================================================================
         10. FOOTER
         ========================================================================
       */}
-                      <Footer />
+      <Footer />
 
-                  </div>
-                  );
+    </div>
+  );
 }
 
