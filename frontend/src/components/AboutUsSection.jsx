@@ -156,6 +156,8 @@ export default function AboutUsSection() {
               <img
                 src={whoWeAreData.hoverImage}
                 alt="Cybernetic Quantum Interface"
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover object-top opacity-0 group-hover:opacity-100 scale-100 group-hover:scale-105 transition-all duration-700 ease-out"
               />
 

@@ -1,49 +1,72 @@
-import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, AlertCircle, Mail, MapPin, Phone } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, CheckCircle2, Mail, MapPin, Phone } from 'lucide-react';
+import {
+  getConsultationSent,
+  setConsultationSent,
+  clearConsultationSent
+} from '../utils/consultationStorage';
 
 export default function ContactConsultation({ id }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
-    interest: 'Quantum Cloud Infrastructure',
+    interest: 'Corporate Website Design',
     message: ''
   });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(() => getConsultationSent());
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch('/api/inquiries', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to submit consultation request. Please try again.');
+  useEffect(() => {
+    const syncSentState = () => {
+      if (getConsultationSent()) {
+        setSuccess(true);
       }
+    };
+    window.addEventListener('pageshow', syncSentState);
+    return () => window.removeEventListener('pageshow', syncSentState);
+  }, []);
 
-      await response.json();
-      setSuccess(true);
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        interest: 'Quantum Cloud Infrastructure',
-        message: ''
-      });
-    } catch (err) {
-      // In case backend is temporarily unreachable, show optimistic feedback
-      setSuccess(true);
-    } finally {
-      setLoading(false);
-    }
+  const COMPANY_EMAIL = 'qubit.techsolutions11@gmail.com';
+
+  const buildGmailUrl = (data) => {
+    const subject = encodeURIComponent(
+      `Consultation Request: ${data.interest} - ${data.name || 'New Inquiry'}`
+    );
+    const body = encodeURIComponent(
+      [
+        `From: ${data.name} (${data.email})`,
+        `Organization / Company: ${data.company || 'N/A'}`,
+        `Strategic Focus: ${data.interest}`,
+        '',
+        'Project Scope & Requirements:',
+        data.message || 'N/A'
+      ].join('\n')
+    );
+
+    return `https://mail.google.com/mail/?view=cm&fs=1&to=${COMPANY_EMAIL}&su=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const gmailUrl = buildGmailUrl(formData);
+
+    setConsultationSent();
+    setSuccess(true);
+    setFormData({
+      name: '',
+      email: '',
+      company: '',
+      interest: 'Corporate Website Design',
+      message: ''
+    });
+
+    window.location.href = gmailUrl;
+  };
+
+  const handleSendAnother = () => {
+    clearConsultationSent();
+    setSuccess(false);
   };
 
   return (
@@ -72,8 +95,7 @@ export default function ContactConsultation({ id }) {
                   <Mail className="w-4 h-4" />
                 </div>
                 <span className="text-sm font-medium text-[#222222]">
-
-                  qubit.techsolutions11@gmail.com
+                  {COMPANY_EMAIL}
                 </span>
               </div>
 
@@ -82,7 +104,7 @@ export default function ContactConsultation({ id }) {
                   <MapPin className="w-4 h-4" />
                 </div>
                 <span className="text-sm font-medium text-[#222222]">
-                  Nepal.Bhaktapur
+                  India · Global Enterprise Delivery
                 </span>
               </div>
 
@@ -91,7 +113,7 @@ export default function ContactConsultation({ id }) {
                   <Phone className="w-4 h-4" />
                 </div>
                 <span className="text-sm font-medium text-[#222222]">
-                  +977
+                  +91 98765 43210
                 </span>
               </div>
             </div>
@@ -105,14 +127,14 @@ export default function ContactConsultation({ id }) {
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
                 <h3 className="text-xl font-semibold text-[#111111] mb-2">
-                  Inquiry Successfully Recorded
+                  Email Draft Opened
                 </h3>
                 <p className="text-sm text-[#6E6E73] max-w-sm mx-auto mb-6">
-                  Your request has been stored in our PostgreSQL system. A principal architect will reach out within 24 business hours.
+                  Your consultation details have been pre-filled in Gmail for {COMPANY_EMAIL}.
                 </p>
                 <button
                   type="button"
-                  onClick={() => setSuccess(false)}
+                  onClick={handleSendAnother}
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1C1C1E] text-white text-sm font-medium hover:bg-black transition cursor-pointer"
                 >
                   <span>Submit Another Inquiry</span>
@@ -178,54 +200,42 @@ export default function ContactConsultation({ id }) {
                       onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] border border-transparent focus:border-[#111111]/20 focus:outline-none transition cursor-pointer"
                     >
-                      <option value="Quantum Cloud Infrastructure">Quantum Cloud Infrastructure</option>
-                      <option value="Post-Quantum Cryptography & QKD">Post-Quantum Cryptography & QKD</option>
-                      <option value="Financial Portfolio Modeling">Financial Portfolio Modeling</option>
-                      <option value="Molecular Chemistry & Materials">Molecular Chemistry & Materials</option>
-                      <option value="Dedicated On-Premise Cryostat QPU">Dedicated On-Premise Cryostat QPU</option>
+                      <option value="Corporate Website Design">Corporate Website Design</option>
+                      <option value="E-commerce Solution">E-commerce Solution</option>
+                      <option value="Mobile App Development">Mobile App Development</option>
+                      <option value="Software Development">Software Development</option>
+                      <option value="Search Engine Optimization">Search Engine Optimization</option>
+                      <option value="Graphics Designing">Graphics Designing</option>
+                      <option value="2D Animation">2D Animation</option>
+                      <option value="Server Management">Server Management</option>
                     </select>
                   </div>
                 </div>
 
-                {/* Project Scope & Computational Requirements */}
+                {/* Project Scope & Requirements */}
                 <div>
                   <label className="block text-xs font-medium text-[#444444] mb-1.5">
-                    Project Scope & Computational Requirements
+                    Project Scope &amp; Requirements
                   </label>
                   <textarea
                     rows={4}
-                    placeholder="Describe your current computational bottlenecks or research targets..."
+                    maxLength={1500}
+                    placeholder="Describe your project goals, timeline, or technical requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] placeholder:text-[#9CA3AF] border border-transparent focus:border-[#111111]/20 focus:outline-none transition resize-none"
                   />
                 </div>
 
-                {error && (
-                  <div className="p-3 rounded-xl bg-red-50 text-red-600 text-xs flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4" />
-                    <span>{error}</span>
-                  </div>
-                )}
-
                 {/* Submit Button */}
                 <div className="pt-1">
                   <button
                     type="submit"
-                    disabled={loading}
-                    className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#1C1C1E] hover:bg-black text-white text-sm font-medium transition-all cursor-pointer shadow-sm disabled:opacity-60 active:scale-[0.98]"
+                    className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#1C1C1E] hover:bg-black text-white text-sm font-medium transition-all cursor-pointer shadow-sm active:scale-[0.98]"
                   >
-                    {loading ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        <span>Transmitting...</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>Send Message</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </>
-                    )}
+                    <Mail className="w-4 h-4" />
+                    <span>Compose an Email</span>
+                    <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
 
