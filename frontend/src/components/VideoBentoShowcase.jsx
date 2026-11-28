@@ -91,6 +91,7 @@ export default function VideoBentoShowcase() {
                     loop
                     muted
                     playsInline
+                    preload="metadata"
                   />
                   {/* Subtle glass badge */}
                   <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-mono text-white/90">

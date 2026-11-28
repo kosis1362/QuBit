@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle, Building2, Mail, User, MessageSquare } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { CheckCircle2, Building2, Mail, User } from 'lucide-react';
+import {
+  getConsultationSent,
+  setConsultationSent,
+  clearConsultationSent
+} from '../utils/consultationStorage';
 
 export default function ContactConsultation({ id }) {
   const [formData, setFormData] = useState({
@@ -9,10 +14,17 @@ export default function ContactConsultation({ id }) {
     interest: 'Corporate Website Design',
     message: ''
   });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(null);
-  const [lastSubmitted, setLastSubmitted] = useState(null);
+  const [success, setSuccess] = useState(() => getConsultationSent());
+
+  useEffect(() => {
+    const syncSentState = () => {
+      if (getConsultationSent()) {
+        setSuccess(true);
+      }
+    };
+    window.addEventListener('pageshow', syncSentState);
+    return () => window.removeEventListener('pageshow', syncSentState);
+  }, []);
 
   const COMPANY_EMAIL = 'qubit.techsolutions11@gmail.com';
 
@@ -31,14 +43,30 @@ export default function ContactConsultation({ id }) {
       ].join('\n')
     );
 
-    const authUserParam = data.email ? `&authuser=${encodeURIComponent(data.email)}` : '';
-    return `https://mail.google.com/mail/?view=cm&fs=1&to=${COMPANY_EMAIL}${authUserParam}&su=${subject}&body=${body}`;
+    return `https://mail.google.com/mail/?view=cm&fs=1&to=${COMPANY_EMAIL}&su=${subject}&body=${body}`;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError(null);
-    window.location.href = buildGmailUrl(formData);
+
+    const gmailUrl = buildGmailUrl(formData);
+
+    setConsultationSent();
+    setSuccess(true);
+    setFormData({
+      name: '',
+      email: '',
+      company: '',
+      interest: 'Corporate Website Design',
+      message: ''
+    });
+
+    window.location.href = gmailUrl;
+  };
+
+  const handleSendAnother = () => {
+    clearConsultationSent();
+    setSuccess(false);
   };
 
   return (
@@ -61,7 +89,7 @@ export default function ContactConsultation({ id }) {
             </h2>
 
             <p className="text-base sm:text-lg text-[#555555] leading-relaxed mb-8">
-              Whether you are preparing your enterprise infrastructure for post-quantum cryptographic migration or exploring high-performance algorithm acceleration on our QPU, our engineering leaders are ready to collaborate.
+              Whether you are launching a high-converting corporate platform, scaling an e-commerce store, or building custom enterprise software, our engineering leaders are ready to collaborate.
             </p>
 
             <div className="p-6 rounded-2xl bg-white border border-black/[0.08] space-y-4 shadow-xs">
@@ -71,7 +99,7 @@ export default function ContactConsultation({ id }) {
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-[#121212]">Technical Discovery Session</h4>
-                  <p className="text-xs text-[#666666]">Comprehensive review of computational bottlenecks</p>
+                  <p className="text-xs text-[#666666]">Comprehensive review of your business goals &amp; workflows</p>
                 </div>
               </div>
 
@@ -80,8 +108,8 @@ export default function ContactConsultation({ id }) {
                   2
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-[#121212]">Fault-Tolerant Co-processor Mapping</h4>
-                  <p className="text-xs text-[#666666]">Direct benchmarking against your classical workload</p>
+                  <h4 className="text-sm font-bold text-[#121212]">Solution Architecture Mapping</h4>
+                  <p className="text-xs text-[#666666]">Tailored web, mobile, cloud, or ERP system blueprint</p>
                 </div>
               </div>
 
@@ -90,8 +118,8 @@ export default function ContactConsultation({ id }) {
                   3
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-[#121212]">Sovereign Deployment Roadmap</h4>
-                  <p className="text-xs text-[#666666]">Air-gapped on-premise or managed cloud integration</p>
+                  <h4 className="text-sm font-bold text-[#121212]">Production Deployment Roadmap</h4>
+                  <p className="text-xs text-[#666666]">Agile delivery milestones with ongoing support &amp; SEO</p>
                 </div>
               </div>
             </div>
@@ -106,28 +134,18 @@ export default function ContactConsultation({ id }) {
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-[#121212] mb-2">
-                  Inquiry Successfully Recorded
+                  Consultation Draft Ready
                 </h3>
                 <p className="text-sm text-[#555555] max-w-md mx-auto mb-6">
-                  Your request has been send will and reviewd shortly . A principal Quibit architect will reach out within 24 business hours.
+                  If you&apos;ve sent your email in Gmail, our team will reach out within 24 business hours. Need to reach out again?
                 </p>
-                <div className="flex flex-wrap items-center justify-center gap-3">
-                  {lastSubmitted && (
-                    <a
-                      href={buildGmailUrl(lastSubmitted)}
-                      className="px-6 py-2.5 rounded-full bg-[#FF462D] text-white text-sm font-medium hover:bg-[#D82C00] transition cursor-pointer inline-flex items-center gap-2"
-                    >
-                      <Mail className="w-4 h-4" />
-                      <span>Compose in Gmail</span>
-                    </a>
-                  )}
-                  <button
-                    onClick={() => setSuccess(false)}
-                    className="px-6 py-2.5 rounded-full bg-[#121212] text-white text-sm font-medium hover:bg-[#FF462D] transition cursor-pointer"
-                  >
-                    Submit Another Inquiry
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={handleSendAnother}
+                  className="px-6 py-2.5 rounded-full bg-[#121212] text-white text-sm font-medium hover:bg-[#FF462D] transition cursor-pointer"
+                >
+                  Send Another Query
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -205,7 +223,7 @@ export default function ContactConsultation({ id }) {
                       <option value="E-commerce Solution">E-commerce Solution</option>
                       <option value="Mobile App Development">Mobile App Development</option>
                       <option value="Software Development">Software Development</option>
-                      <option value="Search Engine Optimization ">Search Engine Optimization </option>
+                      <option value="Search Engine Optimization">Search Engine Optimization</option>
                       <option value="Graphics Designing">Graphics Designing</option>
                       <option value="2D Animation">2D Animation</option>
                       <option value="Server Management">Server Management</option>
@@ -217,23 +235,17 @@ export default function ContactConsultation({ id }) {
                 {/* Message */}
                 <div>
                   <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
-                    Project Scope & Computational Requirements
+                    Project Scope &amp; Requirements
                   </label>
                   <textarea
                     rows={4}
-                    placeholder="Describe your current computational bottlenecks or research targets..."
+                    maxLength={1500}
+                    placeholder="Describe your project goals, timeline, or technical requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full p-4 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition"
                   />
                 </div>
-
-                {error && (
-                  <div className="p-3 rounded-xl bg-red-50 text-red-600 text-xs flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4" />
-                    <span>{error}</span>
-                  </div>
-                )}
 
                 {/* Compose an Email Button */}
                 <button
