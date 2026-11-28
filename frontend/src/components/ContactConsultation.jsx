@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle2, Building2, Mail, User } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Mail, MapPin, Phone } from 'lucide-react';
 import {
   getConsultationSent,
   setConsultationSent,
@@ -70,154 +70,135 @@ export default function ContactConsultation({ id }) {
   };
 
   return (
-    <section id={id || "contact"} className="py-20 md:py-32 bg-[#FAF7F2] border-t border-black/[0.08]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id={id || 'contact'} className="py-6 sm:py-10 bg-white text-[#111111]">
+      <div className="w-full px-2 sm:px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* Left Column: Heading, Copy & Contact Details */}
+          <div className="lg:col-span-5 flex flex-col justify-between lg:min-h-[460px] pt-2">
+            <div>
+              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-medium tracking-[-0.03em] leading-[1.12] text-[#111111] mb-4">
+                Talk to our
+                <br />
+                support team
+              </h2>
 
-          {/* Narrative Column */}
-          <div className="lg:col-span-5">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-[#FF462D] font-mono text-xs font-semibold tracking-eyebrow uppercase">
-                // ENTERPRISE ENGAGEMENT
-              </span>
-              <div className="h-[1px] w-12 bg-[#FF462D]/40" />
+              <p className="text-sm sm:text-[15px] text-[#6E6E73] leading-relaxed max-w-xs">
+                Feel free to reach out for project inquiries, enterprise architecture, or any questions you may have.
+              </p>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#121212] mb-6">
-              Connect with QuBit.
-            </h2>
-
-            <p className="text-base sm:text-lg text-[#555555] leading-relaxed mb-8">
-              Whether you are launching a high-converting corporate platform, scaling an e-commerce store, or building custom enterprise software, our engineering leaders are ready to collaborate.
-            </p>
-
-            <div className="p-6 rounded-2xl bg-white border border-black/[0.08] space-y-4 shadow-xs">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#FF462D]/10 text-[#FF462D] flex items-center justify-center font-bold text-sm">
-                  1
+            {/* Contact Info Rows */}
+            <div className="mt-10 lg:mt-16 space-y-3.5">
+              <div className="flex items-center gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-[#F4F4F5] text-[#111111] flex items-center justify-center shrink-0">
+                  <Mail className="w-4 h-4" />
                 </div>
-                <div>
-                  <h4 className="text-sm font-bold text-[#121212]">Technical Discovery Session</h4>
-                  <p className="text-xs text-[#666666]">Comprehensive review of your business goals &amp; workflows</p>
-                </div>
+                <span className="text-sm font-medium text-[#222222]">
+                  {COMPANY_EMAIL}
+                </span>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#FF462D]/10 text-[#FF462D] flex items-center justify-center font-bold text-sm">
-                  2
+              <div className="flex items-center gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-[#F4F4F5] text-[#111111] flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4" />
                 </div>
-                <div>
-                  <h4 className="text-sm font-bold text-[#121212]">Solution Architecture Mapping</h4>
-                  <p className="text-xs text-[#666666]">Tailored web, mobile, cloud, or ERP system blueprint</p>
-                </div>
+                <span className="text-sm font-medium text-[#222222]">
+                  India · Global Enterprise Delivery
+                </span>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#FF462D]/10 text-[#FF462D] flex items-center justify-center font-bold text-sm">
-                  3
+              <div className="flex items-center gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-[#F4F4F5] text-[#111111] flex items-center justify-center shrink-0">
+                  <Phone className="w-4 h-4" />
                 </div>
-                <div>
-                  <h4 className="text-sm font-bold text-[#121212]">Production Deployment Roadmap</h4>
-                  <p className="text-xs text-[#666666]">Agile delivery milestones with ongoing support &amp; SEO</p>
-                </div>
+                <span className="text-sm font-medium text-[#222222]">
+                  +91 98765 43210
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Form Column */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-12 border border-black/[0.08] shadow-kyndryl">
-
+          {/* Right Column: Soft Gray Form Card */}
+          <div className="lg:col-span-7 bg-[#F4F4F5] rounded-2xl p-6 sm:p-8">
             {success ? (
               <div className="text-center py-12">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle2 className="w-8 h-8" />
+                <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle2 className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#121212] mb-2">
-                  Consultation Draft Ready
+                <h3 className="text-xl font-semibold text-[#111111] mb-2">
+                  Email Draft Opened
                 </h3>
-                <p className="text-sm text-[#555555] max-w-md mx-auto mb-6">
-                  If you&apos;ve sent your email in Gmail, our team will reach out within 24 business hours. Need to reach out again?
+                <p className="text-sm text-[#6E6E73] max-w-sm mx-auto mb-6">
+                  Your consultation details have been pre-filled in Gmail for {COMPANY_EMAIL}.
                 </p>
                 <button
                   type="button"
                   onClick={handleSendAnother}
-                  className="px-6 py-2.5 rounded-full bg-[#121212] text-white text-sm font-medium hover:bg-[#FF462D] transition cursor-pointer"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1C1C1E] text-white text-sm font-medium hover:bg-black transition cursor-pointer"
                 >
-                  Send Another Query
+                  <span>Submit Another Inquiry</span>
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Full Name */}
                   <div>
-                    <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
+                    <label className="block text-xs font-medium text-[#444444] mb-1.5">
                       Full Name *
                     </label>
-                    <div className="relative">
-                      <User className="w-4 h-4 text-[#888888] absolute left-3.5 top-3.5 pointer-events-none" />
-                      <input
-                        type="text"
-                        required
-                        placeholder="Dr. Alan Turing"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition"
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Dr. Alan Turing"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] placeholder:text-[#9CA3AF] border border-transparent focus:border-[#111111]/20 focus:outline-none transition"
+                    />
                   </div>
 
                   {/* Work Email */}
                   <div>
-                    <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
+                    <label className="block text-xs font-medium text-[#444444] mb-1.5">
                       Work Email *
                     </label>
-                    <div className="relative">
-                      <Mail className="w-4 h-4 text-[#888888] absolute left-3.5 top-3.5 pointer-events-none" />
-                      <input
-                        type="email"
-                        required
-                        placeholder="alan@enterprise.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition"
-                      />
-                    </div>
+                    <input
+                      type="email"
+                      required
+                      placeholder="alan@enterprise.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] placeholder:text-[#9CA3AF] border border-transparent focus:border-[#111111]/20 focus:outline-none transition"
+                    />
                   </div>
-
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
-                  {/* Company */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Organization / Company */}
                   <div>
-                    <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
+                    <label className="block text-xs font-medium text-[#444444] mb-1.5">
                       Organization / Company
                     </label>
-                    <div className="relative">
-                      <Building2 className="w-4 h-4 text-[#888888] absolute left-3.5 top-3.5 pointer-events-none" />
-                      <input
-                        type="text"
-                        placeholder="Acme Global Corp"
-                        value={formData.company}
-                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition"
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      placeholder="Acme Global Corp"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] placeholder:text-[#9CA3AF] border border-transparent focus:border-[#111111]/20 focus:outline-none transition"
+                    />
                   </div>
 
-                  {/* Area of Interest */}
+                  {/* Strategic Focus */}
                   <div>
-                    <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
+                    <label className="block text-xs font-medium text-[#444444] mb-1.5">
                       Strategic Focus
                     </label>
                     <select
                       value={formData.interest}
                       onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition cursor-pointer"
+                      className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] border border-transparent focus:border-[#111111]/20 focus:outline-none transition cursor-pointer"
                     >
                       <option value="Corporate Website Design">Corporate Website Design</option>
                       <option value="E-commerce Solution">E-commerce Solution</option>
@@ -229,12 +210,11 @@ export default function ContactConsultation({ id }) {
                       <option value="Server Management">Server Management</option>
                     </select>
                   </div>
-
                 </div>
 
-                {/* Message */}
+                {/* Project Scope & Requirements */}
                 <div>
-                  <label className="block text-xs font-mono font-semibold uppercase text-[#737373] mb-2 tracking-wider">
+                  <label className="block text-xs font-medium text-[#444444] mb-1.5">
                     Project Scope &amp; Requirements
                   </label>
                   <textarea
@@ -243,30 +223,28 @@ export default function ContactConsultation({ id }) {
                     placeholder="Describe your project goals, timeline, or technical requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full p-4 rounded-xl border border-black/10 bg-[#FBF9F5] text-sm text-[#121212] focus:outline-none focus:border-[#FF462D] transition"
+                    className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] placeholder:text-[#9CA3AF] border border-transparent focus:border-[#111111]/20 focus:outline-none transition resize-none"
                   />
                 </div>
 
-                {/* Compose an Email Button */}
-                <button
-                  type="submit"
-                  className="w-full py-4 rounded-full bg-[#FF462D] text-white font-medium text-base hover:bg-[#D82C00] transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg cursor-pointer"
-                >
-                  <Mail className="w-4 h-4" />
-                  <span>Compose an Email</span>
-                </button>
-
-
+                {/* Submit Button */}
+                <div className="pt-1">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#1C1C1E] hover:bg-black text-white text-sm font-medium transition-all cursor-pointer shadow-sm active:scale-[0.98]"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span>Compose an Email</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
 
               </form>
             )}
-
           </div>
 
         </div>
-
       </div>
     </section>
   );
 }
-

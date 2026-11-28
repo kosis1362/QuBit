@@ -172,15 +172,8 @@ export default function CustomerStoriesSection() {
                     {story.description}
                   </p>
 
-                  {/* Clickable Action Buttons matching Kyndryl 1:1 */}
+                  {/* Clickable Action Button */}
                   <div className="flex flex-wrap items-center gap-3.5 mb-2">
-                    <button
-                      type="button"
-                      onClick={() => setStoryModal(story)}
-                      className="px-5 py-2.5 sm:px-6 sm:py-3 border border-white/80 bg-black/30 backdrop-blur-xs text-white hover:bg-white hover:text-[#121212] font-medium text-xs sm:text-sm rounded-none sm:rounded-sm transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
-                    >
-                      Highlights
-                    </button>
                     <Link
                       to={`/customer-stories/${story.slug || 'erp-system'}`}
                       className="px-5 py-2.5 sm:px-6 sm:py-3 border border-white/80 bg-black/30 backdrop-blur-xs text-white hover:bg-white hover:text-[#121212] font-medium text-xs sm:text-sm rounded-none sm:rounded-sm transition-all duration-200 cursor-pointer shadow-sm active:scale-95 flex items-center gap-2 group"

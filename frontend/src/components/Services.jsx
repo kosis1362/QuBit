@@ -10,30 +10,49 @@ export default function Services() {
       badge: "01",
       headline: "Software Development",
       bgHex: "#1FA452",
-  
+      logo: (
+        <div className="flex items-center gap-2 text-white font-sans tracking-tight">
+          <span className="text-2xl font-bold tracking-tighter">QuBit</span>
+          <span className="text-xs font-light tracking-wider uppercase ml-1 opacity-90"></span>
+        </div>
+      )
     },
     {
       id: "02",
       badge: "02",
-      headline:"AI Automation & Data Analytics",
+      headline: "AI Automation & Data Analytics",
       bgHex: "#1B904B",
-  
+      logo: (
+        <div className="text-white font-sans flex items-baseline">
+          <span className="text-3xl sm:text-4xl font-bold tracking-tight">QuBit</span>
+          <span className="text-xs align-super ml-0.5 font-bold">®</span>
+        </div>
+      )
     },
     {
       id: "03",
       badge: "03",
       headline: "Website Development",
-      
+
       bgHex: "#187E3F",
-    
+      logo: (
+        <div className="text-white font-sans flex items-baseline gap-2">
+          <span className="text-2xl sm:text-3xl font-black tracking-widest">QuBit</span>
+          <span className="text-xs font-medium uppercase opacity-90 tracking-wider"></span>
+        </div>
+      )
     },
     {
       id: "04",
       badge: "04",
       headline: "Graphic Design & Branding",
-     
+
       bgHex: "#126230",
-    
+      logo: (
+        <div className="text-white font-serif tracking-[0.2em]">
+          <span className="text-xl sm:text-2xl font-bold">QuBit</span>
+        </div>
+      )
     }
   ];
 
@@ -50,10 +69,10 @@ export default function Services() {
       <div id="services" />
       <div id="who-we-are-recognition" />
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10">
-        
+
         {/* Main Card Container (Rounded Card matching Kyndryl 1:1 reference image) */}
         <div className="rounded-[24px] sm:rounded-[32px] lg:rounded-[36px] overflow-hidden bg-[#EFF2F2] flex flex-col lg:flex-row items-stretch min-h-[480px] sm:min-h-[500px] lg:min-h-[520px] shadow-sm border border-black/[0.04]">
-          
+
           {/* Left Column (Headline + Navigation Chevrons) */}
           <div className="lg:w-[32%] xl:w-[30%] p-8 sm:p-10 lg:p-12 xl:p-14 flex flex-col justify-between shrink-0 bg-[#EFF2F2] self-stretch z-10">
             <div>
@@ -105,11 +124,10 @@ export default function Services() {
                   {/* Top Badge: Circle with number 01, 02, 03, 04 */}
                   <div className="pt-6 sm:pt-8 px-4 sm:px-8 w-full flex items-center justify-start shrink-0 z-10">
                     <div
-                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs sm:text-sm font-semibold transition-all duration-300 shrink-0 ${
-                        isActive
-                          ? 'bg-white/25 text-white shadow-xs font-bold'
-                          : 'bg-white/15 text-white/90 group-hover:bg-white/25 mx-auto lg:mx-0'
-                      }`}
+                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs sm:text-sm font-semibold transition-all duration-300 shrink-0 ${isActive
+                        ? 'bg-white/25 text-white shadow-xs font-bold'
+                        : 'bg-white/15 text-white/90 group-hover:bg-white/25 mx-auto lg:mx-0'
+                        }`}
                     >
                       {panel.badge}
                     </div>
@@ -117,9 +135,8 @@ export default function Services() {
 
                   {/* Active Content: Fills full height, fades in cleanly, never glitches */}
                   <div
-                    className={`absolute inset-0 pt-20 sm:pt-24 px-6 sm:px-10 pb-8 sm:pb-10 flex flex-col justify-between transition-opacity duration-300 ease-out ${
-                      isActive ? 'opacity-100 delay-150 pointer-events-auto' : 'opacity-0 pointer-events-none'
-                    }`}
+                    className={`absolute inset-0 pt-20 sm:pt-24 px-6 sm:px-10 pb-8 sm:pb-10 flex flex-col justify-between transition-opacity duration-300 ease-out ${isActive ? 'opacity-100 delay-150 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                      }`}
                     style={{ minWidth: '340px', maxWidth: '640px' }}
                   >
                     {/* Headline text */}
