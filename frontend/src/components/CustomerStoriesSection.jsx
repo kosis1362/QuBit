@@ -124,13 +124,15 @@ export default function CustomerStoriesSection() {
                   loop
                   muted
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   className="w-full h-full object-cover object-center"
                 />
               ) : (
                 <img
                   src={story.image}
                   alt={story.title}
+                  loading="lazy"
+                  decoding="async"
                   className={`w-full h-full object-cover object-center transition-transform duration-[6000ms] ease-out ${isCurrent ? 'scale-[1.03]' : 'scale-100'
                     }`}
                 />

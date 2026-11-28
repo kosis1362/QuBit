@@ -6,28 +6,58 @@ export default function ContactConsultation({ id }) {
     name: '',
     email: '',
     company: '',
-    interest: 'Quantum Cloud Infrastructure',
+    interest: 'Corporate Website Design',
     message: ''
   });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(() => getConsultationSent());
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch('/api/inquiries', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to submit consultation request. Please try again.');
+  useEffect(() => {
+    const syncSentState = () => {
+      if (getConsultationSent()) {
+        setSuccess(true);
       }
+    };
+    window.addEventListener('pageshow', syncSentState);
+    return () => window.removeEventListener('pageshow', syncSentState);
+  }, []);
+
+  const COMPANY_EMAIL = 'qubit.techsolutions11@gmail.com';
+
+  const buildGmailUrl = (data) => {
+    const subject = encodeURIComponent(
+      `Consultation Request: ${data.interest} - ${data.name || 'New Inquiry'}`
+    );
+    const body = encodeURIComponent(
+      [
+        `From: ${data.name} (${data.email})`,
+        `Organization / Company: ${data.company || 'N/A'}`,
+        `Strategic Focus: ${data.interest}`,
+        '',
+        'Project Scope & Requirements:',
+        data.message || 'N/A'
+      ].join('\n')
+    );
+
+    return `https://mail.google.com/mail/?view=cm&fs=1&to=${COMPANY_EMAIL}&su=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const gmailUrl = buildGmailUrl(formData);
+
+    setConsultationSent();
+    setSuccess(true);
+    setFormData({
+      name: '',
+      email: '',
+      company: '',
+      interest: 'Corporate Website Design',
+      message: ''
+    });
+
+    window.location.href = gmailUrl;
+  };
 
       await response.json();
       setSuccess(true);
@@ -178,11 +208,14 @@ export default function ContactConsultation({ id }) {
                       onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] border border-transparent focus:border-[#111111]/20 focus:outline-none transition cursor-pointer"
                     >
-                      <option value="Quantum Cloud Infrastructure">Quantum Cloud Infrastructure</option>
-                      <option value="Post-Quantum Cryptography & QKD">Post-Quantum Cryptography & QKD</option>
-                      <option value="Financial Portfolio Modeling">Financial Portfolio Modeling</option>
-                      <option value="Molecular Chemistry & Materials">Molecular Chemistry & Materials</option>
-                      <option value="Dedicated On-Premise Cryostat QPU">Dedicated On-Premise Cryostat QPU</option>
+                      <option value="Corporate Website Design">Corporate Website Design</option>
+                      <option value="E-commerce Solution">E-commerce Solution</option>
+                      <option value="Mobile App Development">Mobile App Development</option>
+                      <option value="Software Development">Software Development</option>
+                      <option value="Search Engine Optimization">Search Engine Optimization</option>
+                      <option value="Graphics Designing">Graphics Designing</option>
+                      <option value="2D Animation">2D Animation</option>
+                      <option value="Server Management">Server Management</option>
                     </select>
                   </div>
                 </div>
@@ -194,7 +227,8 @@ export default function ContactConsultation({ id }) {
                   </label>
                   <textarea
                     rows={4}
-                    placeholder="Describe your current computational bottlenecks or research targets..."
+                    maxLength={1500}
+                    placeholder="Describe your project goals, timeline, or technical requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-white text-sm text-[#111111] placeholder:text-[#9CA3AF] border border-transparent focus:border-[#111111]/20 focus:outline-none transition resize-none"
